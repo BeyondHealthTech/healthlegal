@@ -159,6 +159,15 @@ export default function ThreeM2GPage() {
               医療機器プログラム（SaMD）から非医療機器のヘルスケアサービスまで、
               複数プロダクトの開発・法令対応で蓄積した判断とAWS実装の型を反映しています。
             </p>
+            {/* 人的な信頼の担保。運営者個人名は非公開の方針のため、役割・経験ベースで記載 */}
+            <div className="mt-10 pt-8 border-t border-primary-800 max-w-2xl mx-auto">
+              <p className="text-white font-semibold mb-2">監修体制</p>
+              <p className="text-primary-200 text-sm leading-relaxed">
+                メドテック企業でのCTO経験を持ち、SaMDの薬事対応からクラウドセキュリティ構築・
+                プロダクト開発までを実務で担ってきたメンバーが、標準回答と文書ひな形の内容を監修しています。
+                法解釈と技術実装のどちらか一方に寄らない、両輪での品質担保が本パッケージの前提です。
+              </p>
+            </div>
           </div>
         </section>
 
