@@ -75,6 +75,25 @@ export default function Services() {
             </div>
           ))}
         </div>
+
+        {/* 3M2G対応パッケージ（専用ページ）への導線 */}
+        <a
+          href="./3m2g/"
+          className="mt-10 flex flex-col sm:flex-row items-center justify-between gap-4 bg-primary-950 rounded-xl px-8 py-6 hover:bg-primary-900 transition-colors group"
+        >
+          <div>
+            <p className="text-accent-400 text-sm font-semibold mb-1">3省2ガイドライン対応パッケージ</p>
+            <p className="text-white font-bold text-lg">
+              数ヶ月規模の対応を、数週間規模に。標準回答416項目と文書ひな形66ファイルで差分レビュー化
+            </p>
+          </div>
+          <span className="shrink-0 inline-flex items-center gap-1 text-white text-sm font-semibold group-hover:gap-2 transition-all">
+            詳しく見る
+            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+            </svg>
+          </span>
+        </a>
       </div>
     </section>
   );
