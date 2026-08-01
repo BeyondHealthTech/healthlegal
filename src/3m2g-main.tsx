@@ -1,10 +1,19 @@
 import { StrictMode } from "react";
-import { createRoot } from "react-dom/client";
+import { createRoot, hydrateRoot } from "react-dom/client";
 import "./index.css";
 import ThreeM2GPage from "./pages/ThreeM2GPage";
 
-createRoot(document.getElementById("root")!).render(
+const container = document.getElementById("root")!;
+const app = (
   <StrictMode>
     <ThreeM2GPage />
-  </StrictMode>,
+  </StrictMode>
 );
+
+// 本番ビルドはプリレンダリング済みHTMLが入っているのでハイドレート。
+// devサーバではrootが空なので通常マウント。
+if (container.hasChildNodes()) {
+  hydrateRoot(container, app);
+} else {
+  createRoot(container).render(app);
+}
