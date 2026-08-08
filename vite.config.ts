@@ -15,6 +15,8 @@ export default defineConfig({
         main: resolve(__dirname, 'index.html'),
         // 3M2G対応パッケージの販売専用ページ（/3m2g/）
         '3m2g': resolve(__dirname, '3m2g/index.html'),
+        // 解説記事: 医療情報システム安全管理GL第7.0版 改訂まとめ
+        'article-gl70': resolve(__dirname, 'articles/guideline-7-0-summary/index.html'),
       },
     },
   },
