@@ -302,6 +302,21 @@ export default function ArticleGl70Page() {
             <p className="text-xs text-slate-500 mb-2">
               本記事は上記の一次資料に基づいて作成していますが、個別の対応判断にあたっては必ず原文をご確認ください。
             </p>
+
+            {/* 関連記事 */}
+            <h2 className={h2Class}>関連記事（シリーズ: 規制の一次情報を読む）</h2>
+            <ul className="space-y-2 mb-5">
+              <li className="text-slate-700 leading-relaxed">
+                <a href="../samd-boundary/" className="text-primary-600 hover:text-primary-700 underline">
+                  「診断を代替しない」と書けば医療機器ではなくなるのか — ヘルスケアサービスの該当性の線引きを厚労省ガイドラインで読み解く
+                </a>
+              </li>
+              <li className="text-slate-700 leading-relaxed">
+                <a href="../academic-seed-regulatory/" className="text-primary-600 hover:text-primary-700 underline">
+                  大学発シーズが最初につまずく3つの規制論点 — 研究成果を医療系プロダクトにする前に確認すること
+                </a>
+              </li>
+            </ul>
           </div>
         </article>
 
