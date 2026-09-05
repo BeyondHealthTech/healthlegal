@@ -22,13 +22,15 @@ await build({
   },
 })
 
-const { renderMain, render3m2g, renderArticleGl70, renderPrivacy } = await import(
+const { renderMain, render3m2g, renderArticleGl70, renderArticleSamdBoundary, renderArticleAcademicSeed, renderPrivacy } = await import(
   pathToFileURL(resolve('dist-server/entry-server.js')).href
 )
 
 injectRoot('dist/index.html', renderMain())
 injectRoot('dist/3m2g/index.html', render3m2g())
 injectRoot('dist/articles/guideline-7-0-summary/index.html', renderArticleGl70())
+injectRoot('dist/articles/samd-boundary/index.html', renderArticleSamdBoundary())
+injectRoot('dist/articles/academic-seed-regulatory/index.html', renderArticleAcademicSeed())
 injectRoot('dist/privacy/index.html', renderPrivacy())
 
 rmSync('dist-server', { recursive: true, force: true })
