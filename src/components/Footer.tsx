@@ -11,6 +11,14 @@ export default function Footer() {
             医療情報システム安全管理ガイドライン第7.0版（2026年6月）改訂まとめ
           </a>
         </p>
+        <p className="text-slate-400 text-sm mb-3">
+          <a
+            href="./privacy/"
+            className="text-slate-300 underline hover:text-white"
+          >
+            プライバシーポリシー
+          </a>
+        </p>
         <p className="text-slate-400 text-sm">
           &copy; {new Date().getFullYear()} Beyond HealthTech合同会社
         </p>

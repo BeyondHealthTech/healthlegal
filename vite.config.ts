@@ -21,6 +21,8 @@ export default defineConfig({
         'article-samd-boundary': resolve(__dirname, 'articles/samd-boundary/index.html'),
         // 解説記事: 大学発シーズの3つの規制論点
         'article-academic-seed': resolve(__dirname, 'articles/academic-seed-regulatory/index.html'),
+        // プライバシーポリシー（問い合わせ・診断フォーム共通）
+        privacy: resolve(__dirname, 'privacy/index.html'),
       },
     },
   },
