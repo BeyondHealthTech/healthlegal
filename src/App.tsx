@@ -2,6 +2,7 @@ import Header from "./components/Header";
 import Hero from "./components/Hero";
 import Problem from "./components/Problem";
 import Services from "./components/Services";
+import SelfCheck from "./components/SelfCheck";
 import ForYou from "./components/ForYou";
 import Strength from "./components/Strength";
 import Company from "./components/Company";
@@ -16,6 +17,7 @@ export default function App() {
         <Hero />
         <Problem />
         <Services />
+        <SelfCheck />
         <ForYou />
         <Strength />
         <Company />
