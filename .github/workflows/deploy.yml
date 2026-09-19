@@ -25,6 +25,9 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run build
+      # 正規ホストは healthlegal.vercel.app。GitHub Pages 側は重複配信になるため
+      # 全HTMLに noindex を注入してインデックス対象を Vercel に一本化する（B5）。
+      - run: node scripts/add-noindex.mjs dist
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist

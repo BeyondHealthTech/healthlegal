@@ -27,11 +27,12 @@ npm run lint
 同じビルド成果物が動くため。`'/healthlegal/'` に固定するとルート直下配信側でJS/CSSが404になり、
 SPAが何も描画しない（＝クローラーからは空ページに見える）状態になる。
 
-> **[要判断] 正規ホストの一本化**
-> 同一内容が2つのホストで配信されていると重複コンテンツとなり、被リンク・評価が分散する。
-> どちらを正とするか決めて、もう一方は停止するか正規ホストへリダイレクトするのが望ましい。
-> 現状は `index.html` の `<link rel="canonical">`・`sitemap.xml`・`robots.txt` を
-> **Vercel側（healthlegal.vercel.app）を正**として記載している。
+> **正規ホストは Vercel（healthlegal.vercel.app）に一本化済み**
+> `index.html` の `<link rel="canonical">`・`sitemap.xml`・`robots.txt` はVercel側を正として記載し、
+> GSC（Search Console）の登録もVercel側で実施済み（2026-09-05）。
+> GitHub Pages 側は同一内容の重複配信になるため、`deploy.yml` のビルド後に
+> `scripts/add-noindex.mjs` で全HTMLへ `<meta name="robots" content="noindex">` を注入し、
+> インデックス対象から除外している（Vercel側のビルドでは実行されない）。
 > 独自ドメイン（例: legal.beyondhealthtech.com）へ移行する場合は、以下3ファイルの
 > URLをまとめて置き換えること。
 > - `index.html`（canonical / og:url）
