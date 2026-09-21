@@ -32,6 +32,29 @@ const deliverables = [
   "運用文書一式（規程・計画・SLA・手順 31ファイル）",
   "セキュリティ詳細設計書一式（IAM・ログ監査・監視・NW・ストレージ 35ファイル、AWS設定値レベル）",
   "サービス仕様適合開示書・サービス仕様書のひな形",
+  "利用者認証方式規程のひな形（二要素認証の対応ロードマップ・代替手段・医療機関等との合意事項）",
+];
+
+// MDS/SDS 99項目（GL第7.0版 保守委託機関編【別紙】）への回答状況の開示。
+// 文言はbht-ops docs/3m2g-lp-claims-evidence.md のL1〜L3（B1判断材料）に準拠。
+// 「99項目カバー」等のNG表現（同ドキュメント4章）は使わない。
+const mdsSdsPoints = [
+  {
+    title: "99項目すべてを項目単位で分類済み",
+    body: "MDS/SDS 99項目すべてを項目単位で分類済みです。94件（95%）は「はい」「対象外」または「文書の整備により はい」で回答できる見込みです。",
+  },
+  {
+    title: "個別検討になるのは5件だけ",
+    body: "個別検討になるのは5件だけです。どの項目が、なぜ個別検討になるのかを項目単位で開示します。",
+  },
+  {
+    title: "対応表は検証してから出す",
+    body: "「対象外」の除外理由が要求に当たっていない項目（誤除外）を4件、自分たちで検出して是正しました。対応表は作って終わりにせず、要求の原文と突き合わせて検証しています。",
+  },
+  {
+    title: "二要素認証は規程ひな形を同梱",
+    body: "二要素認証（令和9年4月1日期限）は、対応ロードマップの規程ひな形をアセットに同梱しています。方式の比較・認証手段が使えない場合の代替手順・医療機関等との合意事項までを1本の規程で扱います。",
+  },
 ];
 
 const steps = [
@@ -166,6 +189,44 @@ export default function ThreeM2GPage() {
                 メドテック企業でのCTO経験を持ち、SaMDの薬事対応からクラウドセキュリティ構築・
                 プロダクト開発までを実務で担ってきたメンバーが、標準回答と文書ひな形の内容を監修しています。
                 法解釈と技術実装のどちらか一方に寄らない、両輪での品質担保が本パッケージの前提です。
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* MDS/SDS 99項目への回答状況（開示型の訴求） */}
+        <section className="py-24 px-6 bg-slate-50">
+          <div className="max-w-5xl mx-auto">
+            <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 text-center mb-6">
+              医療機関の確認事項「MDS/SDS 99項目」への回答状況を開示します
+            </h2>
+            <p className="text-slate-600 text-center leading-relaxed max-w-3xl mx-auto mb-12">
+              ガイドライン第7.0版では、医療機関が事業者を選定する際の公式な確認事項として
+              MDS（医療情報安全管理適合性開示書）41項目・SDS（サービス仕様適合開示書）58項目の
+              計99項目が示され、「全項目が『はい』または『対象外』である事業者を選定すること」と明記されました。
+              本パッケージは、この99項目にどう答えられるかを項目単位で整理・開示します。
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {mdsSdsPoints.map((p, i) => (
+                <div key={p.title} className="bg-white rounded-xl p-8 border border-slate-200 shadow-sm">
+                  <p className="text-primary-600 font-bold text-sm mb-2">{String(i + 1).padStart(2, "0")}</p>
+                  <h3 className="text-lg font-bold text-slate-900 mb-3">{p.title}</h3>
+                  <p className="text-sm text-slate-600 leading-relaxed">{p.body}</p>
+                </div>
+              ))}
+            </div>
+            {/* L5: AI自動判定の予告枠。プロダクト未リリースのため「開発中の技術検証」であることを明記する */}
+            <div className="mt-8 bg-white rounded-xl p-8 border border-primary-200">
+              <p className="inline-block px-3 py-1 bg-primary-100 text-primary-700 rounded-full text-xs font-bold mb-3">
+                開発中
+              </p>
+              <h3 className="text-lg font-bold text-slate-900 mb-3">対応状況のAI自動判定（技術検証中）</h3>
+              <p className="text-sm text-slate-600 leading-relaxed">
+                対応状況のAI自動判定を自社アセットで実測しています。170件の判定で、根拠引用216件はすべて
+                原文と機械照合済み——実在しない根拠（捏造）は0件でした。判定の限界値
+                （対象外の項目を誤って「要対応」と読む率など）も測定し、開示します。
+                AIの出力を鵜呑みにするのではなく、間違い方まで測って人の確認と組み合わせる——
+                本パッケージと同じ検証姿勢で製品化を進めています。
               </p>
             </div>
           </div>
