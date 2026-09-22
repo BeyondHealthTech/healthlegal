@@ -14,6 +14,26 @@ npm run preview  # ビルド結果の確認
 npm run lint
 ```
 
+## 解説記事の追加方法（Markdown基盤）
+
+記事のソースは `articles/content/<slug>.md`（frontmatter + Markdown本文）に一本化してある。
+**記事を追加するときは .md を1枚置くだけ**でよい。`npm run generate`（dev / build / lint の
+先頭で自動実行）が次をすべて生成する:
+
+- `src/generated/articles/<slug>.ts`（本文HTML込みの記事データ。gitignore対象）
+- `articles/<slug>/index.html`（Viteエントリ + SEOメタ・OGP・JSON-LD。コミット対象）
+- `/articles/` 一覧ページのデータと `public/sitemap.xml`
+- プリレンダ対象（`scripts/prerender.mjs` が slug 一覧から自動で回る）
+
+記法のメモ:
+
+- 見出し・段落・箇条書き・番号リスト・表・引用（`>`）は通常のMarkdown。スタイルは
+  `scripts/generate-articles.mjs` の `CLS` で一括付与される
+- 引用内の出典注記は `<span class="block text-xs text-slate-500 mt-2">（…）</span>` を行末に直書き
+- チェックアイコン付きリストは各項目を `- ✓ ` で始める
+- 表で行全体を強調（新設ハイライト等）するには、その行の全セルを `**…**` で囲む
+- 太字 `**…**` は日本語句読点隣接でも効くよう生成時に `<strong>` へ変換される
+
 ## 配信先とベースパス
 
 現在、次の2経路が存在する。

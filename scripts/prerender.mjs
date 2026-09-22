@@ -2,6 +2,7 @@
 // react-dom/server でレンダリングした本文を注入する。
 // React SPAのままだと初期HTMLに本文が含まれず検索インデックスが遅く不安定なため、
 // `npm run build`（GitHub Pages CI / Vercel CLIデプロイ共通）の最終ステップとして実行する。
+// 記事ページは articles/content/*.md から生成されたslug一覧を使って自動で対象になる。
 import { readFileSync, writeFileSync, rmSync } from 'node:fs'
 import { resolve } from 'node:path'
 import { pathToFileURL } from 'node:url'
@@ -22,15 +23,15 @@ await build({
   },
 })
 
-const { renderMain, render3m2g, renderArticleGl70, renderArticleSamdBoundary, renderArticleAcademicSeed, renderPrivacy } = await import(
-  pathToFileURL(resolve('dist-server/entry-server.js')).href
-)
+const { renderMain, render3m2g, renderPrivacy, renderArticle, renderArticlesIndex, articleSlugs } =
+  await import(pathToFileURL(resolve('dist-server/entry-server.js')).href)
 
 injectRoot('dist/index.html', renderMain())
 injectRoot('dist/3m2g/index.html', render3m2g())
-injectRoot('dist/articles/guideline-7-0-summary/index.html', renderArticleGl70())
-injectRoot('dist/articles/samd-boundary/index.html', renderArticleSamdBoundary())
-injectRoot('dist/articles/academic-seed-regulatory/index.html', renderArticleAcademicSeed())
+injectRoot('dist/articles/index.html', renderArticlesIndex())
+for (const slug of articleSlugs) {
+  injectRoot(`dist/articles/${slug}/index.html`, renderArticle(slug))
+}
 injectRoot('dist/privacy/index.html', renderPrivacy())
 
 rmSync('dist-server', { recursive: true, force: true })
