@@ -3,12 +3,11 @@ export default function Footer() {
     <footer className="py-8 px-6 bg-slate-950">
       <div className="max-w-6xl mx-auto text-center">
         <p className="text-slate-400 text-sm mb-3">
-          解説記事:{" "}
           <a
-            href="./articles/guideline-7-0-summary/"
+            href="./articles/"
             className="text-slate-300 underline hover:text-white"
           >
-            医療情報システム安全管理ガイドライン第7.0版（2026年6月）改訂まとめ
+            解説記事一覧
           </a>
         </p>
         <p className="text-slate-400 text-sm mb-3">
