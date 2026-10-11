@@ -4,3 +4,5 @@ dist
 *.local
 .vercel
 dist-server
+# 自動生成（scripts/generate-articles.mjs）
+src/generated/

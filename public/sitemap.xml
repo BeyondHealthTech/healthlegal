@@ -13,10 +13,10 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://healthlegal.vercel.app/articles/guideline-7-0-summary/</loc>
-    <lastmod>2026-08-30</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <loc>https://healthlegal.vercel.app/articles/</loc>
+    <lastmod>2026-09-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   <url>
     <loc>https://healthlegal.vercel.app/articles/samd-boundary/</loc>
@@ -26,6 +26,12 @@
   </url>
   <url>
     <loc>https://healthlegal.vercel.app/articles/academic-seed-regulatory/</loc>
+    <lastmod>2026-08-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://healthlegal.vercel.app/articles/guideline-7-0-summary/</loc>
     <lastmod>2026-08-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>

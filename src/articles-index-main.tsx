@@ -1,12 +1,12 @@
 import { StrictMode } from "react";
 import { createRoot, hydrateRoot } from "react-dom/client";
 import "./index.css";
-import ArticleSamdBoundaryPage from "./pages/ArticleSamdBoundaryPage";
+import ArticlesIndexPage from "./components/ArticlesIndexPage";
 
 const container = document.getElementById("root")!;
 const app = (
   <StrictMode>
-    <ArticleSamdBoundaryPage />
+    <ArticlesIndexPage />
   </StrictMode>
 );
 
