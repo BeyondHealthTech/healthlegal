@@ -3,7 +3,7 @@ const FORM_URL = "https://docs.google.com/forms/d/1qQRrWDUPCOeXklfna912YEs1b2DqP
 const stats = [
   { number: "416 → 約50", label: "検討項目数", desc: "対象外172件は設計選択で消え、188件は標準回答で即答。個別検討は差分だけ" },
   { number: "41%", label: "設計の工夫で対象外にできる項目", desc: "当社のアーキテクチャ設計ノウハウにより、416項目のうち172件は対応自体を不要にできる" },
-  { number: "66", label: "文書ひな形", desc: "規程・計画・SLA・手順31 ＋ AWS詳細設計書35。ゼロから書かない" },
+  { number: "70", label: "文書ひな形", desc: "規程・計画・サービス文書・手順35 ＋ AWS詳細設計書35。ゼロから書かない" },
 ];
 
 const sources = [
@@ -16,8 +16,8 @@ const sources = [
     body: "ガイドライン416項目のすべてに、当社標準のクラウド構成を前提とした対応方針を用意。法解釈だけでなく、CloudTrail・Cognito・WAF・GuardDutyなどAWSの設定レベルまで具体化されており、実装指示書としてそのまま使えます。ゼロからの検討が差分レビューに変わります。",
   },
   {
-    title: "文書ひな形66ファイル",
-    body: "運用管理規程・アクセス管理規定・DR計画・SLA・リリースフローなどの運用文書31ファイルと、IAM・ログ監査・監視・ネットワーク・ストレージの詳細設計書35ファイル（AWSの設定値レベルまで記述）。規程は「ガイドライン要件ID → 要求 → 対応条文」の構造で、どの条文がどの要件を満たすか追えます。",
+    title: "文書ひな形70ファイル",
+    body: "運用管理規程・アクセス管理規定・DR計画・SLA・リリースフローなどの規程・計画・サービス文書・手順35ファイルと、IAM・ログ監査・監視・ネットワーク・ストレージの詳細設計書35ファイル（AWSの設定値レベルまで記述）。規程は「ガイドライン要件ID → 要求 → 対応条文」の構造で、どの条文がどの要件を満たすか追えます。",
   },
   {
     title: "監査に耐えるトレーサビリティ",
@@ -29,10 +29,67 @@ const deliverables = [
   "対策項目マスタ（416項目・関連要求事項199件の構造化データ）",
   "標準回答集（当社標準のクラウド構成前提・対象外判断の根拠つき）",
   "対応検討シート（貴社プロダクト向けにカスタマイズ）",
-  "運用文書一式（規程・計画・SLA・手順 31ファイル）",
+  "運用文書一式（規程・計画・サービス文書・手順 35ファイル）",
   "セキュリティ詳細設計書一式（IAM・ログ監査・監視・NW・ストレージ 35ファイル、AWS設定値レベル）",
   "サービス仕様適合開示書・サービス仕様書のひな形",
   "利用者認証方式規程のひな形（二要素認証の対応ロードマップ・代替手段・医療機関等との合意事項）",
+];
+
+// 提供アセットの全体像（数字カード4枚＋折りたたみ詳細）。
+// 数字の出所は bht-ops docs/asset-catalog-external.md 1章＝リポジトリ実物から検証した件数のみ。
+// 「99項目カバー」等のNG表現（bht-ops docs/3m2g-lp-claims-evidence.md 4章）は使わない。
+const assetOverview = [
+  {
+    number: "416",
+    unit: "項目",
+    label: "標準回答データベース",
+    summary: "3省2ガイドラインの対策項目416件すべてに、判定と対応方針を用意済み。「対応中・未対応」は0件です。",
+    details: [
+      "対応済み 192件 — 標準的なAWSの設定・実装でカバーできる項目",
+      "設計選択により対象外 171件 — 12の設計パターンに帰着（物理基盤を自社で持たない80件／院内ネットワークに接続しない11件ほか）。「この構成を採ればこれらは検討不要」を索引で示せます",
+      "製品化段階で対応 52件／要判断（製品機能に依存）1件",
+      "対策項目マスタは3章・44中項目に構造化（人的・組織的153／物理的41／技術的222）",
+      "納品前の通し点検スクリプト付き（内部整合・条文の実在・版数・固有情報の残存を機械判定）",
+    ],
+  },
+  {
+    number: "94 / 99",
+    unit: "項目",
+    label: "医療機関の確認事項への回答素材",
+    summary: "MDS/SDS 99項目のうち94項目（95%）が「はい」または「対象外」で回答できる見込みです（「いいえ」0件）。",
+    details: [
+      "MDS 41項目・SDS 58項目を構造化し、99項目 × 対策項目416件の対応表を全件紐づけ",
+      "内訳: はい61／はい（要件付き）14／対象外19／要判断5／いいえ 0",
+      "要件付き14件は成立要件を文書化済み（どの規程のどの章を埋めれば「はい」になるかまで特定）",
+      "要判断5件は、なぜ個別検討になるのかを項目単位で開示します（次章）",
+    ],
+  },
+  {
+    number: "70",
+    unit: "点",
+    label: "規程・手順・設計書のひな形",
+    summary: "規程・計画・サービス文書・手順35文書と、詳細設計書35ファイル。ゼロから書き起こしません。",
+    details: [
+      "規程8: 運用管理／アクセス管理／利用者認証方式（二要素認証・代替手段）／ISMS実施・運用／情報資産管理／要配慮個人情報の取り扱い／スマートフォン使用ルール／就業規則",
+      "計画2: DR計画／リスクアセスメント　サービス文書4: SLA／サービス仕様書／サービス仕様適合開示書／非機能要件定義書",
+      "手順21: リリースフロー一式14（FE/BE × Stg/Prod・品質保証・リリース後・出荷判定・社内QA・薬機対応・法定表示・デザインレビュー）＋特権アクセスログ定期レビュー／サポート終了影響評価／分析削除依頼／苦情対応／教育訓練（理解度テスト20問つき）／作業手順書",
+      "詳細設計書35: セキュリティ運用設計13（IAM・WAF・CloudTrail・GuardDuty・AWS Config）／データストレージ6／アーキテクチャ4／インフラ・ネットワーク2／モバイル差分3／共通章7",
+      "規程は「ガイドライン要件ID → 要求 → 対応条文」の構造。どの条文がどの要件を満たすか追えます",
+    ],
+  },
+  {
+    number: "実装",
+    unit: "一式",
+    label: "文書だけで終わらせない実装の型",
+    summary: "管理基盤の画面8枚・API 11経路・AWSのIaC（CDK 54リソース）まで、文書と紐づけた実装の型があります。",
+    details: [
+      "管理基盤フロントエンド 8画面: ログイン／初期パスワード変更／MFA登録／MFAコード入力／パスワード再発行（2段階）／パスワード変更／ユーザー管理／監査ログ閲覧",
+      "バックエンド 11経路: 認証9＋ユーザー管理＋監査ログ。パスワード履歴照合・アカウント列挙防止・全パスワード操作の監査ログ記録を実装",
+      "AWS（CDK 54リソース）: Cognito（12文字＋複雑性・履歴5世代・MFA 3モード切替）／DynamoDB／監査ログのS3 Object Lock保全／HTTP API＋JWT認可",
+      "無操作自動ログオフ（既定15分→警告→強制サインアウト）・テナント別テーマ（ブランド1色から配色を自動導出）",
+      "案件別の文書パック自動生成: 差し込み欄88欄を4分類で管理し、検査ゲート6種を通らないと生成されません。納品マニフェストに生成日・コミット・設定・416件の区分別集計が残ります",
+    ],
+  },
 ];
 
 // MDS/SDS 99項目（GL第7.0版 保守委託機関編【別紙】）への回答状況の開示。
@@ -191,6 +248,62 @@ export default function ThreeM2GPage() {
                 法解釈と技術実装のどちらか一方に寄らない、両輪での品質担保が本パッケージの前提です。
               </p>
             </div>
+          </div>
+        </section>
+
+        {/* 提供アセットの全体像（数字カード4枚＋折りたたみ詳細）。
+            「数字 → 開示 → CTA」の流れにするため、MDS/SDS開示セクションの直前に置く */}
+        <section className="py-24 px-6 bg-white">
+          <div className="max-w-5xl mx-auto">
+            <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 text-center mb-6">
+              提供アセットの全体像
+            </h2>
+            <p className="text-slate-600 text-center leading-relaxed max-w-3xl mx-auto mb-12">
+              「何がどれだけ揃っているのか」を、件数で示します。
+              以下はすべて実在する成果物の件数で、商談の場で現物をご確認いただけます。
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {assetOverview.map((a) => (
+                <div key={a.label} className="bg-slate-50 rounded-xl p-8 border border-slate-200 flex flex-col">
+                  <p className="flex items-baseline justify-center gap-1.5 mb-3">
+                    <span className="text-4xl font-bold text-primary-600">{a.number}</span>
+                    <span className="text-base font-semibold text-primary-700">{a.unit}</span>
+                  </p>
+                  <p className="text-center text-sm font-bold text-slate-900 mb-4">{a.label}</p>
+                  <p className="text-sm text-slate-600 leading-relaxed">{a.summary}</p>
+                  <details className="mt-5 group">
+                    <summary className="cursor-pointer text-sm font-semibold text-primary-700 hover:text-primary-800 list-none flex items-center gap-1.5">
+                      <svg
+                        className="w-4 h-4 transition-transform group-open:rotate-90"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                        strokeWidth={2.5}
+                        aria-hidden="true"
+                      >
+                        <path strokeLinecap="round" strokeLinejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                      </svg>
+                      内訳を見る
+                    </summary>
+                    <ul className="mt-4 space-y-2.5 border-t border-slate-200 pt-4">
+                      {a.details.map((d) => (
+                        <li key={d} className="flex gap-2 text-sm text-slate-600 leading-relaxed">
+                          <span aria-hidden="true" className="text-primary-400 shrink-0">
+                            ・
+                          </span>
+                          <span>{d}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </details>
+                </div>
+              ))}
+            </div>
+            <p className="mt-8 text-center text-slate-700 leading-relaxed">
+              <strong className="font-semibold text-slate-900">
+                対策項目416件・医療機関の確認事項99件・規程と手順35文書・設計書35ファイル——合計580を超える管理単位を、文書と実装の両面で紐づけ済みです。
+              </strong>
+            </p>
           </div>
         </section>
 
