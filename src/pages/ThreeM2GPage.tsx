@@ -254,8 +254,9 @@ export default function ThreeM2GPage() {
         </section>
 
         {/* 提供アセットの全体像（数字カード4枚＋折りたたみ詳細）。
-            「数字 → 開示 → CTA」の流れにするため、MDS/SDS開示セクションの直前に置く */}
-        <section className="py-24 px-6 bg-white">
+            「数字 → 開示 → CTA」の流れにするため、MDS/SDS開示セクションの直前に置く。
+            id="assets" は記事からの誘導先アンカー（bht-ops#109） */}
+        <section id="assets" className="py-24 px-6 bg-white">
           <div className="max-w-5xl mx-auto">
             <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 text-center mb-6">
               提供アセットの全体像
