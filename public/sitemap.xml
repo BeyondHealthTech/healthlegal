@@ -19,6 +19,18 @@
     <priority>0.5</priority>
   </url>
   <url>
+    <loc>https://healthlegal.vercel.app/articles/selfcheck-27/</loc>
+    <lastmod>2026-10-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://healthlegal.vercel.app/articles/cost-roadmap/</loc>
+    <lastmod>2026-10-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://healthlegal.vercel.app/articles/deliverables-inventory/</loc>
     <lastmod>2026-10-12</lastmod>
     <changefreq>monthly</changefreq>
