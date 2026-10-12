@@ -116,6 +116,74 @@ const mdsSdsPoints = [
   },
 ];
 
+// 料金（税別・仮価格）。正本は bht-ops docs/pricing-2026-10.md（2026-10-12 Junya決定・2027-03末まで据え置き）。
+// アセットの使用範囲で階段状にし、入口を S1（SDS回答パック）に置く。数値を変えるときは正本を先に更新する。
+const pricingTiers = [
+  {
+    id: "S1",
+    name: "SDS回答パック",
+    price: "30万円",
+    lead: "5営業日",
+    scope: "標準回答DB 416項目 ＋ MDS/SDS対応表",
+    summary: "医療機関から求められたSDS・MDSに、貴社構成での回答草案とギャップ一覧をお返しします。まず「出せる状態」にする入口の商品です。",
+    includes: [
+      "ヒアリング1回（60分）",
+      "GL第7.0版 別紙 99項目 または JAHIS SDS Ver.5.0（160問）の回答草案",
+      "「はい」にするための要件メモ（ロードマップ回答の書き方を含む）とギャップ一覧",
+    ],
+    highlight: false,
+  },
+  {
+    id: "S2",
+    name: "文書パック",
+    price: "80万円",
+    lead: "2〜3週間",
+    scope: "S1 ＋ 規程・計画・サービス文書・手順 35文書",
+    summary: "回答草案に加え、根拠になる規程・手順一式を貴社向けに仕上げます。SDSの「はい」に条文の裏付けが付きます。",
+    includes: [
+      "S1のすべて",
+      "運用管理規程・アクセス管理規程・利用者認証方式規程・DR計画・SLA など35文書の貴社向け差し込み",
+      "対応検討シート（個別検討が必要な項目の整理）",
+    ],
+    highlight: false,
+  },
+  {
+    id: "S3",
+    name: "設計・文書フルパッケージ",
+    price: "150万円",
+    lead: "4〜6週間",
+    scope: "S2 ＋ AWS詳細設計書 35ファイル ＋ 構成提案",
+    summary: "「対応しない、を先に設計する」まで含めた全部入り。設計選択で対象外にできる項目を構成提案で確定し、設計書と文書を一本の線で繋ぎます。",
+    includes: [
+      "S2のすべて",
+      "当社標準クラウド構成の設計提案と、個別検討50件前後の差分レビュー",
+      "IAM・ログ監査・監視・ネットワーク・ストレージの詳細設計書（AWS設定値レベル）の貴社向け化",
+    ],
+    highlight: true,
+  },
+  {
+    id: "S4",
+    name: "実装キット ソースライセンス",
+    price: "100万円",
+    lead: "契約後すぐ",
+    scope: "管理基盤（画面9・API 14・AWS IaC）＋ 文書パック自動生成",
+    summary: "文書だけで終わらせないための実装の型。認証・ユーザー管理・監査ログの管理基盤と、案件別の文書パック生成をソースごとお渡しします。",
+    includes: [
+      "ソース一式（改変可・再頒布不可・1運営者1ライセンス）の買い切り",
+      "初回デプロイ支援（2時間）",
+      "S3との同時契約は230万円",
+    ],
+    highlight: false,
+  },
+];
+
+const pricingNotes = [
+  "年間更新（S2以上が対象）: 20万円／年。ガイドライン改定時の再判定と文書の差し替え版、依存更新を含みます。",
+  "厳密対応版（二要素認証の実装、記録確定などの製品機能、閉域網・クライアント証明書・PKI署名への拡張）は差分表をもとに個別にお見積りします。",
+  "価格はすべて税別・2026年10月時点の標準価格です。当社標準のクラウド構成（AWS）の採用が前提で、既存構成が異なる場合はヒアリング後に適用範囲と費用をご提示します。",
+  "本パッケージは3省2ガイドラインへの準拠を保証するものではありません。",
+];
+
 const steps = [
   { step: "1", title: "ヒアリング", duration: "2〜3日", body: "プロダクト特性・データフロー・提供形態を確認し、標準回答との差分を特定します。" },
   { step: "2", title: "構成提案 ＋ 差分検討", duration: "1〜2週間", body: "当社標準のクラウド構成の設計提案とセットで、個別検討が必要な項目（50件前後）だけをレビューします。" },
@@ -369,8 +437,66 @@ export default function ThreeM2GPage() {
           </div>
         </section>
 
+        {/* 料金（アセットの使用範囲で階段状） */}
+        <section id="pricing" className="py-24 px-6 bg-slate-50">
+          <div className="max-w-6xl mx-auto">
+            <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 text-center mb-6">料金</h2>
+            <p className="text-slate-600 text-center leading-relaxed max-w-3xl mx-auto mb-12">
+              アセットのどこまでを使うかで、4段階に分けています。
+              医療機関への回答をまず整えたい場合はS1から、プロダクトの土台ごと整えたい場合はS3・S4をご検討ください。
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
+              {pricingTiers.map((t) => (
+                <div
+                  key={t.id}
+                  className={`rounded-xl p-7 border flex flex-col ${
+                    t.highlight
+                      ? "bg-white border-primary-500 shadow-lg shadow-primary-500/10 ring-1 ring-primary-500"
+                      : "bg-white border-slate-200 shadow-sm"
+                  }`}
+                >
+                  <div className="flex items-center justify-between mb-3">
+                    <span className="text-xs font-bold tracking-wider text-primary-700 bg-primary-50 px-2.5 py-1 rounded-full">
+                      {t.id}
+                    </span>
+                    {t.highlight && (
+                      <span className="text-xs font-bold text-white bg-primary-600 px-2.5 py-1 rounded-full">おすすめ</span>
+                    )}
+                  </div>
+                  <h3 className="text-lg font-bold text-slate-900 mb-1">{t.name}</h3>
+                  <p className="text-xs text-slate-500 mb-4">{t.scope}</p>
+                  <p className="flex items-baseline gap-1 mb-1">
+                    <span className="text-3xl font-bold text-slate-900">{t.price}</span>
+                    <span className="text-xs text-slate-500">（税別）</span>
+                  </p>
+                  <p className="text-sm font-semibold text-primary-600 mb-4">納期目安 {t.lead}</p>
+                  <p className="text-sm text-slate-600 leading-relaxed mb-5">{t.summary}</p>
+                  <ul className="space-y-2 border-t border-slate-200 pt-4 mt-auto">
+                    {t.includes.map((d) => (
+                      <li key={d} className="flex gap-2 text-sm text-slate-600 leading-relaxed">
+                        <svg className="w-4 h-4 text-primary-600 mt-0.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-hidden="true">
+                          <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 12.75 6 6 9-13.5" />
+                        </svg>
+                        <span>{d}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+            <ul className="mt-10 max-w-4xl mx-auto space-y-2">
+              {pricingNotes.map((n) => (
+                <li key={n} className="text-sm text-slate-500 leading-relaxed flex gap-2">
+                  <span aria-hidden="true" className="shrink-0">※</span>
+                  <span>{n}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+
         {/* 進め方 */}
-        <section className="py-24 px-6 bg-slate-50">
+        <section className="py-24 px-6 bg-white">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 text-center mb-14">進め方</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -386,7 +512,7 @@ export default function ThreeM2GPage() {
               ))}
             </div>
             <p className="text-sm text-slate-500 text-center mt-8">
-              費用はプロダクトの規模・状況により異なります。まずは無料相談でお見積りをご提示します。
+              どの段階から始めるかは、無料相談で貴社プロダクトの状況を伺ったうえでご提案します。
             </p>
           </div>
         </section>
