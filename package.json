@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "npm run generate && vite",
     "build": "npm run generate && tsc -b && vite build && node scripts/prerender.mjs",
-    "generate": "node scripts/generate-articles.mjs",
+    "generate": "node scripts/generate-articles.mjs && node scripts/generate-sds-rules.mjs && node scripts/check-sds-rules.mjs",
     "lint": "npm run generate && eslint .",
     "preview": "vite preview"
   },

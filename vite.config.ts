@@ -30,6 +30,8 @@ export default defineConfig({
         main: resolve(__dirname, 'index.html'),
         // 3M2G対応パッケージの販売専用ページ（/3m2g/）
         '3m2g': resolve(__dirname, '3m2g/index.html'),
+        // SDSギャップ診断（/sds-check/・ブラウザ内判定）
+        'sds-check': resolve(__dirname, 'sds-check/index.html'),
         // 解説記事の一覧ページ（/articles/）
         'articles-index': resolve(__dirname, 'articles/index.html'),
         // 各解説記事（articles/content/*.md から自動生成）

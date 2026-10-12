@@ -225,12 +225,20 @@ export default function ThreeM2GPage() {
               法的・技術的ベストプラクティスの一式。416項目をゼロから検討する代わりに、
               検証済みの標準回答からの差分レビューで、最短・高品質に対応します。
             </p>
-            <a
-              href="#contact"
-              className="inline-flex items-center gap-2 px-8 py-4 bg-accent-500 text-white text-lg font-semibold rounded-lg hover:bg-accent-600 transition-colors shadow-lg shadow-accent-500/25"
-            >
-              無料相談を予約する
-            </a>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+              <a
+                href="#contact"
+                className="inline-flex items-center gap-2 px-8 py-4 bg-accent-500 text-white text-lg font-semibold rounded-lg hover:bg-accent-600 transition-colors shadow-lg shadow-accent-500/25"
+              >
+                無料相談を予約する
+              </a>
+              <a
+                href="../sds-check/"
+                className="inline-flex items-center gap-2 px-6 py-4 border border-primary-300 bg-white text-primary-700 text-base font-semibold rounded-lg hover:bg-primary-50 transition-colors"
+              >
+                まずは無料の SDS ギャップ診断（3 分）
+              </a>
+            </div>
           </div>
         </section>
 
@@ -538,6 +546,12 @@ export default function ThreeM2GPage() {
                 <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
               </svg>
             </a>
+            <p className="mt-6 text-slate-300 text-sm">
+              まず自社の状況を知りたい方は{" "}
+              <a href="../sds-check/" className="text-white font-semibold underline underline-offset-4 hover:text-accent-300">
+                まずは無料の SDS ギャップ診断（3 分）
+              </a>
+            </p>
           </div>
         </section>
       </main>
