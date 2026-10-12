@@ -1,0 +1,218 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900" font-family="'Hiragino Sans','Noto Sans JP','Yu Gothic UI',sans-serif">
+<!-- 生成物: compliance/feature_map.py（手で編集しない） -->
+<defs><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#475569"/></marker></defs>
+<rect width="1600" height="900" fill="#ffffff"/>
+<text x="40" y="46" font-size="25" font-weight="700" fill="#0f172a" text-anchor="start">医療情報SaaS 基盤の機能構成</text>
+<text x="40" y="72" font-size="14" font-weight="400" fill="#475569" text-anchor="start">3省2ガイドライン・医療機関のセキュリティ審査（SDS）で問われる機能を、画面とAWS上の仕組みで実装済み。各機能に SDS（JAHIS Ver.5.0）の設問番号を併記</text>
+<text x="40" y="110" font-size="15" font-weight="700" fill="#475569" text-anchor="start">利用者</text>
+<rect x="40" y="130" width="150" height="70" rx="10" fill="#f8fafc" stroke="#94a3b8"/>
+<circle cx="66" cy="154" r="9" fill="#64748b"/><path d="M51 182 a15 13 0 0 1 30 0z" fill="#64748b"/>
+<text x="88" y="160" font-size="12.5" font-weight="700" fill="#0f172a" text-anchor="start">医療機関の利用者</text>
+<text x="52" y="196" font-size="10.5" font-weight="400" fill="#475569" text-anchor="start">日々の業務・認証</text>
+<rect x="40" y="212" width="150" height="70" rx="10" fill="#f8fafc" stroke="#94a3b8"/>
+<circle cx="66" cy="236" r="9" fill="#64748b"/><path d="M51 264 a15 13 0 0 1 30 0z" fill="#64748b"/>
+<text x="88" y="242" font-size="12.5" font-weight="700" fill="#0f172a" text-anchor="start">施設の管理者</text>
+<text x="52" y="278" font-size="10.5" font-weight="400" fill="#475569" text-anchor="start">利用者の招待・停止</text>
+<rect x="40" y="294" width="150" height="70" rx="10" fill="#f8fafc" stroke="#94a3b8"/>
+<circle cx="66" cy="318" r="9" fill="#64748b"/><path d="M51 346 a15 13 0 0 1 30 0z" fill="#64748b"/>
+<text x="88" y="324" font-size="12.5" font-weight="700" fill="#0f172a" text-anchor="start">監査担当</text>
+<text x="52" y="360" font-size="10.5" font-weight="400" fill="#475569" text-anchor="start">自施設の監査ログを確認</text>
+<rect x="40" y="376" width="150" height="70" rx="10" fill="#f8fafc" stroke="#94a3b8"/>
+<circle cx="66" cy="400" r="9" fill="#64748b"/><path d="M51 428 a15 13 0 0 1 30 0z" fill="#64748b"/>
+<text x="88" y="406" font-size="12.5" font-weight="700" fill="#0f172a" text-anchor="start">サービス運営者</text>
+<text x="52" y="442" font-size="10.5" font-weight="400" fill="#475569" text-anchor="start">全施設の管理（貴社）</text>
+<rect x="225" y="96" width="300" height="478" rx="14" fill="#eff6ff" stroke="#93c5fd" stroke-width="1.5"/>
+<text x="243" y="126" font-size="16" font-weight="700" fill="#2563eb" text-anchor="start">Webアプリ（9画面＋同意ゲート）</text>
+<text x="243" y="146" font-size="11.5" font-weight="400" fill="#475569" text-anchor="start">ブラウザのみ・端末に医療情報を残さない</text>
+<rect x="239" y="158" width="272" height="34" rx="7" fill="#2563eb"/>
+<text x="375.0" y="180" font-size="11.5" font-weight="700" fill="#ffffff" text-anchor="middle">無操作時の自動ログオフ（全画面・複数タブ共有）</text>
+<rect x="239" y="202" width="272" height="31" rx="7" fill="#ffffff" stroke="#93c5fd"/>
+<text x="253" y="224" font-size="11" font-weight="700" fill="#2563eb" text-anchor="start"> 1</text>
+<text x="277" y="224" font-size="13" font-weight="600" fill="#0f172a" text-anchor="start">ログイン</text>
+<rect x="239" y="239" width="272" height="31" rx="7" fill="#ffffff" stroke="#93c5fd"/>
+<text x="253" y="261" font-size="11" font-weight="700" fill="#2563eb" text-anchor="start"> 2</text>
+<text x="277" y="261" font-size="13" font-weight="600" fill="#0f172a" text-anchor="start">初期パスワード変更</text>
+<rect x="239" y="276" width="272" height="31" rx="7" fill="#ffffff" stroke="#93c5fd"/>
+<text x="253" y="298" font-size="11" font-weight="700" fill="#2563eb" text-anchor="start"> 3</text>
+<text x="277" y="298" font-size="13" font-weight="600" fill="#0f172a" text-anchor="start">二要素認証の登録（QR）</text>
+<rect x="239" y="313" width="272" height="31" rx="7" fill="#ffffff" stroke="#93c5fd"/>
+<text x="253" y="335" font-size="11" font-weight="700" fill="#2563eb" text-anchor="start"> 4</text>
+<text x="277" y="335" font-size="13" font-weight="600" fill="#0f172a" text-anchor="start">二要素認証コード入力</text>
+<rect x="239" y="350" width="272" height="31" rx="7" fill="#ffffff" stroke="#93c5fd"/>
+<text x="253" y="372" font-size="11" font-weight="700" fill="#2563eb" text-anchor="start"> 5</text>
+<text x="277" y="372" font-size="13" font-weight="600" fill="#0f172a" text-anchor="start">パスワード再発行</text>
+<rect x="239" y="387" width="272" height="31" rx="7" fill="#ffffff" stroke="#93c5fd"/>
+<text x="253" y="409" font-size="11" font-weight="700" fill="#2563eb" text-anchor="start"> 6</text>
+<text x="277" y="409" font-size="13" font-weight="600" fill="#0f172a" text-anchor="start">パスワード変更</text>
+<rect x="239" y="424" width="272" height="31" rx="7" fill="#ffffff" stroke="#93c5fd"/>
+<text x="253" y="446" font-size="11" font-weight="700" fill="#2563eb" text-anchor="start"> 7</text>
+<text x="277" y="446" font-size="13" font-weight="600" fill="#0f172a" text-anchor="start">ユーザー管理</text>
+<rect x="239" y="461" width="272" height="31" rx="7" fill="#ffffff" stroke="#93c5fd"/>
+<text x="253" y="483" font-size="11" font-weight="700" fill="#2563eb" text-anchor="start"> 8</text>
+<text x="277" y="483" font-size="13" font-weight="600" fill="#0f172a" text-anchor="start">監査ログ閲覧</text>
+<rect x="239" y="498" width="272" height="31" rx="7" fill="#ffffff" stroke="#93c5fd"/>
+<text x="253" y="520" font-size="11" font-weight="700" fill="#2563eb" text-anchor="start"> 9</text>
+<text x="277" y="520" font-size="13" font-weight="600" fill="#0f172a" text-anchor="start">セキュリティ開示（SDS Ver.5.0）</text>
+<rect x="239" y="535" width="272" height="31" rx="7" fill="#ffffff" stroke="#93c5fd"/>
+<text x="253" y="557" font-size="11" font-weight="700" fill="#2563eb" text-anchor="start">10</text>
+<text x="277" y="557" font-size="13" font-weight="600" fill="#0f172a" text-anchor="start">同意ゲート</text>
+<line x1="194" y1="276" x2="219" y2="276" stroke="#475569" stroke-width="2" marker-end="url(#ar)"/>
+<rect x="570" y="96" width="990" height="656" rx="14" fill="#fff7ed" stroke="#fdba74" stroke-width="1.5"/>
+<text x="588" y="126" font-size="16" font-weight="700" fill="#c2410c" text-anchor="start">AWS（東京リージョン）</text>
+<text x="780" y="126" font-size="11.5" font-weight="400" fill="#475569" text-anchor="start">サーバレス構成・CDK で一括構築・自社で物理サーバを持たない</text>
+<rect x="586" y="148" width="116" height="590" rx="10" fill="#ffffff" stroke="#fdba74"/>
+<text x="644.0" y="383.0" font-size="13" font-weight="700" fill="#c2410c" text-anchor="middle">API</text>
+<text x="644.0" y="403.0" font-size="13" font-weight="700" fill="#c2410c" text-anchor="middle">Gateway</text>
+<text x="644.0" y="423.0" font-size="11.5" font-weight="400" fill="#475569" text-anchor="middle"></text>
+<text x="644.0" y="443.0" font-size="11.5" font-weight="400" fill="#475569" text-anchor="middle">JWT 検証</text>
+<text x="644.0" y="463.0" font-size="11.5" font-weight="400" fill="#475569" text-anchor="middle">TLS 1.2+</text>
+<text x="644.0" y="483.0" font-size="11.5" font-weight="400" fill="#475569" text-anchor="middle"></text>
+<text x="644.0" y="503.0" font-size="11.5" font-weight="400" fill="#475569" text-anchor="middle">API 14経路</text>
+<line x1="529" y1="276" x2="580" y2="276" stroke="#475569" stroke-width="2" marker-end="url(#ar)"/>
+<text x="555.5" y="266" font-size="11" font-weight="700" fill="#475569" text-anchor="middle">HTTPS</text>
+<rect x="720" y="148" width="405.0" height="283" rx="10" fill="#ffffff" fill-opacity="0.55" stroke="#fdba74" stroke-dasharray="4 3"/>
+<text x="732" y="170" font-size="14" font-weight="700" fill="#c2410c" text-anchor="start">認証・アカウント</text>
+<text x="732" y="185" font-size="10.5" font-weight="400" fill="#64748b" text-anchor="start">Cognito ＋ 認証API（Lambda）</text>
+<rect x="730" y="194" width="385.0" height="28" rx="6" fill="#ffffff" stroke="#e2e8f0"/>
+<text x="742" y="213" font-size="12.5" font-weight="600" fill="#0f172a" text-anchor="start">二要素認証（認証アプリ）</text>
+<rect x="1043.4" y="200" width="65.6" height="16" rx="8" fill="#f1f5f9"/>
+<text x="1076.2" y="212" font-size="10" font-weight="600" fill="#475569" text-anchor="middle">SDS 17.1</text>
+<rect x="730" y="227" width="385.0" height="28" rx="6" fill="#ffffff" stroke="#e2e8f0"/>
+<text x="742" y="246" font-size="12.5" font-weight="600" fill="#0f172a" text-anchor="start">パスワードの脆弱性チェック</text>
+<rect x="1014.6" y="233" width="94.4" height="16" rx="8" fill="#f1f5f9"/>
+<text x="1061.8" y="245" font-size="10" font-weight="600" fill="#475569" text-anchor="middle">SDS 17.1.1.4</text>
+<rect x="730" y="260" width="385.0" height="28" rx="6" fill="#ffffff" stroke="#e2e8f0"/>
+<text x="742" y="279" font-size="12.5" font-weight="600" fill="#0f172a" text-anchor="start">パスワードの使い回し禁止</text>
+<rect x="1014.6" y="266" width="94.4" height="16" rx="8" fill="#f1f5f9"/>
+<text x="1061.8" y="278" font-size="10" font-weight="600" fill="#475569" text-anchor="middle">SDS 17.1.1.4</text>
+<rect x="730" y="293" width="385.0" height="28" rx="6" fill="#ffffff" stroke="#e2e8f0"/>
+<text x="742" y="312" font-size="12.5" font-weight="600" fill="#0f172a" text-anchor="start">アカウント列挙の防止</text>
+<rect x="1057.8" y="299" width="51.2" height="16" rx="8" fill="#f1f5f9"/>
+<text x="1083.4" y="311" font-size="10" font-weight="600" fill="#475569" text-anchor="middle">SDS 17</text>
+<rect x="730" y="326" width="385.0" height="28" rx="6" fill="#ffffff" stroke="#e2e8f0"/>
+<text x="742" y="345" font-size="12.5" font-weight="600" fill="#0f172a" text-anchor="start">招待制・初期パスワードの本人限定送付</text>
+<rect x="1014.6" y="332" width="94.4" height="16" rx="8" fill="#f1f5f9"/>
+<text x="1061.8" y="344" font-size="10" font-weight="600" fill="#475569" text-anchor="middle">SDS 17.1.1.7</text>
+<rect x="730" y="359" width="385.0" height="28" rx="6" fill="#ffffff" stroke="#e2e8f0"/>
+<text x="742" y="378" font-size="12.5" font-weight="600" fill="#0f172a" text-anchor="start">連続失敗ロック＋管理者への通知</text>
+<rect x="1057.8" y="365" width="51.2" height="16" rx="8" fill="#f1f5f9"/>
+<text x="1083.4" y="377" font-size="10" font-weight="600" fill="#475569" text-anchor="middle">SDS 17</text>
+<rect x="730" y="392" width="385.0" height="28" rx="6" fill="#ffffff" stroke="#e2e8f0"/>
+<text x="742" y="411" font-size="12.5" font-weight="600" fill="#0f172a" text-anchor="start">全端末サインアウト</text>
+<rect x="1057.8" y="398" width="51.2" height="16" rx="8" fill="#f1f5f9"/>
+<text x="1083.4" y="410" font-size="10" font-weight="600" fill="#475569" text-anchor="middle">SDS 17</text>
+<rect x="720" y="443" width="405.0" height="118" rx="10" fill="#ffffff" fill-opacity="0.55" stroke="#fdba74" stroke-dasharray="4 3"/>
+<text x="732" y="465" font-size="14" font-weight="700" fill="#c2410c" text-anchor="start">権限・テナント分離</text>
+<text x="732" y="480" font-size="10.5" font-weight="400" fill="#64748b" text-anchor="start">JWT 検証 ＋ DynamoDB キー設計</text>
+<rect x="730" y="489" width="385.0" height="28" rx="6" fill="#ffffff" stroke="#e2e8f0"/>
+<text x="742" y="508" font-size="12.5" font-weight="600" fill="#0f172a" text-anchor="start">医療機関ごとのデータ分離</text>
+<rect x="1057.8" y="495" width="51.2" height="16" rx="8" fill="#f1f5f9"/>
+<text x="1083.4" y="507" font-size="10" font-weight="600" fill="#475569" text-anchor="middle">SDS 17</text>
+<rect x="730" y="522" width="385.0" height="28" rx="6" fill="#ffffff" stroke="#e2e8f0"/>
+<text x="742" y="541" font-size="12.5" font-weight="600" fill="#0f172a" text-anchor="start">役割はサーバ側だけが付与</text>
+<rect x="1057.8" y="528" width="51.2" height="16" rx="8" fill="#f1f5f9"/>
+<text x="1083.4" y="540" font-size="10" font-weight="600" fill="#475569" text-anchor="middle">SDS 17</text>
+<rect x="720" y="573" width="405.0" height="151" rx="10" fill="#ffffff" fill-opacity="0.55" stroke="#fdba74" stroke-dasharray="4 3"/>
+<text x="732" y="595" font-size="14" font-weight="700" fill="#c2410c" text-anchor="start">開発・運用</text>
+<text x="732" y="610" font-size="10.5" font-weight="400" fill="#64748b" text-anchor="start">GitHub Actions ＋ CDK</text>
+<rect x="730" y="619" width="385.0" height="28" rx="6" fill="#ffffff" stroke="#e2e8f0"/>
+<text x="742" y="638" font-size="12.5" font-weight="600" fill="#0f172a" text-anchor="start">悪性パッケージ・脆弱性の継続検査</text>
+<rect x="1057.8" y="625" width="51.2" height="16" rx="8" fill="#f1f5f9"/>
+<text x="1083.4" y="637" font-size="10" font-weight="600" fill="#475569" text-anchor="middle">SDS 19</text>
+<rect x="730" y="652" width="385.0" height="28" rx="6" fill="#ffffff" stroke="#e2e8f0"/>
+<text x="742" y="671" font-size="12.5" font-weight="600" fill="#0f172a" text-anchor="start">鍵を持たないデプロイ</text>
+<rect x="1057.8" y="658" width="51.2" height="16" rx="8" fill="#f1f5f9"/>
+<text x="1083.4" y="670" font-size="10" font-weight="600" fill="#475569" text-anchor="middle">SDS 39</text>
+<rect x="730" y="685" width="385.0" height="28" rx="6" fill="#ffffff" stroke="#e2e8f0"/>
+<text x="742" y="704" font-size="12.5" font-weight="600" fill="#0f172a" text-anchor="start">開示書・対応状況表の自動生成</text>
+<rect x="1057.8" y="691" width="51.2" height="16" rx="8" fill="#f1f5f9"/>
+<text x="1083.4" y="703" font-size="10" font-weight="600" fill="#475569" text-anchor="middle">SDS 全問</text>
+<rect x="1139.0" y="148" width="405.0" height="250" rx="10" fill="#ffffff" fill-opacity="0.55" stroke="#fdba74" stroke-dasharray="4 3"/>
+<text x="1151.0" y="170" font-size="14" font-weight="700" fill="#c2410c" text-anchor="start">記録・監査</text>
+<text x="1151.0" y="185" font-size="10.5" font-weight="400" fill="#64748b" text-anchor="start">DynamoDB ＋ S3 Object Lock ＋ CloudTrail</text>
+<rect x="1149.0" y="194" width="385.0" height="28" rx="6" fill="#ffffff" stroke="#e2e8f0"/>
+<text x="1161.0" y="213" font-size="12.5" font-weight="600" fill="#0f172a" text-anchor="start">全操作の監査ログ</text>
+<rect x="1462.4" y="200" width="65.6" height="16" rx="8" fill="#f1f5f9"/>
+<text x="1495.2" y="212" font-size="10" font-weight="600" fill="#475569" text-anchor="middle">SDS 17.3</text>
+<rect x="1149.0" y="227" width="385.0" height="28" rx="6" fill="#ffffff" stroke="#e2e8f0"/>
+<text x="1161.0" y="246" font-size="12.5" font-weight="600" fill="#0f172a" text-anchor="start">改ざん・削除できない保管</text>
+<rect x="1462.4" y="233" width="65.6" height="16" rx="8" fill="#f1f5f9"/>
+<text x="1495.2" y="245" font-size="10" font-weight="600" fill="#475569" text-anchor="middle">SDS 17.3</text>
+<rect x="1149.0" y="260" width="385.0" height="28" rx="6" fill="#ffffff" stroke="#e2e8f0"/>
+<text x="1161.0" y="279" font-size="12.5" font-weight="600" fill="#0f172a" text-anchor="start">監査ログの閲覧も記録</text>
+<rect x="1448.0" y="266" width="80.0" height="16" rx="8" fill="#f1f5f9"/>
+<text x="1488.0" y="278" font-size="10" font-weight="600" fill="#475569" text-anchor="middle">SDS 17.3.1</text>
+<rect x="1149.0" y="293" width="385.0" height="28" rx="6" fill="#ffffff" stroke="#e2e8f0"/>
+<text x="1161.0" y="312" font-size="12.5" font-weight="600" fill="#0f172a" text-anchor="start">規約同意の版管理</text>
+<rect x="1484.0" y="299" width="44.0" height="16" rx="8" fill="#f1f5f9"/>
+<text x="1506.0" y="311" font-size="10" font-weight="600" fill="#475569" text-anchor="middle">SDS 1</text>
+<rect x="1149.0" y="326" width="385.0" height="28" rx="6" fill="#ffffff" stroke="#e2e8f0"/>
+<text x="1161.0" y="345" font-size="12.5" font-weight="600" fill="#0f172a" text-anchor="start">実行ログに個人情報を出さない</text>
+<rect x="1462.4" y="332" width="65.6" height="16" rx="8" fill="#f1f5f9"/>
+<text x="1495.2" y="344" font-size="10" font-weight="600" fill="#475569" text-anchor="middle">SDS 17.3</text>
+<rect x="1149.0" y="359" width="385.0" height="28" rx="6" fill="#ffffff" stroke="#e2e8f0"/>
+<text x="1161.0" y="378" font-size="12.5" font-weight="600" fill="#0f172a" text-anchor="start">保守作業者のデータアクセス記録</text>
+<rect x="1455.2" y="365" width="72.8" height="16" rx="8" fill="#f1f5f9"/>
+<text x="1491.6" y="377" font-size="10" font-weight="600" fill="#475569" text-anchor="middle">SDS 40・任意</text>
+<rect x="1139.0" y="410" width="405.0" height="217" rx="10" fill="#ffffff" fill-opacity="0.55" stroke="#fdba74" stroke-dasharray="4 3"/>
+<text x="1151.0" y="432" font-size="14" font-weight="700" fill="#c2410c" text-anchor="start">データ保護・可用性</text>
+<text x="1151.0" y="447" font-size="10.5" font-weight="400" fill="#64748b" text-anchor="start">KMS ＋ DynamoDB PITR ＋ CloudWatch</text>
+<rect x="1149.0" y="456" width="385.0" height="28" rx="6" fill="#ffffff" stroke="#e2e8f0"/>
+<text x="1161.0" y="475" font-size="12.5" font-weight="600" fill="#0f172a" text-anchor="start">通信・保存データの暗号化</text>
+<rect x="1476.8" y="462" width="51.2" height="16" rx="8" fill="#f1f5f9"/>
+<text x="1502.4" y="474" font-size="10" font-weight="600" fill="#475569" text-anchor="middle">SDS 64</text>
+<rect x="1149.0" y="489" width="385.0" height="28" rx="6" fill="#ffffff" stroke="#e2e8f0"/>
+<text x="1161.0" y="508" font-size="12.5" font-weight="600" fill="#0f172a" text-anchor="start">国内リージョンのみに保存</text>
+<rect x="1484.0" y="495" width="44.0" height="16" rx="8" fill="#f1f5f9"/>
+<text x="1506.0" y="507" font-size="10" font-weight="600" fill="#475569" text-anchor="middle">SDS 2</text>
+<rect x="1149.0" y="522" width="385.0" height="28" rx="6" fill="#ffffff" stroke="#e2e8f0"/>
+<text x="1161.0" y="541" font-size="12.5" font-weight="600" fill="#0f172a" text-anchor="start">35日間の任意時点に復元</text>
+<rect x="1476.8" y="528" width="51.2" height="16" rx="8" fill="#f1f5f9"/>
+<text x="1502.4" y="540" font-size="10" font-weight="600" fill="#475569" text-anchor="middle">SDS 58</text>
+<rect x="1149.0" y="555" width="385.0" height="28" rx="6" fill="#ffffff" stroke="#e2e8f0"/>
+<text x="1161.0" y="574" font-size="12.5" font-weight="600" fill="#0f172a" text-anchor="start">障害アラームと通知</text>
+<rect x="1476.8" y="561" width="51.2" height="16" rx="8" fill="#f1f5f9"/>
+<text x="1502.4" y="573" font-size="10" font-weight="600" fill="#475569" text-anchor="middle">SDS 75</text>
+<rect x="1149.0" y="588" width="385.0" height="28" rx="6" fill="#ffffff" stroke="#e2e8f0"/>
+<text x="1161.0" y="607" font-size="12.5" font-weight="600" fill="#0f172a" text-anchor="start">時刻の同期</text>
+<rect x="1476.8" y="594" width="51.2" height="16" rx="8" fill="#f1f5f9"/>
+<text x="1502.4" y="606" font-size="10" font-weight="600" fill="#475569" text-anchor="middle">SDS 18</text>
+<rect x="40" y="768" width="1520" height="112" rx="14" fill="#ecfdf5" stroke="#6ee7b7" stroke-width="1.5"/>
+<text x="58" y="793" font-size="15" font-weight="700" fill="#047857" text-anchor="start">文書パック（18文書）— 上の機能と同じ設定値から生成。文書と実装が食い違わない</text>
+<rect x="58" y="804" width="49" height="22" rx="11" fill="#ffffff" stroke="#6ee7b7"/>
+<text x="82.5" y="819.5" font-size="10.5" font-weight="600" fill="#047857" text-anchor="middle">SLA</text>
+<rect x="115" y="804" width="82" height="22" rx="11" fill="#ffffff" stroke="#6ee7b7"/>
+<text x="156.0" y="819.5" font-size="10.5" font-weight="600" fill="#047857" text-anchor="middle">運用管理規程</text>
+<rect x="205" y="804" width="104" height="22" rx="11" fill="#ffffff" stroke="#6ee7b7"/>
+<text x="257.0" y="819.5" font-size="10.5" font-weight="600" fill="#047857" text-anchor="middle">アクセス管理規程</text>
+<rect x="317" y="804" width="71" height="22" rx="11" fill="#ffffff" stroke="#6ee7b7"/>
+<text x="352.5" y="819.5" font-size="10.5" font-weight="600" fill="#047857" text-anchor="middle">基本設計書</text>
+<rect x="396" y="804" width="159" height="22" rx="11" fill="#ffffff" stroke="#6ee7b7"/>
+<text x="475.5" y="819.5" font-size="10.5" font-weight="600" fill="#047857" text-anchor="middle">詳細設計書 セキュリティ章</text>
+<rect x="563" y="804" width="93" height="22" rx="11" fill="#ffffff" stroke="#6ee7b7"/>
+<text x="609.5" y="819.5" font-size="10.5" font-weight="600" fill="#047857" text-anchor="middle">SDS回答草案</text>
+<rect x="664" y="804" width="137" height="22" rx="11" fill="#ffffff" stroke="#6ee7b7"/>
+<text x="732.5" y="819.5" font-size="10.5" font-weight="600" fill="#047857" text-anchor="middle">SDS開示書 v5.0</text>
+<rect x="809" y="804" width="126" height="22" rx="11" fill="#ffffff" stroke="#6ee7b7"/>
+<text x="872.0" y="819.5" font-size="10.5" font-weight="600" fill="#047857" text-anchor="middle">医療機関向け説明資料</text>
+<rect x="943" y="804" width="126" height="22" rx="11" fill="#ffffff" stroke="#6ee7b7"/>
+<text x="1006.0" y="819.5" font-size="10.5" font-weight="600" fill="#047857" text-anchor="middle">利用規約等 条項雛形</text>
+<rect x="1077" y="804" width="71" height="22" rx="11" fill="#ffffff" stroke="#6ee7b7"/>
+<text x="1112.5" y="819.5" font-size="10.5" font-weight="600" fill="#047857" text-anchor="middle">対応状況表</text>
+<rect x="1156" y="804" width="71" height="22" rx="11" fill="#ffffff" stroke="#6ee7b7"/>
+<text x="1191.5" y="819.5" font-size="10.5" font-weight="600" fill="#047857" text-anchor="middle">復旧手順書</text>
+<rect x="1235" y="804" width="82" height="22" rx="11" fill="#ffffff" stroke="#6ee7b7"/>
+<text x="1276.0" y="819.5" font-size="10.5" font-weight="600" fill="#047857" text-anchor="middle">BCP手順書</text>
+<rect x="1325" y="804" width="93" height="22" rx="11" fill="#ffffff" stroke="#6ee7b7"/>
+<text x="1371.5" y="819.5" font-size="10.5" font-weight="600" fill="#047857" text-anchor="middle">扱う情報の一覧</text>
+<rect x="1426" y="804" width="115" height="22" rx="11" fill="#ffffff" stroke="#6ee7b7"/>
+<text x="1483.5" y="819.5" font-size="10.5" font-weight="600" fill="#047857" text-anchor="middle">持ち出しリスク分析</text>
+<rect x="58" y="832" width="82" height="22" rx="11" fill="#ffffff" stroke="#6ee7b7"/>
+<text x="99.0" y="847.5" font-size="10.5" font-weight="600" fill="#047857" text-anchor="middle">業務端末台帳</text>
+<rect x="148" y="832" width="82" height="22" rx="11" fill="#ffffff" stroke="#6ee7b7"/>
+<text x="189.0" y="847.5" font-size="10.5" font-weight="600" fill="#047857" text-anchor="middle">教育実施記録</text>
+<rect x="238" y="832" width="159" height="22" rx="11" fill="#ffffff" stroke="#6ee7b7"/>
+<text x="317.5" y="847.5" font-size="10.5" font-weight="600" fill="#047857" text-anchor="middle">第三者評価報告書の取得記録</text>
+<rect x="405" y="832" width="137" height="22" rx="11" fill="#ffffff" stroke="#6ee7b7"/>
+<text x="473.5" y="847.5" font-size="10.5" font-weight="600" fill="#047857" text-anchor="middle">組織対応チェックリスト</text>
+</svg>

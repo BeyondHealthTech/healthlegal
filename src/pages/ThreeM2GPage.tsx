@@ -329,6 +329,32 @@ export default function ThreeM2GPage() {
           </div>
         </section>
 
+        {/* 機能構成図（bht-saas-kit compliance/feature_map.py の生成物 docs/feature-map.svg の写し。
+            キット側で再生成したら public/img/feature-map.svg も差し替える） */}
+        <section className="py-24 px-4 sm:px-6 bg-slate-50">
+          <div className="max-w-6xl mx-auto">
+            <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 text-center mb-6">
+              医療機関の審査で問われる機能を、最初から実装済み
+            </h2>
+            <p className="text-slate-600 text-center leading-relaxed max-w-3xl mx-auto mb-10">
+              二要素認証・パスワードの脆弱性チェック・改ざんできない監査ログ・医療機関ごとのデータ分離など、
+              SDS（医療情報セキュリティ開示書）で確認される機能を、画面と AWS 上の仕組みとして備えた土台をお渡しします。
+              各機能には JAHIS SDS Ver.5.0 の設問番号を併記しています。
+            </p>
+            <a href="../img/feature-map.svg" target="_blank" rel="noopener noreferrer" className="block">
+              <img
+                src="../img/feature-map.svg"
+                alt="機能構成図: 利用者、Webアプリの画面、AWS上の認証・アカウント、権限・テナント分離、記録・監査、データ保護・可用性、開発・運用の各機能と、文書パック"
+                width={1600}
+                height={900}
+                loading="lazy"
+                className="w-full h-auto rounded-xl border border-slate-200 bg-white shadow-sm"
+              />
+            </a>
+            <p className="mt-3 text-xs text-slate-500 text-center">クリックで拡大。ガイドラインへの準拠を保証するものではありません。</p>
+          </div>
+        </section>
+
         {/* 提供アセットの全体像（数字カード4枚＋折りたたみ詳細）。
             「数字 → 開示 → CTA」の流れにするため、MDS/SDS開示セクションの直前に置く。
             id="assets" は記事からの誘導先アンカー（bht-ops#109） */}
