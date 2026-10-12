@@ -31,6 +31,12 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://healthlegal.vercel.app/articles/deliverables-inventory/</loc>
+    <lastmod>2026-10-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://healthlegal.vercel.app/articles/samd-boundary/</loc>
     <lastmod>2026-08-30</lastmod>
     <changefreq>monthly</changefreq>
