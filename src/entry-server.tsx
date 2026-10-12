@@ -2,6 +2,7 @@ import { StrictMode } from 'react'
 import { renderToString } from 'react-dom/server'
 import App from './App.tsx'
 import ThreeM2GPage from './pages/ThreeM2GPage'
+import SdsCheckPage from './pages/SdsCheckPage'
 import PrivacyPage from './pages/PrivacyPage'
 import ArticlePage from './components/ArticlePage'
 import ArticlesIndexPage from './components/ArticlesIndexPage'
@@ -35,6 +36,14 @@ export function render3m2g(): string {
   return renderToString(
     <StrictMode>
       <ThreeM2GPage />
+    </StrictMode>,
+  )
+}
+
+export function renderSdsCheck(): string {
+  return renderToString(
+    <StrictMode>
+      <SdsCheckPage />
     </StrictMode>,
   )
 }
