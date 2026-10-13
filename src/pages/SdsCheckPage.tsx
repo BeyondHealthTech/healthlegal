@@ -9,8 +9,10 @@ import { decodeAnswers, encodeAnswers, evaluate, type Answers, type SdsRule } fr
 // 判定はブラウザ内のみ。回答は送信しない（GA4 には件数だけを送る）。
 
 const FORM_URL = "https://docs.google.com/forms/d/1qQRrWDUPCOeXklfna912YEs1b2DqPHap3zZ0lpoyjZI/viewform";
-// 結果をメールで受け取る導線（Googleフォーム）。URL が決まったら設定する。空のあいだはボタンを出さない。
-const LEAD_FORM_URL: string = "";
+// 結果をメールで受け取る導線（Googleフォーム「SDSギャップ診断 結果の受け取り」）。末尾に診断コードを付けて開くと事前入力される。
+// 自動返信・リード通知は Apps Script（bht-ops assets/sds-generator/form/sds-result-form.gs）。空にするとボタンを出さない。
+const LEAD_FORM_URL: string =
+  "https://docs.google.com/forms/d/e/1FAIpQLSfrvo0m3o6FJEpcoASIQ232xUsDUf1Tb0c9J1XnYyzw4mesJA/viewform?usp=pp_url&entry.1549856981=";
 
 const rules = rulesData as SdsRule[];
 const GROUP_ORDER: SdsGroup[] = ["A", "B", "C", "D", "E"];
@@ -285,7 +287,7 @@ export default function SdsCheckPage() {
                   </button>
                   {LEAD_FORM_URL && (
                     <a
-                      href={`${LEAD_FORM_URL}${LEAD_FORM_URL.includes("?") ? "&" : "?"}code=${code}`}
+                      href={`${LEAD_FORM_URL}${code}`}
                       target="_blank"
                       rel="noopener noreferrer"
                       onClick={() => track("sds_check_cta", { cta: "mail" })}
