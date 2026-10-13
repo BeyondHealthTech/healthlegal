@@ -260,9 +260,10 @@ export default function SdsCheckPage() {
               <div className="bg-primary-950 text-white rounded-2xl p-6 sm:p-10 mb-8 print:hidden">
                 <h2 className="text-xl sm:text-2xl font-bold mb-3">この結果をもとに、SDS 回答草案を作りませんか</h2>
                 <p className="text-primary-100 leading-relaxed mb-2">
-                  <strong className="text-white">SDS回答パック 30万円（税別）・5営業日。</strong>
+                  <strong className="text-white">SDS回答パック 40万円（税別）・5営業日（特急3営業日は＋20万円）。</strong>
                   ヒアリング1回で「要確認」を確定し、99項目すべての回答草案と根拠、
                   ギャップ項目ごとの埋め方（どの規程・設計・実装で「はい」にするか）を納品します。
+                  90日以内に文書パック等へ進む場合は全額充当します。
                 </p>
                 <p className="text-primary-200 text-sm mb-6">相談フォームに下の「診断コード」を貼っていただくと、診断結果を前提にお話しできます。</p>
                 <div className="flex flex-col sm:flex-row gap-3">
