@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+
 const FORM_URL = "https://docs.google.com/forms/d/1qQRrWDUPCOeXklfna912YEs1b2DqPHap3zZ0lpoyjZI/viewform";
 
 const stats = [
@@ -36,13 +38,42 @@ const deliverables = [
 ];
 
 // ボリュームの階段（正本: bht-ops docs/3m2g-volume-framing.md 1章。数字を変えるときは正本から写す）
+const volumeHeadline = [
+  { number: "416", label: "対策項目", desc: "経産省・総務省ガイドライン 別紙2。事業者が対応する管理単位" },
+  { number: "99", label: "医療機関の確認事項", desc: "厚労省ガイドライン第7.0版 MDS 41＋SDS 58。医療機関はこれで事業者を選定する" },
+  { number: "いいえ 0", label: "当社標準回答の見込み", desc: "99項目のうち94項目が「はい」または「対象外」、5項目は製品ごとに判断" },
+];
 const volumeLadder = [
   { number: "416", label: "対策項目（経産省・総務省ガイドライン 別紙2）", desc: "遵守事項◎384・推奨〇32。管理単位として数えるとこの数" },
   { number: "371", label: "厚労省ガイドラインの条文参照", desc: "416項目のうち343項目に、企画管理編149・システム運用編222の条文が結線されている" },
   { number: "99", label: "医療機関からの確認事項（MDS 41＋SDS 58）", desc: "厚労省ガイドライン第7.0版 保守委託機関編【別紙】。医療機関はこれで事業者を選定する" },
   { number: "160", label: "JAHIS SDS Ver.5.0 の設問", desc: "商談で実際に提出を求められる開示書の様式" },
-  { number: "約90", label: "落とし込む文書", desc: "規程・計画・手順35＋AWS詳細設計書35＋案件別文書パック19（差し込み欄110）" },
+  { number: "約90", label: "落とし込む文書（当社が用意済み）", desc: "規程・計画・手順35＋AWS詳細設計書35＋案件別文書パック19。貴社が埋めるのは差し込み欄110箇所で、導入先に合わせた書き換えも当社が行います" },
 ];
+
+// GA4: ブロックの表示とフォーム到達の比率を見るためのイベント（2週間で効果判断）。gtag は 3m2g/index.html で定義。
+function sendEvent(name: string) {
+  const w = window as unknown as { gtag?: (...args: unknown[]) => void };
+  w.gtag?.("event", name, { page: "3m2g" });
+}
+function useViewEvents(ids: Record<string, string>) {
+  useEffect(() => {
+    if (typeof IntersectionObserver === "undefined") return;
+    const seen = new Set<string>();
+    const io = new IntersectionObserver((entries) => {
+      for (const e of entries) {
+        const id = (e.target as HTMLElement).id;
+        if (e.isIntersecting && !seen.has(id)) {
+          seen.add(id);
+          sendEvent(ids[id]);
+        }
+      }
+    }, { threshold: 0.4 });
+    Object.keys(ids).forEach((id) => { const el = document.getElementById(id); if (el) io.observe(el); });
+    return () => io.disconnect();
+  }, [ids]);
+}
+const VIEW_EVENTS: Record<string, string> = { "volume-ladder": "view_volume_ladder", pricing: "view_pricing", contact: "view_contact" };
 
 // 提供アセットの全体像（数字カード4枚＋折りたたみ詳細）。
 // 数字の出所は bht-ops docs/asset-catalog-external.md 1章＝リポジトリ実物から検証した件数のみ（キット側は bht-saas-kit main 1deeda6・2026-10-11 で再検証）。
@@ -189,7 +220,7 @@ const pricingTiers = [
 
 const pricingNotes = [
   "上記はアセットとその貴社向け仕上げの価格です。設計・実装まで当社に任せたい場合は、アセット費に貴社固有の開発分を加えた2行でお見積りします。",
-  "年間更新（S2以上が対象）: 20万円／年。ガイドライン改定時の再判定と文書の差し替え版、依存更新を含みます。",
+  "年間更新（S2以上が対象）: 20万円／年。ガイドラインは厚労省と経産省・総務省が別周期で改定され、直近の改定では416項目のうち300項目超で参照条文が動きました。改定時の再判定と文書の差し替え版、依存更新を含みます。",
   "厳密対応版（二要素認証の実装、記録確定などの製品機能、閉域網・クライアント証明書・PKI署名への拡張）は差分表をもとに個別にお見積りします。",
   "価格はすべて税別・2026年10月時点の標準価格です。当社標準のクラウド構成（AWS）の採用が前提で、既存構成が異なる場合はヒアリング後に適用範囲と費用をご提示します。",
   "本パッケージは3省2ガイドラインへの準拠を保証するものではありません。",
@@ -202,6 +233,7 @@ const steps = [
 ];
 
 export default function ThreeM2GPage() {
+  useViewEvents(VIEW_EVENTS);
   return (
     <>
       <header className="sticky top-0 z-50 bg-white/90 backdrop-blur border-b border-slate-200">
@@ -298,12 +330,22 @@ export default function ThreeM2GPage() {
             </div>
 
             {/* ボリュームの階段（数値の正本: bht-ops docs/3m2g-volume-framing.md 1章。LP では直接編集せず正本を写す） */}
-            <div className="mt-12 bg-white rounded-2xl border border-slate-200 p-6 sm:p-8">
+            <div id="volume-ladder" className="mt-12 bg-white rounded-2xl border border-slate-200 p-6 sm:p-8">
               <h3 className="text-lg sm:text-xl font-bold text-slate-900 mb-2">「416項目」は入口にすぎません</h3>
               <p className="text-slate-700 leading-relaxed mb-6">
                 対策項目の1つ1つに、厚労省ガイドラインの条文参照と、医療機関からの確認事項がぶら下がります。
-                実際に読んで判断する単位を数えると、次のようになります（当社アセットの機械集計・再現可能）。
+                医療機関が見るのは最後の「いいえ」の数です。
               </p>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
+                {volumeHeadline.map((h) => (
+                  <div key={h.label} className="rounded-xl bg-primary-50 border border-primary-100 p-5 text-center">
+                    <p className="text-3xl font-bold text-primary-700 tabular-nums">{h.number}</p>
+                    <p className="font-semibold text-slate-900 mt-1">{h.label}</p>
+                    <p className="text-xs text-slate-600 leading-relaxed mt-1">{h.desc}</p>
+                  </div>
+                ))}
+              </div>
+              <p className="text-sm font-semibold text-slate-500 mb-3">内訳: 実際に読んで判断する単位（当社アセットの機械集計・再現可能）</p>
               <ol className="space-y-3">
                 {volumeLadder.map((row, i) => (
                   <li key={row.label} className="flex items-start gap-4">
@@ -317,12 +359,24 @@ export default function ThreeM2GPage() {
                 ))}
               </ol>
               <p className="mt-6 text-slate-700 leading-relaxed">
-                <strong className="font-semibold text-slate-900">読んで判断する単位は合計で1,000を超え、落とし込む文書は約90本。</strong>
+                <strong className="font-semibold text-slate-900">読んで判断する単位は合計で1,000を超えます（416＋371＋99＋160＋別版参照202）。</strong>
                 たとえば「パスワードの世代管理」という1項目は、厚労省ガイドラインの条文 → 医療機関の確認事項 →
                 利用者認証方式規程の条文 → 認証基盤の設定値、と5段で初めて「対応した」と言えます。
-                416項目それぞれにこの深さがあるのが、対応が重い理由です。当社はこの全層を構造化済みで、
-                ゼロから読む作業を差分のレビューに置き換えます。
+                416項目それぞれにこの深さがあるのが、対応が重い理由です。
               </p>
+              <p className="mt-4 text-slate-700 leading-relaxed">
+                <strong className="font-semibold text-slate-900">対応のゴールは文書を揃えることではなく、医療機関の選定基準「全項目が『はい』または『対象外』」を満たして契約が進む状態にすることです。</strong>
+                SDS を出せないまま止まる医療機関との契約は、年間で数百万円規模になることが珍しくありません。
+                さらに厚労省ガイドライン第7.0版は令和9年度までの二要素認証の採用を求めており、未対応の事業者はシステム更新時の選定から外れる構造になっています。
+              </p>
+              <div className="mt-6 rounded-xl bg-slate-50 border border-slate-200 p-5">
+                <p className="font-semibold text-slate-900 mb-2">どこまで要るかは段階で決められます</p>
+                <ul className="text-sm text-slate-700 leading-relaxed space-y-1">
+                  <li><span className="font-semibold text-primary-700">PoC・初期導入:</span> 医療機関に出す回答を先に整える（S1／S2）。99項目への回答と規程類で、選定の入口を通す最低線</li>
+                  <li><span className="font-semibold text-primary-700">本製品化:</span> 全層を揃える（S3／S4）。AWS設定値レベルの設計書まで含め、監査・引き継ぎに耐える形にする</li>
+                  <li><span className="font-semibold text-primary-700">改定への追従:</span> ガイドラインは厚労省と経産省・総務省が別周期で改定し、直近の改定では416項目のうち300項目超で参照条文が動きました。年間更新（20万円／年）で再判定と差し替え版をお渡しします</li>
+                </ul>
+              </div>
             </div>
           </div>
         </section>
@@ -349,6 +403,11 @@ export default function ThreeM2GPage() {
         <section className="py-24 px-6 bg-primary-950">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-2xl sm:text-3xl font-bold text-white mb-6">机上のテンプレートではなく、実対応で検証済み</h2>
+            <p className="text-primary-100 leading-relaxed mb-6">
+              <strong className="text-white font-semibold">医療情報の扱いが最もシビアな領域のひとつ、医用画像をAIで解析するSaaS（大学病院との共同研究から事業化）に本パッケージを適用し、</strong>
+              416項目すべてを実装と文書の実態で判定、JAHIS SDS Ver.5.0（160問）の開示書と規程類を整備しました。
+              標準回答のまま医療機関に出すのではなく、適用先の実態で判定し直す手順もこの適用で確立しています。
+            </p>
             <p className="text-primary-200 leading-relaxed max-w-2xl mx-auto">
               本パッケージの標準回答とフレームワークは実際の3省2ガイドライン対応で運用され、
               <strong className="text-white font-semibold">416項目すべての該当性判断・対応方針の記入を、
@@ -516,7 +575,9 @@ export default function ThreeM2GPage() {
             <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 text-center mb-6">料金</h2>
             <p className="text-slate-600 text-center leading-relaxed max-w-3xl mx-auto mb-12">
               アセットのどこまでを使うかで、4段階に分けています。
-              医療機関への回答をまず整えたい場合はS1から、プロダクトの土台ごと整えたい場合はS3・S4をご検討ください。
+              比較していただきたいのは当社の作業量ではなく、SDS を出せずに止まる医療機関との契約（年間数百万円規模）と、
+              体制を組成して自力対応した場合の数百万〜1,000万円・4〜6ヶ月です。
+              PoC・初期導入ではS1／S2で医療機関への回答を先に整え、本製品化でS3・S4へ進む段階的な使い方ができます。
             </p>
             <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
               {pricingTiers.map((t) => (
