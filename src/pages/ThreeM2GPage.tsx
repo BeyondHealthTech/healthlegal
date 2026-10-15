@@ -1,15 +1,15 @@
 const FORM_URL = "https://docs.google.com/forms/d/1qQRrWDUPCOeXklfna912YEs1b2DqPHap3zZ0lpoyjZI/viewform";
 
 const stats = [
-  { number: "416 → 約50", label: "検討項目数", desc: "対象外172件は設計選択で消え、188件は標準回答で即答。個別検討は差分だけ" },
-  { number: "41%", label: "設計の工夫で対象外にできる項目", desc: "当社のアーキテクチャ設計ノウハウにより、416項目のうち172件は対応自体を不要にできる" },
+  { number: "416 → 約50", label: "検討項目数", desc: "対象外167件は設計選択で消え、196件は標準回答で即答。個別検討は差分だけ" },
+  { number: "40%", label: "設計の工夫で対象外にできる項目", desc: "当社のアーキテクチャ設計ノウハウにより、416項目のうち167件は対応自体を不要にできる" },
   { number: "70", label: "文書ひな形", desc: "規程・計画・サービス文書・手順35 ＋ AWS詳細設計書35。ゼロから書かない" },
 ];
 
 const sources = [
   {
     title: "対応しない、を先に設計する",
-    body: "全416項目のうち172件（41%）は、アーキテクチャ設計の工夫により対象外にできます。「頑張って対応する」前に「対応が要らない形を選ぶ」——どの設計選択がどの項目を不要にするかの対応表を当社は持っており、構成のご提案とセットで適用します。",
+    body: "全416項目のうち167件（40%）は、アーキテクチャ設計の工夫により対象外にできます。「頑張って対応する」前に「対応が要らない形を選ぶ」——どの設計選択がどの項目を不要にするかの対応表を当社は持っており、構成のご提案とセットで適用します。",
   },
   {
     title: "検討済みの標準回答416項目",
@@ -26,13 +26,22 @@ const sources = [
 ];
 
 const deliverables = [
-  "対策項目マスタ（416項目・関連要求事項199件の構造化データ）",
+  "対策項目マスタ（416項目・厚労省ガイドラインへの条文参照371件の構造化データ。経産省・総務省ガイドライン第2.0版 別紙2 と項目単位で一致を機械確認済み）",
   "標準回答集（当社標準のクラウド構成前提・対象外判断の根拠つき）",
   "対応検討シート（貴社プロダクト向けにカスタマイズ）",
   "運用文書一式（規程・計画・サービス文書・手順 35ファイル）",
   "セキュリティ詳細設計書一式（IAM・ログ監査・監視・NW・ストレージ 35ファイル、AWS設定値レベル）",
   "サービス仕様適合開示書・サービス仕様書のひな形",
   "利用者認証方式規程のひな形（二要素認証の対応ロードマップ・代替手段・医療機関等との合意事項）",
+];
+
+// ボリュームの階段（正本: bht-ops docs/3m2g-volume-framing.md 1章。数字を変えるときは正本から写す）
+const volumeLadder = [
+  { number: "416", label: "対策項目（経産省・総務省ガイドライン 別紙2）", desc: "遵守事項◎384・推奨〇32。管理単位として数えるとこの数" },
+  { number: "371", label: "厚労省ガイドラインの条文参照", desc: "416項目のうち343項目に、企画管理編149・システム運用編222の条文が結線されている" },
+  { number: "99", label: "医療機関からの確認事項（MDS 41＋SDS 58）", desc: "厚労省ガイドライン第7.0版 保守委託機関編【別紙】。医療機関はこれで事業者を選定する" },
+  { number: "160", label: "JAHIS SDS Ver.5.0 の設問", desc: "商談で実際に提出を求められる開示書の様式" },
+  { number: "約90", label: "落とし込む文書", desc: "規程・計画・手順35＋AWS詳細設計書35＋案件別文書パック19（差し込み欄110）" },
 ];
 
 // 提供アセットの全体像（数字カード4枚＋折りたたみ詳細）。
@@ -285,6 +294,34 @@ export default function ThreeM2GPage() {
               <p>
                 さらに、対象外にできる項目を知らずに全項目対応してしまう過剰投資や、
                 判断根拠が担当者の頭にしか残らない属人化が、後の監査・引き継ぎで効いてきます。
+              </p>
+            </div>
+
+            {/* ボリュームの階段（数値の正本: bht-ops docs/3m2g-volume-framing.md 1章。LP では直接編集せず正本を写す） */}
+            <div className="mt-12 bg-white rounded-2xl border border-slate-200 p-6 sm:p-8">
+              <h3 className="text-lg sm:text-xl font-bold text-slate-900 mb-2">「416項目」は入口にすぎません</h3>
+              <p className="text-slate-700 leading-relaxed mb-6">
+                対策項目の1つ1つに、厚労省ガイドラインの条文参照と、医療機関からの確認事項がぶら下がります。
+                実際に読んで判断する単位を数えると、次のようになります（当社アセットの機械集計・再現可能）。
+              </p>
+              <ol className="space-y-3">
+                {volumeLadder.map((row, i) => (
+                  <li key={row.label} className="flex items-start gap-4">
+                    <span className="shrink-0 w-24 sm:w-28 text-right text-2xl font-bold text-primary-700 tabular-nums">{row.number}</span>
+                    <div className="min-w-0 pt-1">
+                      <p className="font-semibold text-slate-900">{row.label}</p>
+                      <p className="text-sm text-slate-600 leading-relaxed">{row.desc}</p>
+                    </div>
+                    {i < volumeLadder.length - 1 && <span className="sr-only">、さらに</span>}
+                  </li>
+                ))}
+              </ol>
+              <p className="mt-6 text-slate-700 leading-relaxed">
+                <strong className="font-semibold text-slate-900">読んで判断する単位は合計で1,000を超え、落とし込む文書は約90本。</strong>
+                たとえば「パスワードの世代管理」という1項目は、厚労省ガイドラインの条文 → 医療機関の確認事項 →
+                利用者認証方式規程の条文 → 認証基盤の設定値、と5段で初めて「対応した」と言えます。
+                416項目それぞれにこの深さがあるのが、対応が重い理由です。当社はこの全層を構造化済みで、
+                ゼロから読む作業を差分のレビューに置き換えます。
               </p>
             </div>
           </div>
