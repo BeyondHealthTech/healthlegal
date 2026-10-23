@@ -32,6 +32,7 @@ sourcesNote: '本記事は上記の一次資料に基づいて作成していま
 related:
   - samd-boundary
   - guideline-7-0-summary
+  - gap-fund-dev-outsourcing
 cta:
   heading: '研究成果の事業化を検討している方へ'
   body: 'HealthLegalは、医療・ヘルスケア領域のプロダクトの薬事・法令対応を支援しています。 「研究成果を製品にするなら何が必要か」の地図を、構想段階・法人化前から一緒に描けます。 医療機器該当性の整理から3省2ガイドライン対応まで、初回のご相談は無料です。'
