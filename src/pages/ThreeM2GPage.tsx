@@ -52,9 +52,9 @@ const volumeLadder = [
 ];
 
 // GA4: ブロックの表示とフォーム到達の比率を見るためのイベント（2週間で効果判断）。gtag は 3m2g/index.html で定義。
-function sendEvent(name: string) {
+function sendEvent(name: string, params?: Record<string, unknown>) {
   const w = window as unknown as { gtag?: (...args: unknown[]) => void };
-  w.gtag?.("event", name, { page: "3m2g" });
+  w.gtag?.("event", name, { page: "3m2g", ...params });
 }
 function useViewEvents(ids: Record<string, string>) {
   useEffect(() => {
@@ -663,6 +663,7 @@ export default function ThreeM2GPage() {
             </p>
             <a
               href={FORM_URL}
+              onClick={() => sendEvent("consult_form_open", { position: "contact" })}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-8 py-4 bg-accent-500 text-white text-lg font-semibold rounded-lg hover:bg-accent-600 transition-colors shadow-lg shadow-accent-500/25"
