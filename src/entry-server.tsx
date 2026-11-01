@@ -3,6 +3,7 @@ import { renderToString } from 'react-dom/server'
 import App from './App.tsx'
 import ThreeM2GPage from './pages/ThreeM2GPage'
 import SdsCheckPage from './pages/SdsCheckPage'
+import ClinicCheckPage from './pages/ClinicCheckPage'
 import PrivacyPage from './pages/PrivacyPage'
 import ArticlePage from './components/ArticlePage'
 import ArticlesIndexPage from './components/ArticlesIndexPage'
@@ -44,6 +45,14 @@ export function renderSdsCheck(): string {
   return renderToString(
     <StrictMode>
       <SdsCheckPage />
+    </StrictMode>,
+  )
+}
+
+export function renderClinicCheck(): string {
+  return renderToString(
+    <StrictMode>
+      <ClinicCheckPage />
     </StrictMode>,
   )
 }

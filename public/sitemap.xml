@@ -19,10 +19,34 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://healthlegal.vercel.app/clinic-check/</loc>
+    <lastmod>2026-11-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://healthlegal.vercel.app/articles/</loc>
     <lastmod>2026-09-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://healthlegal.vercel.app/articles/clinic-cyber-checklist-r8/</loc>
+    <lastmod>2026-11-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://healthlegal.vercel.app/articles/home-care-ict-requirements/</loc>
+    <lastmod>2026-10-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://healthlegal.vercel.app/articles/ehr-cloud-outlook/</loc>
+    <lastmod>2026-10-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://healthlegal.vercel.app/articles/gap-fund-dev-outsourcing/</loc>
