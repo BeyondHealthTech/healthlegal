@@ -6,6 +6,28 @@ const CHECKLIST_FORM_URL =
   "https://docs.google.com/forms/d/e/1FAIpQLSfRcNrFAcwA-hmd_8t5xSIGtELD30m6USsmDf33HDyMgP79WQ/viewform";
 const BOARD_URL = "https://bht-recruitment.vercel.app/";
 
+// 記事→Board の遷移を Board 側の GA4 で流入元つきで数えるための UTM（bht-ops docs/ga4-measurement-foundation.md 5章）。
+// 同一 GA4 プロパティでもホストが違うとリファラ扱いが不安定なので、UTM で明示する。
+function boardUrl(slug: string): string {
+  const params = new URLSearchParams({
+    utm_source: "healthlegal",
+    utm_medium: "referral",
+    utm_campaign: "article-board-cta",
+    utm_content: slug,
+  });
+  return `${BOARD_URL}?${params.toString()}`;
+}
+
+// 記事側でも「Board へのリンクを押した」を数える（gtag は各記事の index.html で定義）。
+function trackBoardClick(slug: string): void {
+  const w = window as unknown as { gtag?: (...args: unknown[]) => void };
+  try {
+    w.gtag?.("event", "board_click", { location: "article_cta", article: slug });
+  } catch {
+    // 計測の失敗でリンクを壊さない
+  }
+}
+
 // 記事ページ共通の器（旧 Article*Page.tsx を1コンポーネントに集約。
 // タイトル・3行まとめ・本文・出典・関連記事・CTA文言は articles/content/<slug>.md から供給される）
 const h2Class = "text-2xl sm:text-3xl font-bold text-slate-900 mt-14 mb-5 leading-snug";
@@ -140,15 +162,29 @@ export default function ArticlePage({ article }: { article: ArticleData }) {
               </a>
             </div>
             {article.cta.showBoard && (
-              <p className="text-slate-400 text-sm mt-8">
-                事業化を進める人材（薬事・開発・事業開発）をお探しの場合は、医療・ヘルスケア領域特化のマッチングボード{" "}
-                <a href={BOARD_URL} target="_blank" rel="noopener noreferrer" className="text-slate-200 underline hover:text-white">
-                  Healthcare Startup Board
-                </a>{" "}
-                をご利用いただけます。法人化前のシーズ段階からご相談いただけます。
-              </p>
+              <div className="mt-6 rounded-xl border border-slate-700 bg-slate-800/60 px-6 py-6 text-left max-w-xl mx-auto">
+                <p className="text-accent-400 text-sm font-semibold mb-1">事業化を進める人材をお探しの方へ</p>
+                <p className="text-white font-bold mb-2">Healthcare Startup Board（医療・ヘルスケア領域特化の募集掲載）</p>
+                <p className="text-slate-300 text-sm mb-4 leading-relaxed">
+                  {"薬事・開発・事業開発など、事業化を担うプロ人材の募集を掲載できます。掲載は無料で、成約しても仲介手数料はいただきません（当面）。" +
+                    "法人化前の大学発シーズからご相談いただけます。掲載いただいた募集には、運営する Beyond HealthTech が" +
+                    "医療情報ガイドライン（3省2ガイドライン）や薬事の論点整理のご相談に乗ります。"}
+                </p>
+                <a
+                  href={boardUrl(article.slug)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => trackBoardClick(article.slug)}
+                  className="inline-flex items-center gap-1 text-accent-400 font-semibold hover:text-accent-300 transition-colors"
+                >
+                  募集掲載の詳細を見る
+                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+                  </svg>
+                </a>
+              </div>
             )}
-            <p className={`text-slate-400 text-sm ${article.cta.showBoard ? "mt-4" : "mt-8"}`}>
+            <p className="text-slate-400 text-sm mt-8">
               3省2ガイドライン対応を体系的に進めたい方は{" "}
               <a href="../../3m2g/" className="text-slate-200 underline hover:text-white">
                 3省2ガイドライン対応パッケージ
