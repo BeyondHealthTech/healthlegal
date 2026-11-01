@@ -23,7 +23,8 @@ import {
 const FORM_URL = "https://docs.google.com/forms/d/1qQRrWDUPCOeXklfna912YEs1b2DqPHap3zZ0lpoyjZI/viewform";
 // 結果をメールで受け取る導線（Googleフォーム）。末尾に点検コードを付けて開くと事前入力される。
 // 空文字のときはボタンを出さない。フォーム作成後に URL を入れる（bht-ops Issue #264）。
-const LEAD_FORM_URL: string = "";
+const LEAD_FORM_URL: string =
+  "https://docs.google.com/forms/d/e/1FAIpQLScFeD8wn0tjV4peM1iRg61P4f_7HDpmKh1v7JVLLoHgVWupEg/viewform?usp=pp_url&entry.1129110655=";
 
 const SECTION_ORDER: ClinicSection[] = [1, 2, 3, 4];
 const TOTAL = CLINIC_ITEMS.length;
