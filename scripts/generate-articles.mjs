@@ -43,6 +43,7 @@ const SITEMAP_STATIC_HEAD = [
   { loc: '/', lastmod: '2026-07-26', changefreq: 'monthly', priority: '1.0' },
   { loc: '/3m2g/', lastmod: '2026-07-26', changefreq: 'monthly', priority: '0.8' },
   { loc: '/sds-check/', lastmod: '2026-10-13', changefreq: 'monthly', priority: '0.8' },
+  { loc: '/clinic-check/', lastmod: '2026-11-01', changefreq: 'monthly', priority: '0.8' },
   { loc: '/articles/', lastmod: '2026-09-23', changefreq: 'weekly', priority: '0.5' },
 ]
 const SITEMAP_STATIC_TAIL = [

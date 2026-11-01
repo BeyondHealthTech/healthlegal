@@ -43,6 +43,13 @@ export default function SelfCheck() {
                 <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
               </svg>
             </a>
+            <p className="text-slate-700 text-sm mt-8 rounded-lg border border-slate-200 bg-white px-4 py-3 inline-block">
+              医療機関・薬局の方は{" "}
+              <a href="./clinic-check/" className="font-semibold text-primary-700 underline hover:text-primary-800">
+                厚労省チェックリスト（令和8年度版・19項目）の自己点検
+              </a>{" "}
+              をご利用ください。
+            </p>
             <p className="text-slate-500 text-sm mt-6">
               回答内容の取り扱いについては{" "}
               <a href="./privacy/" className="underline hover:text-slate-700">

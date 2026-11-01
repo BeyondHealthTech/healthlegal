@@ -143,6 +143,24 @@ export default function ArticlePage({ article }: { article: ArticleData }) {
               </svg>
             </a>
 
+            {article.cta.selfCheck === "clinic" ? (
+            <div className="mt-10 rounded-xl border border-slate-700 bg-slate-800/60 px-6 py-6 text-left max-w-xl mx-auto">
+              <p className="text-accent-400 text-sm font-semibold mb-1">無料セルフチェック（医療機関・薬局向け）</p>
+              <p className="text-white font-bold mb-2">サイバーセキュリティ対策チェックリスト 令和8年度版 19項目 自己点検（約5分）</p>
+              <p className="text-slate-300 text-sm mb-4 leading-relaxed">
+                厚労省チェックリストの19項目に答えると、立入検査で現物確認される4点の状態と、「はい」になっていない項目ごとの具体策・ガイドライン第7.0版の参照箇所を表示します。回答は送信されません。
+              </p>
+              <a
+                href="../../clinic-check/"
+                className="inline-flex items-center gap-1 text-accent-400 font-semibold hover:text-accent-300 transition-colors"
+              >
+                自己点検を始める
+                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+                </svg>
+              </a>
+            </div>
+            ) : (
             <div className="mt-10 rounded-xl border border-slate-700 bg-slate-800/60 px-6 py-6 text-left max-w-xl mx-auto">
               <p className="text-accent-400 text-sm font-semibold mb-1">無料セルフチェック</p>
               <p className="text-white font-bold mb-2">3省2ガイドライン セルフチェック（27問・約8分）</p>
@@ -161,6 +179,7 @@ export default function ArticlePage({ article }: { article: ArticleData }) {
                 </svg>
               </a>
             </div>
+            )}
             {article.cta.showBoard && (
               <div className="mt-6 rounded-xl border border-slate-700 bg-slate-800/60 px-6 py-6 text-left max-w-xl mx-auto">
                 <p className="text-accent-400 text-sm font-semibold mb-1">事業化を進める人材をお探しの方へ</p>

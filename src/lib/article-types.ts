@@ -14,6 +14,8 @@ export interface ArticleCta {
   body: string
   /** Healthcare Startup Board への導線段落を出すか */
   showBoard?: boolean
+  /** CTA のセルフチェック枠。'clinic' は医療機関向け19項目自己点検（/clinic-check/）、省略時は事業者向け27問 */
+  selfCheck?: 'vendor' | 'clinic'
 }
 
 export interface ArticleMeta {

@@ -23,12 +23,13 @@ await build({
   },
 })
 
-const { renderMain, render3m2g, renderSdsCheck, renderPrivacy, renderArticle, renderArticlesIndex, articleSlugs } =
+const { renderMain, render3m2g, renderSdsCheck, renderClinicCheck, renderPrivacy, renderArticle, renderArticlesIndex, articleSlugs } =
   await import(pathToFileURL(resolve('dist-server/entry-server.js')).href)
 
 injectRoot('dist/index.html', renderMain())
 injectRoot('dist/3m2g/index.html', render3m2g())
 injectRoot('dist/sds-check/index.html', renderSdsCheck())
+injectRoot('dist/clinic-check/index.html', renderClinicCheck())
 injectRoot('dist/articles/index.html', renderArticlesIndex())
 for (const slug of articleSlugs) {
   injectRoot(`dist/articles/${slug}/index.html`, renderArticle(slug))
