@@ -21,7 +21,7 @@
 <circle cx="66" cy="400" r="9" fill="#64748b"/><path d="M51 428 a15 13 0 0 1 30 0z" fill="#64748b"/>
 <text x="88" y="406" font-size="12.5" font-weight="700" fill="#0f172a" text-anchor="start">サービス運営者</text>
 <text x="52" y="442" font-size="10.5" font-weight="400" fill="#475569" text-anchor="start">全施設の管理（貴社）</text>
-<rect x="225" y="96" width="300" height="478" rx="14" fill="#eff6ff" stroke="#93c5fd" stroke-width="1.5"/>
+<rect x="225" y="96" width="300" height="515" rx="14" fill="#eff6ff" stroke="#93c5fd" stroke-width="1.5"/>
 <text x="243" y="126" font-size="16" font-weight="700" fill="#2563eb" text-anchor="start">Webアプリ（9画面＋同意ゲート）</text>
 <text x="243" y="146" font-size="11.5" font-weight="400" fill="#475569" text-anchor="start">ブラウザのみ・端末に医療情報を残さない</text>
 <rect x="239" y="158" width="272" height="34" rx="7" fill="#2563eb"/>
@@ -56,6 +56,9 @@
 <rect x="239" y="535" width="272" height="31" rx="7" fill="#ffffff" stroke="#93c5fd"/>
 <text x="253" y="557" font-size="11" font-weight="700" fill="#2563eb" text-anchor="start">10</text>
 <text x="277" y="557" font-size="13" font-weight="600" fill="#0f172a" text-anchor="start">同意ゲート</text>
+<rect x="239" y="572" width="272" height="31" rx="7" fill="#ffffff" stroke="#93c5fd"/>
+<text x="253" y="594" font-size="11" font-weight="700" fill="#2563eb" text-anchor="start">11</text>
+<text x="277" y="594" font-size="13" font-weight="600" fill="#0f172a" text-anchor="start">テナント設定（二要素認証の方針）</text>
 <line x1="194" y1="276" x2="219" y2="276" stroke="#475569" stroke-width="2" marker-end="url(#ar)"/>
 <rect x="570" y="96" width="990" height="656" rx="14" fill="#fff7ed" stroke="#fdba74" stroke-width="1.5"/>
 <text x="588" y="126" font-size="16" font-weight="700" fill="#c2410c" text-anchor="start">AWS（東京リージョン）</text>
@@ -67,7 +70,7 @@
 <text x="644.0" y="443.0" font-size="11.5" font-weight="400" fill="#475569" text-anchor="middle">JWT 検証</text>
 <text x="644.0" y="463.0" font-size="11.5" font-weight="400" fill="#475569" text-anchor="middle">TLS 1.2+</text>
 <text x="644.0" y="483.0" font-size="11.5" font-weight="400" fill="#475569" text-anchor="middle"></text>
-<text x="644.0" y="503.0" font-size="11.5" font-weight="400" fill="#475569" text-anchor="middle">API 14経路</text>
+<text x="644.0" y="503.0" font-size="11.5" font-weight="400" fill="#475569" text-anchor="middle">API 20経路</text>
 <line x1="529" y1="276" x2="580" y2="276" stroke="#475569" stroke-width="2" marker-end="url(#ar)"/>
 <text x="555.5" y="266" font-size="11" font-weight="700" fill="#475569" text-anchor="middle">HTTPS</text>
 <rect x="720" y="148" width="405.0" height="283" rx="10" fill="#ffffff" fill-opacity="0.55" stroke="#fdba74" stroke-dasharray="4 3"/>
@@ -178,7 +181,7 @@
 <rect x="1476.8" y="594" width="51.2" height="16" rx="8" fill="#f1f5f9"/>
 <text x="1502.4" y="606" font-size="10" font-weight="600" fill="#475569" text-anchor="middle">SDS 18</text>
 <rect x="40" y="768" width="1520" height="112" rx="14" fill="#ecfdf5" stroke="#6ee7b7" stroke-width="1.5"/>
-<text x="58" y="793" font-size="15" font-weight="700" fill="#047857" text-anchor="start">文書パック（18文書）— 上の機能と同じ設定値から生成。文書と実装が食い違わない</text>
+<text x="58" y="793" font-size="15" font-weight="700" fill="#047857" text-anchor="start">文書パック（19文書）— 上の機能と同じ設定値から生成。文書と実装が食い違わない</text>
 <rect x="58" y="804" width="49" height="22" rx="11" fill="#ffffff" stroke="#6ee7b7"/>
 <text x="82.5" y="819.5" font-size="10.5" font-weight="600" fill="#047857" text-anchor="middle">SLA</text>
 <rect x="115" y="804" width="82" height="22" rx="11" fill="#ffffff" stroke="#6ee7b7"/>
@@ -191,28 +194,30 @@
 <text x="475.5" y="819.5" font-size="10.5" font-weight="600" fill="#047857" text-anchor="middle">詳細設計書 セキュリティ章</text>
 <rect x="563" y="804" width="93" height="22" rx="11" fill="#ffffff" stroke="#6ee7b7"/>
 <text x="609.5" y="819.5" font-size="10.5" font-weight="600" fill="#047857" text-anchor="middle">SDS回答草案</text>
-<rect x="664" y="804" width="137" height="22" rx="11" fill="#ffffff" stroke="#6ee7b7"/>
-<text x="732.5" y="819.5" font-size="10.5" font-weight="600" fill="#047857" text-anchor="middle">SDS開示書 v5.0</text>
-<rect x="809" y="804" width="126" height="22" rx="11" fill="#ffffff" stroke="#6ee7b7"/>
-<text x="872.0" y="819.5" font-size="10.5" font-weight="600" fill="#047857" text-anchor="middle">医療機関向け説明資料</text>
-<rect x="943" y="804" width="126" height="22" rx="11" fill="#ffffff" stroke="#6ee7b7"/>
-<text x="1006.0" y="819.5" font-size="10.5" font-weight="600" fill="#047857" text-anchor="middle">利用規約等 条項雛形</text>
-<rect x="1077" y="804" width="71" height="22" rx="11" fill="#ffffff" stroke="#6ee7b7"/>
-<text x="1112.5" y="819.5" font-size="10.5" font-weight="600" fill="#047857" text-anchor="middle">対応状況表</text>
-<rect x="1156" y="804" width="71" height="22" rx="11" fill="#ffffff" stroke="#6ee7b7"/>
-<text x="1191.5" y="819.5" font-size="10.5" font-weight="600" fill="#047857" text-anchor="middle">復旧手順書</text>
-<rect x="1235" y="804" width="82" height="22" rx="11" fill="#ffffff" stroke="#6ee7b7"/>
-<text x="1276.0" y="819.5" font-size="10.5" font-weight="600" fill="#047857" text-anchor="middle">BCP手順書</text>
-<rect x="1325" y="804" width="93" height="22" rx="11" fill="#ffffff" stroke="#6ee7b7"/>
-<text x="1371.5" y="819.5" font-size="10.5" font-weight="600" fill="#047857" text-anchor="middle">扱う情報の一覧</text>
-<rect x="1426" y="804" width="115" height="22" rx="11" fill="#ffffff" stroke="#6ee7b7"/>
-<text x="1483.5" y="819.5" font-size="10.5" font-weight="600" fill="#047857" text-anchor="middle">持ち出しリスク分析</text>
-<rect x="58" y="832" width="82" height="22" rx="11" fill="#ffffff" stroke="#6ee7b7"/>
-<text x="99.0" y="847.5" font-size="10.5" font-weight="600" fill="#047857" text-anchor="middle">業務端末台帳</text>
-<rect x="148" y="832" width="82" height="22" rx="11" fill="#ffffff" stroke="#6ee7b7"/>
-<text x="189.0" y="847.5" font-size="10.5" font-weight="600" fill="#047857" text-anchor="middle">教育実施記録</text>
-<rect x="238" y="832" width="159" height="22" rx="11" fill="#ffffff" stroke="#6ee7b7"/>
-<text x="317.5" y="847.5" font-size="10.5" font-weight="600" fill="#047857" text-anchor="middle">第三者評価報告書の取得記録</text>
-<rect x="405" y="832" width="137" height="22" rx="11" fill="#ffffff" stroke="#6ee7b7"/>
-<text x="473.5" y="847.5" font-size="10.5" font-weight="600" fill="#047857" text-anchor="middle">組織対応チェックリスト</text>
+<rect x="664" y="804" width="93" height="22" rx="11" fill="#ffffff" stroke="#6ee7b7"/>
+<text x="710.5" y="819.5" font-size="10.5" font-weight="600" fill="#047857" text-anchor="middle">MDS回答草案</text>
+<rect x="765" y="804" width="137" height="22" rx="11" fill="#ffffff" stroke="#6ee7b7"/>
+<text x="833.5" y="819.5" font-size="10.5" font-weight="600" fill="#047857" text-anchor="middle">SDS開示書 v5.0</text>
+<rect x="910" y="804" width="126" height="22" rx="11" fill="#ffffff" stroke="#6ee7b7"/>
+<text x="973.0" y="819.5" font-size="10.5" font-weight="600" fill="#047857" text-anchor="middle">医療機関向け説明資料</text>
+<rect x="1044" y="804" width="126" height="22" rx="11" fill="#ffffff" stroke="#6ee7b7"/>
+<text x="1107.0" y="819.5" font-size="10.5" font-weight="600" fill="#047857" text-anchor="middle">利用規約等 条項雛形</text>
+<rect x="1178" y="804" width="71" height="22" rx="11" fill="#ffffff" stroke="#6ee7b7"/>
+<text x="1213.5" y="819.5" font-size="10.5" font-weight="600" fill="#047857" text-anchor="middle">対応状況表</text>
+<rect x="1257" y="804" width="71" height="22" rx="11" fill="#ffffff" stroke="#6ee7b7"/>
+<text x="1292.5" y="819.5" font-size="10.5" font-weight="600" fill="#047857" text-anchor="middle">復旧手順書</text>
+<rect x="1336" y="804" width="82" height="22" rx="11" fill="#ffffff" stroke="#6ee7b7"/>
+<text x="1377.0" y="819.5" font-size="10.5" font-weight="600" fill="#047857" text-anchor="middle">BCP手順書</text>
+<rect x="1426" y="804" width="93" height="22" rx="11" fill="#ffffff" stroke="#6ee7b7"/>
+<text x="1472.5" y="819.5" font-size="10.5" font-weight="600" fill="#047857" text-anchor="middle">扱う情報の一覧</text>
+<rect x="58" y="832" width="115" height="22" rx="11" fill="#ffffff" stroke="#6ee7b7"/>
+<text x="115.5" y="847.5" font-size="10.5" font-weight="600" fill="#047857" text-anchor="middle">持ち出しリスク分析</text>
+<rect x="181" y="832" width="82" height="22" rx="11" fill="#ffffff" stroke="#6ee7b7"/>
+<text x="222.0" y="847.5" font-size="10.5" font-weight="600" fill="#047857" text-anchor="middle">業務端末台帳</text>
+<rect x="271" y="832" width="82" height="22" rx="11" fill="#ffffff" stroke="#6ee7b7"/>
+<text x="312.0" y="847.5" font-size="10.5" font-weight="600" fill="#047857" text-anchor="middle">教育実施記録</text>
+<rect x="361" y="832" width="159" height="22" rx="11" fill="#ffffff" stroke="#6ee7b7"/>
+<text x="440.5" y="847.5" font-size="10.5" font-weight="600" fill="#047857" text-anchor="middle">第三者評価報告書の取得記録</text>
+<rect x="528" y="832" width="137" height="22" rx="11" fill="#ffffff" stroke="#6ee7b7"/>
+<text x="596.5" y="847.5" font-size="10.5" font-weight="600" fill="#047857" text-anchor="middle">組織対応チェックリスト</text>
 </svg>
