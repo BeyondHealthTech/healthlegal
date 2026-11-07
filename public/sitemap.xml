@@ -31,6 +31,12 @@
     <priority>0.5</priority>
   </url>
   <url>
+    <loc>https://healthlegal.vercel.app/articles/zero-trust-guideline-mapping/</loc>
+    <lastmod>2026-11-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://healthlegal.vercel.app/articles/clinic-cyber-checklist-r8/</loc>
     <lastmod>2026-11-01</lastmod>
     <changefreq>monthly</changefreq>
