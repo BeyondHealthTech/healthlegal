@@ -66,7 +66,7 @@ export default function ArticlePage({ article }: { article: ArticleData }) {
               <span className="block text-lg sm:text-2xl text-slate-700 mt-3">{article.subtitle}</span>
             </h1>
             <p className="text-sm text-slate-500">
-              公開: {article.dateLabel} ｜ 執筆: Beyond HealthTech合同会社 ｜ {article.bylineNote}
+              公開: {article.dateLabel} ｜ 執筆: HealthLegal ｜ {article.bylineNote}
             </p>
           </div>
         </section>
@@ -186,7 +186,7 @@ export default function ArticlePage({ article }: { article: ArticleData }) {
                 <p className="text-white font-bold mb-2">Healthcare Startup Board（医療・ヘルスケア領域特化の募集掲載）</p>
                 <p className="text-slate-300 text-sm mb-4 leading-relaxed">
                   {"薬事・開発・事業開発など、事業化を担うプロ人材の募集を掲載できます。掲載は無料で、成約しても仲介手数料はいただきません（当面）。" +
-                    "法人化前の大学発シーズからご相談いただけます。掲載いただいた募集には、運営する Beyond HealthTech が" +
+                    "法人化前の大学発シーズからご相談いただけます。掲載いただいた募集には、HealthLegal が" +
                     "医療情報ガイドライン（3省2ガイドライン）や薬事の論点整理のご相談に乗ります。"}
                 </p>
                 <a
@@ -217,7 +217,7 @@ export default function ArticlePage({ article }: { article: ArticleData }) {
       <footer className="py-8 px-6 bg-slate-950">
         <div className="max-w-6xl mx-auto text-center">
           <p className="text-slate-400 text-sm">
-            &copy; {new Date().getFullYear()} Beyond HealthTech合同会社
+            &copy; {new Date().getFullYear()} HealthLegal
           </p>
         </div>
       </footer>

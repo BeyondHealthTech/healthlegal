@@ -174,7 +174,7 @@ function articleEntryHtml(a) {
         "mainEntityOfPage": "${SITE_ORIGIN}/articles/${a.slug}/",
         "author": {
           "@type": "Organization",
-          "name": "Beyond HealthTech合同会社"
+          "name": "HealthLegal"
         },
         "publisher": {
           "@type": "Organization",

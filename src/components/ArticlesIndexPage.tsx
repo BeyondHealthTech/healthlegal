@@ -43,7 +43,7 @@ export default function ArticlesIndexPage() {
                 <p className="text-xs font-semibold text-primary-700 mb-2">{a.category}</p>
                 <h2 className="text-lg sm:text-xl font-bold text-slate-900 leading-snug mb-3">{a.shortLabel}</h2>
                 <p className="text-sm text-slate-600 leading-relaxed mb-3">{a.listDescription}</p>
-                <p className="text-xs text-slate-500">公開: {a.dateLabel} ｜ Beyond HealthTech合同会社</p>
+                <p className="text-xs text-slate-500">公開: {a.dateLabel}</p>
               </a>
             ))}
           </div>
@@ -65,7 +65,7 @@ export default function ArticlesIndexPage() {
       <footer className="py-8 px-6 bg-slate-950">
         <div className="max-w-6xl mx-auto text-center">
           <p className="text-slate-400 text-sm">
-            &copy; {new Date().getFullYear()} Beyond HealthTech合同会社
+            &copy; {new Date().getFullYear()} HealthLegal
           </p>
         </div>
       </footer>

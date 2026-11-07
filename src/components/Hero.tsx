@@ -3,7 +3,7 @@ export default function Hero() {
     <section className="pt-32 pb-24 px-6 bg-gradient-to-b from-primary-50 to-white">
       <div className="max-w-4xl mx-auto text-center">
         <p className="text-primary-600 font-semibold text-sm tracking-wide mb-4">
-          Beyond HealthTech
+          Legal × Tech × Healthcare
         </p>
         <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-900 leading-tight mb-6">
           医療情報ガイドライン対応を、
