@@ -5,7 +5,6 @@ import Services from "./components/Services";
 import SelfCheck from "./components/SelfCheck";
 import ForYou from "./components/ForYou";
 import Strength from "./components/Strength";
-import Company from "./components/Company";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 
@@ -20,7 +19,6 @@ export default function App() {
         <SelfCheck />
         <ForYou />
         <Strength />
-        <Company />
         <Contact />
       </main>
       <Footer />

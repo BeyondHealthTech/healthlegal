@@ -19,7 +19,7 @@ export default function Footer() {
           </a>
         </p>
         <p className="text-slate-400 text-sm">
-          &copy; {new Date().getFullYear()} Beyond HealthTech合同会社
+          &copy; {new Date().getFullYear()} HealthLegal
         </p>
       </div>
     </footer>
