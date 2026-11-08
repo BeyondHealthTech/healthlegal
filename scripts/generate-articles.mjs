@@ -17,7 +17,7 @@ import matter from 'gray-matter'
 const ROOT = resolve(import.meta.dirname, '..')
 const CONTENT_DIR = resolve(ROOT, 'articles/content')
 const GENERATED_DIR = resolve(ROOT, 'src/generated')
-const SITE_ORIGIN = 'https://healthlegal.vercel.app'
+const SITE_ORIGIN = 'https://healthlegal.beyondht.jp'
 
 // ---- 記事ページ本文のスタイル（旧 src/pages/Article*.tsx のクラス定義を移設） ----
 const CLS = {
