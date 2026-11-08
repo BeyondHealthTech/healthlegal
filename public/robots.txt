@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://healthlegal.vercel.app/sitemap.xml
+Sitemap: https://healthlegal.beyondht.jp/sitemap.xml
