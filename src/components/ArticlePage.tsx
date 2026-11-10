@@ -4,7 +4,7 @@ import { articlesIndex } from "../generated/articles-index";
 const FORM_URL = "https://docs.google.com/forms/d/1qQRrWDUPCOeXklfna912YEs1b2DqPHap3zZ0lpoyjZI/viewform";
 const CHECKLIST_FORM_URL =
   "https://docs.google.com/forms/d/e/1FAIpQLSfRcNrFAcwA-hmd_8t5xSIGtELD30m6USsmDf33HDyMgP79WQ/viewform";
-const BOARD_URL = "https://bht-recruitment.vercel.app/";
+const BOARD_URL = "https://startup-board.beyondht.jp/";
 
 // 記事→Board の遷移を Board 側の GA4 で流入元つきで数えるための UTM（bht-ops docs/ga4-measurement-foundation.md 5章）。
 // 同一 GA4 プロパティでもホストが違うとリファラ扱いが不安定なので、UTM で明示する。
@@ -182,12 +182,11 @@ export default function ArticlePage({ article }: { article: ArticleData }) {
             )}
             {article.cta.showBoard && (
               <div className="mt-6 rounded-xl border border-slate-700 bg-slate-800/60 px-6 py-6 text-left max-w-xl mx-auto">
-                <p className="text-accent-400 text-sm font-semibold mb-1">事業化を進める人材をお探しの方へ</p>
-                <p className="text-white font-bold mb-2">Healthcare Startup Board（医療・ヘルスケア領域特化の募集掲載）</p>
+                <p className="text-accent-400 text-sm font-semibold mb-1">事業化を担う人材をお探しの方へ</p>
+                <p className="text-white font-bold mb-2">Healthcare Startup Board（研究・技術の事業化に特化した募集ボード）</p>
                 <p className="text-slate-300 text-sm mb-4 leading-relaxed">
-                  {"薬事・開発・事業開発など、事業化を担うプロ人材の募集を掲載できます。掲載は無料で、成約しても仲介手数料はいただきません（当面）。" +
-                    "法人化前の大学発シーズからご相談いただけます。掲載いただいた募集には、HealthLegal が" +
-                    "医療情報ガイドライン（3省2ガイドライン）や薬事の論点整理のご相談に乗ります。"}
+                  {"大学発シーズから企業の研究開発まで、構想からPoCまでを担うプロダクトマネージャー・CTO候補・薬事などの専門人材を、副業から募集できます。" +
+                    "募集掲載・仲介手数料ともに無料です。"}
                 </p>
                 <a
                   href={boardUrl(article.slug)}
