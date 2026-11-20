@@ -19,7 +19,7 @@ const articleInputs = Object.fromEntries(
 )
 
 export default defineConfig({
-  // 相対パス。ルート直下配信（Vercel: healthlegal.vercel.app）でも
+  // 相対パス。ルート直下配信（Vercel: healthlegal.beyondht.jp）でも
   // サブパス配信（GitHub Pages: /healthlegal/）でも同じビルドが動く。
   // '/healthlegal/' 固定だとルート配信側でアセットが 404 になる。
   base: './',
