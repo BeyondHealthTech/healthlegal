@@ -1,0 +1,11 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "healthlegal.vercel.app" }],
+      "destination": "https://healthlegal.beyondht.jp/:path*",
+      "permanent": true
+    }
+  ]
+}
