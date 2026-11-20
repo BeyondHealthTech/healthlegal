@@ -40,24 +40,21 @@ npm run lint
 
 | 経路 | URL | 設定 |
 |---|---|---|
-| Vercel | https://healthlegal.vercel.app/ | GA4の実測トラフィックはこのホスト。ルート直下配信 |
+| Vercel（正規） | https://healthlegal.beyondht.jp/ | 2026-11-08 に独自ドメインへ移行。ルート直下配信。旧 https://healthlegal.vercel.app/ は Vercel の Domains 設定で 308 転送する（手作業・bht-ops#148） |
 | GitHub Pages | https://beyondhealthtech.github.io/healthlegal/ | `.github/workflows/deploy.yml`（`master` へのpushで発火） |
 
 `vite.config.ts` の `base` は **相対パス `'./'`** にしてある。ルート直下配信とサブパス配信のどちらでも
 同じビルド成果物が動くため。`'/healthlegal/'` に固定するとルート直下配信側でJS/CSSが404になり、
 SPAが何も描画しない（＝クローラーからは空ページに見える）状態になる。
 
-> **正規ホストは Vercel（healthlegal.vercel.app）に一本化済み**
-> `index.html` の `<link rel="canonical">`・`sitemap.xml`・`robots.txt` はVercel側を正として記載し、
-> GSC（Search Console）の登録もVercel側で実施済み（2026-09-05）。
-> GitHub Pages 側は同一内容の重複配信になるため、`deploy.yml` のビルド後に
+> **正規ホストは healthlegal.beyondht.jp（Vercel）**（2026-11-08 移行・bht-ops#148）
+> canonical / og:url / 構造化データの URL・`public/sitemap.xml`・`public/robots.txt`・
+> `scripts/generate-articles.mjs` の `SITE_ORIGIN` はすべて同ホストを指す。
+> 旧ホスト healthlegal.vercel.app の GSC 登録（2026-09-05）は残し、新ホストを別プロパティで登録して
+> サイトマップを送る。GitHub Pages 側は同一内容の重複配信になるため、`deploy.yml` のビルド後に
 > `scripts/add-noindex.mjs` で全HTMLへ `<meta name="robots" content="noindex">` を注入し、
 > インデックス対象から除外している（Vercel側のビルドでは実行されない）。
-> 独自ドメイン（例: legal.beyondhealthtech.com）へ移行する場合は、以下3ファイルの
-> URLをまとめて置き換えること。
-> - `index.html`（canonical / og:url）
-> - `public/sitemap.xml`（`<loc>`）
-> - `public/robots.txt`（`Sitemap:`）
+> ホストを再び変えるときは、`grep -rn "healthlegal.beyondht.jp"` で出る箇所をまとめて置き換えること。
 
 ## SEO
 
