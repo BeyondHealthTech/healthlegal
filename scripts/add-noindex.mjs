@@ -1,5 +1,5 @@
 // GitHub Pages ミラー用: dist/ 内の全HTMLに <meta name="robots" content="noindex"> を注入する。
-// 正規ホストは healthlegal.vercel.app（canonical/sitemap/robots とも Vercel を指す）。
+// 正規ホストは healthlegal.beyondht.jp（Vercel・2026-11-08 移行。canonical/sitemap/robots とも同ホストを指す）。
 // beyondhealthtech.github.io/healthlegal/ は同一内容の重複配信になっており、
 // サブパス配信のため robots.txt では制御できない。GitHub Pages のデプロイ時のみ
 // 本スクリプトを通すことで、検索エンジンのインデックス対象を Vercel 側へ一本化する。
