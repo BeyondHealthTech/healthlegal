@@ -42,7 +42,7 @@ const services = [
 
 export default function Services() {
   return (
-    <section id="services" className="py-24 px-6 bg-slate-50">
+    <section id="services" className="py-24 px-6 bg-white">
       <div className="max-w-5xl mx-auto">
         <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 text-center mb-4">
           サービス内容
@@ -84,7 +84,7 @@ export default function Services() {
           <div>
             <p className="text-accent-400 text-sm font-semibold mb-1">3省2ガイドライン対応パッケージ</p>
             <p className="text-white font-bold text-lg">
-              数ヶ月規模の対応を、数週間規模に。標準回答416項目と文書ひな形70ファイルで差分レビュー化
+              数ヶ月規模の対応を、数週間規模に。416項目のうち個別検討は約50件
             </p>
           </div>
           <span className="shrink-0 inline-flex items-center gap-1 text-white text-sm font-semibold group-hover:gap-2 transition-all">

@@ -1,44 +1,51 @@
-const problems = [
+// 状況別の入口（一般論の課題提示に代えて、来訪のきっかけ別に行き先を示す）。
+// 価格・納期は /3m2g/ の料金表（S1）と一致させる。
+const entries = [
   {
-    title: "複雑なガイドライン体系",
-    description:
-      "厚労省・総務省・経産省の3省2ガイドラインは、医療情報を扱うすべてのシステムに適用されます。その要件は多岐にわたり、正確な理解と対応が求められます。",
+    tag: "提出を求められている",
+    title: "医療機関から SDS・チェックシートの提出を求められた",
+    body: "貴社構成での回答草案とギャップ一覧を、最短5営業日で提供します。40万円から。",
+    href: "./3m2g/#pricing",
+    link: "SDS 回答パックを見る",
   },
   {
-    title: "頻繁な改定への追従",
-    description:
-      "ガイドラインは定期的に改定され、最新版への対応が常に必要です。改定内容の把握と既存システムへの反映は、開発チームにとって大きな負担となります。",
+    tag: "これから開発する",
+    title: "医療機関向けの製品を新たに開発する",
+    body: "認証・権限・監査ログを実装した土台と設計書一式を提供。開発範囲を業務固有の機能に絞れます。",
+    href: "./3m2g/#feature-map",
+    link: "土台の機能構成を見る",
   },
   {
-    title: "技術要件の高度化",
-    description:
-      "暗号化・アクセス制御・監査ログなど、求められるセキュリティ要件は年々高度化しています。ガイドラインが求める技術水準を満たすには、専門的な知見が不可欠です。",
+    tag: "研究成果を事業化する",
+    title: "大学・研究機関の成果を医療サービスにする",
+    body: "医療機器該当性の整理から、ガイドライン対応を前提にした開発までを支援します。",
+    href: "./articles/academic-seed-regulatory/",
+    link: "事業化の規制対応を読む",
   },
 ];
 
 export default function Problem() {
   return (
-    <section className="py-24 px-6 bg-white">
-      <div className="max-w-4xl mx-auto">
-        <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 text-center mb-4">
-          医療情報を扱うサービスに立ちはだかる壁
+    <section className="py-20 px-6 bg-white">
+      <div className="max-w-6xl mx-auto">
+        <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 text-center mb-12">
+          状況に応じた入口
         </h2>
-        <p className="text-slate-600 text-center mb-14 max-w-2xl mx-auto">
-          医療情報ガイドラインへの対応は、多くの企業にとって大きな課題です
-        </p>
-        <div className="space-y-6">
-          {problems.map((problem) => (
-            <div
-              key={problem.title}
-              className="border-l-4 border-primary-500 bg-slate-50 rounded-r-lg p-6"
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {entries.map((e) => (
+            <a
+              key={e.title}
+              href={e.href}
+              className="group flex flex-col bg-slate-50 rounded-xl p-7 border border-slate-200 hover:border-primary-400 hover:shadow-md transition-all"
             >
-              <h3 className="text-lg font-bold text-slate-900 mb-2">
-                {problem.title}
-              </h3>
-              <p className="text-slate-600 leading-relaxed">
-                {problem.description}
-              </p>
-            </div>
+              <p className="self-start text-xs font-bold text-primary-700 bg-primary-100 px-2.5 py-1 rounded-full mb-4">{e.tag}</p>
+              <h3 className="text-lg font-bold text-slate-900 leading-snug mb-3">{e.title}</h3>
+              <p className="text-sm text-slate-600 leading-relaxed mb-5">{e.body}</p>
+              <span className="mt-auto inline-flex items-center gap-1 text-sm font-semibold text-primary-700 group-hover:gap-2 transition-all">
+                {e.link}
+                <span aria-hidden="true">→</span>
+              </span>
+            </a>
           ))}
         </div>
       </div>
