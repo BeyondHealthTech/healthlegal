@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const FORM_URL = "https://docs.google.com/forms/d/1qQRrWDUPCOeXklfna912YEs1b2DqPHap3zZ0lpoyjZI/viewform";
 
@@ -48,6 +48,14 @@ const traceSteps = [
   { layer: "医療機関の確認事項", ref: "JAHIS SDS Ver.5.0 設問17.1.1.4〜17.1.1.6", body: "開示書の回答と備考" },
   { layer: "規程の条文", ref: "利用者認証方式規程", body: "再利用の禁止を明文化" },
   { layer: "AWS の設定・実装", ref: "認証基盤", body: "直近5世代との照合で再利用を拒否" },
+];
+
+// 画面例（public/img/kit/。bht-saas-kit frontend のデモ表示を 1280×800 で撮影。キットの画面を変えたら撮り直す）
+const kitScreens = [
+  { file: "login", title: "サインイン", body: "連続失敗時のロック、登録の有無を判別させない応答を実装済み。" },
+  { file: "users", title: "ユーザー管理", body: "招待・役割の付与・無効化と、施設ごとの二要素認証の方針設定。" },
+  { file: "audit", title: "監査ログ", body: "月・イベント種別・行為者で絞り込み。閲覧操作も記録します。" },
+  { file: "security", title: "セキュリティ開示", body: "JAHIS SDS Ver.5.0（160問）の回答を利用者に表示。印刷・PDF 保存に対応。" },
 ];
 
 // 実績（事実の出所: bht-ops docs/3m2g-lp-claims-evidence.md。適用先の名称は出さない）
@@ -254,6 +262,8 @@ const steps = [
 
 export default function ThreeM2GPage() {
   useViewEvents(VIEW_EVENTS);
+  // スマホ幅の縦長の構成図は冒頭だけ見せ、押すと全体を開く（ページが長くなりすぎないように）
+  const [mapOpen, setMapOpen] = useState(false);
   return (
     <>
       <header className="sticky top-0 z-50 bg-white/90 backdrop-blur border-b border-slate-200">
@@ -375,7 +385,7 @@ export default function ThreeM2GPage() {
               SDS（医療情報セキュリティ開示書）で確認される機能を、画面と AWS 上の仕組みとして実装済みです。
               貴社の開発範囲は、図の左下に示す業務固有の機能に限られます。各機能に JAHIS SDS Ver.5.0 の設問番号を併記しています。
             </p>
-            <a href="../img/feature-map.svg" target="_blank" rel="noopener noreferrer" className="block">
+            <a href="../img/feature-map.svg" target="_blank" rel="noopener noreferrer" className="hidden md:block">
               <img
                 src="../img/feature-map.svg"
                 alt="機能構成図: 利用者、Webアプリの画面、貴社の業務機能が載る位置、AWS上の認証・アカウント、権限・テナント分離、記録・監査、データ保護・可用性、開発・運用の各機能と、文書パック"
@@ -384,7 +394,52 @@ export default function ThreeM2GPage() {
                 className="w-full h-auto rounded-xl border border-slate-200 bg-white shadow-sm"
               />
             </a>
-            <p className="mt-3 text-xs text-slate-500 text-center">クリックで拡大。ガイドラインへの準拠を保証するものではありません。</p>
+            {/* スマホ幅では縦長版（同じ生成器の docs/feature-map-mobile.svg の写し） */}
+            <div className={`md:hidden relative rounded-xl border border-slate-200 bg-white shadow-sm overflow-hidden ${mapOpen ? "" : "max-h-[34rem]"}`}>
+              <img
+                src="../img/feature-map-mobile.svg"
+                alt="機能構成図（縦長版）: Webアプリの画面、貴社の業務機能が載る位置、AWS上の各機能、文書パック"
+                width={720}
+                height={3894}
+                className="w-full h-auto"
+              />
+              {!mapOpen && (
+                <div className="absolute inset-x-0 bottom-0 pt-16 pb-4 bg-gradient-to-t from-white via-white/95 to-transparent text-center">
+                  <button
+                    type="button"
+                    onClick={() => setMapOpen(true)}
+                    className="px-5 py-2.5 bg-primary-600 text-white text-sm font-semibold rounded-lg hover:bg-primary-700 transition-colors"
+                  >
+                    図の全体を表示
+                  </button>
+                </div>
+              )}
+            </div>
+            <p className="mt-3 text-xs text-slate-500 text-center"><span className="hidden md:inline">クリックで拡大。</span>ガイドラインへの準拠を保証するものではありません。</p>
+
+            {/* 画面例（bht-saas-kit のデモ表示を撮影。デモ用データで、製品名・色は差し替え可能） */}
+            <h3 className="mt-16 text-xl font-bold text-slate-900 text-center mb-2">画面例</h3>
+            <p className="text-sm text-slate-600 text-center mb-8">土台に含まれる管理画面です（デモ用データ）。製品名・配色・ロゴは貴社のブランドに差し替えます。</p>
+            <div className="flex md:grid md:grid-cols-2 gap-4 md:gap-6 overflow-x-auto md:overflow-visible snap-x snap-mandatory -mx-4 px-4 md:mx-0 md:px-0 pb-2 md:pb-0">
+              {kitScreens.map((k) => (
+                <figure key={k.file} className="m-0 shrink-0 w-[85%] md:w-auto snap-center">
+                  <a href={`../img/kit/${k.file}.webp`} target="_blank" rel="noopener noreferrer" className="block">
+                    <img
+                      src={`../img/kit/${k.file}.webp`}
+                      alt={`画面例: ${k.title}`}
+                      width={1280}
+                      height={800}
+                      loading="lazy"
+                      className="w-full h-auto rounded-xl border border-slate-200 bg-white shadow-sm"
+                    />
+                  </a>
+                  <figcaption className="mt-3">
+                    <p className="font-bold text-slate-900">{k.title}</p>
+                    <p className="text-sm text-slate-600 leading-relaxed">{k.body}</p>
+                  </figcaption>
+                </figure>
+              ))}
+            </div>
           </div>
         </section>
 
