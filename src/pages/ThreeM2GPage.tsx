@@ -2,10 +2,43 @@ import { useEffect } from "react";
 
 const FORM_URL = "https://docs.google.com/forms/d/1qQRrWDUPCOeXklfna912YEs1b2DqPHap3zZ0lpoyjZI/viewform";
 
-const stats = [
-  { number: "416 → 約50", label: "検討項目数", desc: "対象外167件は設計選択で消え、196件は標準回答で即答。個別検討は差分だけ" },
-  { number: "40%", label: "設計の工夫で対象外にできる項目", desc: "当社のアーキテクチャ設計ノウハウにより、416項目のうち167件は対応自体を不要にできる" },
-  { number: "70", label: "文書ひな形", desc: "規程・計画・サービス文書・手順35 ＋ AWS詳細設計書35。ゼロから書かない" },
+// 416項目の行き先（正本: bht-ops assets/3m2g/standard-answers.json の標準ステータス集計。対象外167・対応済み196・製品化段階52＋要判断1）。
+// 幅は件数の比（167/416・196/416・53/416）。数字を変えるときは正本を数え直す。
+const funnel = [
+  {
+    count: "167",
+    unit: "件",
+    share: 40,
+    title: "対応そのものが不要",
+    body: "クラウド構成の選び方で対象外になります。例: 自社でサーバを持たない構成にすると、物理的な対策など80件が対象外。理由の説明は当社が文書にします。",
+    bar: "bg-slate-300 text-slate-700",
+    dot: "bg-slate-300",
+  },
+  {
+    count: "196",
+    unit: "件",
+    share: 47,
+    title: "用意済みの回答を当てはめる",
+    body: "対応方針と AWS の設定例がすでにあります。貴社の構成に当てはまるかを確認し、そのまま適用します。",
+    bar: "bg-primary-200 text-primary-900",
+    dot: "bg-primary-200",
+  },
+  {
+    count: "約50",
+    unit: "件",
+    share: 13,
+    title: "貴社と一緒に検討する",
+    body: "製品の機能や運用で答えが変わる項目です。ここだけを当社と個別に詰めます。",
+    bar: "bg-accent-500 text-white",
+    dot: "bg-accent-500",
+  },
+];
+
+// 買う側が最初に知りたい3点（何が・いつ・いくら）。数字は同じページの料金表と一致させる。
+const quickFacts = [
+  { label: "期間", value: "最短5営業日", desc: "SDS 回答パックの場合。設計書まで含む一式でも4〜6週間" },
+  { label: "費用", value: "40万円から", desc: "使う範囲で4段階。料金表を公開しています" },
+  { label: "受け取るもの", value: "文書と設計書 70点", desc: "規程・手順35文書と AWS 詳細設計書35。貴社向けに仕上げて納品します" },
 ];
 
 const sources = [
@@ -285,22 +318,52 @@ export default function ThreeM2GPage() {
           </div>
         </section>
 
-        {/* 数字 */}
+        {/* 416項目の行き先（帯グラフ）＋ 期間・費用・受け取るもの */}
         <section className="py-16 px-6 bg-white">
           <div className="max-w-5xl mx-auto">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {stats.map((s) => (
-                <div key={s.label} className="bg-slate-50 rounded-xl p-8 text-center border border-slate-200">
-                  <p className="text-3xl font-bold text-primary-600 mb-2">{s.number}</p>
-                  <p className="text-sm font-bold text-slate-900 mb-3">{s.label}</p>
-                  <p className="text-sm text-slate-600 leading-relaxed">{s.desc}</p>
+            <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 text-center mb-4">
+              416項目のうち、一から検討するのは約50件
+            </h2>
+            <p className="text-slate-600 text-center leading-relaxed max-w-3xl mx-auto mb-10">
+              3省2ガイドラインが事業者に求める対策は416項目あります。
+              当社は全項目に答えを用意しており、貴社と個別に詰めるのは1割強だけです。
+            </p>
+            <div className="hidden sm:flex w-full h-16 rounded-xl overflow-hidden border border-slate-200" role="img" aria-label="416項目の内訳: 対応そのものが不要167件、用意済みの回答を当てはめる196件、貴社と一緒に検討する約50件">
+              {funnel.map((f) => (
+                <div key={f.title} className={`flex items-center justify-center font-bold tabular-nums ${f.bar}`} style={{ width: `${f.share}%` }}>
+                  <span className="text-2xl">{f.count}</span>
+                  <span className="text-sm ml-0.5">{f.unit}</span>
                 </div>
               ))}
             </div>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-6">
+              {funnel.map((f) => (
+                <div key={f.title} className="sm:px-1">
+                  <p className="flex items-baseline gap-2 mb-1">
+                    <span aria-hidden="true" className={`inline-block w-3 h-3 rounded-sm shrink-0 ${f.dot}`} />
+                    <span className="text-2xl font-bold text-slate-900 tabular-nums">{f.count}<span className="text-sm font-semibold ml-0.5">{f.unit}</span></span>
+                    <span className="text-sm text-slate-500">（{f.share}%）</span>
+                  </p>
+                  <p className="font-bold text-slate-900 mb-1">{f.title}</p>
+                  <p className="text-sm text-slate-600 leading-relaxed">{f.body}</p>
+                </div>
+              ))}
+            </div>
+            <dl className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-12">
+              {quickFacts.map((q) => (
+                <div key={q.label} className="bg-slate-50 rounded-xl px-6 py-5 border border-slate-200">
+                  <dt className="text-xs font-bold tracking-wider text-primary-700 mb-1">{q.label}</dt>
+                  <dd>
+                    <p className="text-xl font-bold text-slate-900 mb-1">{q.value}</p>
+                    <p className="text-sm text-slate-600 leading-relaxed">{q.desc}</p>
+                  </dd>
+                </div>
+              ))}
+            </dl>
             {/* 紙の対応で終わらない、が典型的コンサルとの差別化。範囲の詳細は商談で扱う */}
             <p className="mt-8 text-center text-slate-700 leading-relaxed">
-              <strong className="font-semibold text-slate-900">AWSで構築するプロダクトなら、法令対応文書から詳細設計書・AWSの設定値まで、実装につながる形でワンセット。</strong>
-              <span className="text-slate-500">紙の対応で終わらせません。</span>
+              <strong className="font-semibold text-slate-900">文書を揃えて終わりにしません。</strong>
+              AWS で構築する製品なら、規程から設計書、AWS の設定値、動く実装までを一続きでお渡しします。
             </p>
           </div>
         </section>
