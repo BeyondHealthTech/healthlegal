@@ -5,6 +5,12 @@ export default function Header() {
         <a href="#" className="text-xl font-bold text-primary-700">
           HealthLegal
         </a>
+        <nav aria-label="サイト内" className="hidden md:flex items-center gap-7 text-sm font-semibold text-slate-600">
+          <a href="./3m2g/" className="hover:text-primary-700">対応パッケージ</a>
+          <a href="./3m2g/#pricing" className="hover:text-primary-700">料金</a>
+          <a href="#check" className="hover:text-primary-700">無料診断</a>
+          <a href="./articles/" className="hover:text-primary-700">解説記事</a>
+        </nav>
         <a
           href="#contact"
           className="px-5 py-2 bg-accent-500 text-white text-sm font-semibold rounded-lg hover:bg-accent-600 transition-colors"
