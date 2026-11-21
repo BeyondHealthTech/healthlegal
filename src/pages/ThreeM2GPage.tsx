@@ -37,37 +37,24 @@ const funnel = [
 // 検討者が最初に確認する3点（期間・費用・納品物）。数字は同じページの料金表と一致させる。
 const quickFacts = [
   { label: "期間", value: "最短5営業日", desc: "SDS 回答パックの場合。設計書を含む一式は4〜6週間" },
-  { label: "費用", value: "40万円から", desc: "提供範囲に応じた4プラン。料金表を公開" },
+  { label: "費用", value: "40万円から", desc: "提供範囲に応じた4プラン。料金表を公開", href: "#pricing", link: "料金表を見る" },
   { label: "納品物", value: "文書・設計書 70点", desc: "規程・手順35文書、AWS 詳細設計書35ファイル。貴社向けに調整して納品" },
 ];
 
-const sources = [
-  {
-    title: "対応しない、を先に設計する",
-    body: "全416項目のうち167件（40%）は、アーキテクチャ設計の工夫により対象外にできます。「頑張って対応する」前に「対応が要らない形を選ぶ」——どの設計選択がどの項目を不要にするかの対応表を当社は持っており、構成のご提案とセットで適用します。",
-  },
-  {
-    title: "検討済みの標準回答416項目",
-    body: "ガイドライン416項目のすべてに、当社標準のクラウド構成を前提とした対応方針を用意。法解釈だけでなく、CloudTrail・Cognito・WAF・GuardDutyなどAWSの設定レベルまで具体化されており、実装指示書としてそのまま使えます。ゼロからの検討が差分レビューに変わります。",
-  },
-  {
-    title: "文書ひな形70ファイル",
-    body: "運用管理規程・アクセス管理規定・DR計画・SLA・リリースフローなどの規程・計画・サービス文書・手順35ファイルと、IAM・ログ監査・監視・ネットワーク・ストレージの詳細設計書35ファイル（AWSの設定値レベルまで記述）。規程は「ガイドライン要件ID → 要求 → 対応条文」の構造で、どの条文がどの要件を満たすか追えます。",
-  },
-  {
-    title: "監査に耐えるトレーサビリティ",
-    body: "ガイドライン要件 → 対応方針 → 規程条文 → AWS設定までが一本の線で繋がります。医療機関からの照会や監査への回答が速く、担当者が変わっても判断根拠が失われません。",
-  },
+// 1項目を要件から設定値まで追う例。番号の出所は bht-saas-kit docs/FEATURES.md（パスワードの使い回し禁止: 3省2GL 3.1-④・SDS 17.1.1.4〜17.1.1.6・履歴5世代）。
+const traceSteps = [
+  { layer: "対策項目", ref: "経産省・総務省ガイドライン 別紙2 3.1-④", body: "パスワードの世代管理" },
+  { layer: "厚労省ガイドライン", ref: "第7.0版 システム運用編", body: "対応する条文を特定" },
+  { layer: "医療機関の確認事項", ref: "JAHIS SDS Ver.5.0 設問17.1.1.4〜17.1.1.6", body: "開示書の回答と備考" },
+  { layer: "規程の条文", ref: "利用者認証方式規程", body: "再利用の禁止を明文化" },
+  { layer: "AWS の設定・実装", ref: "認証基盤", body: "直近5世代との照合で再利用を拒否" },
 ];
 
-const deliverables = [
-  "対策項目マスタ（416項目・厚労省ガイドラインへの条文参照371件の構造化データ。経産省・総務省ガイドライン第2.0版 別紙2 と項目単位で一致を機械確認済み）",
-  "標準回答集（当社標準のクラウド構成前提・対象外判断の根拠つき）",
-  "対応検討シート（貴社プロダクト向けにカスタマイズ）",
-  "運用文書一式（規程・計画・サービス文書・手順 35ファイル）",
-  "セキュリティ詳細設計書一式（IAM・ログ監査・監視・NW・ストレージ 35ファイル、AWS設定値レベル）",
-  "サービス仕様適合開示書・サービス仕様書のひな形",
-  "利用者認証方式規程のひな形（二要素認証の対応ロードマップ・代替手段・医療機関等との合意事項）",
+// 実績（事実の出所: bht-ops docs/3m2g-lp-claims-evidence.md。適用先の名称は出さない）
+const proofs = [
+  { value: "医用画像 AI の SaaS", label: "適用先", body: "大学病院との共同研究から事業化した製品。416項目を実装と文書の実態で判定し、規程類を整備しました。" },
+  { value: "10営業日", label: "416項目の判定に要した期間", body: "担当1名・レビュー1名の体制で、全項目の該当性判断と対応方針の記入を完了した実績があります。" },
+  { value: "160問", label: "JAHIS SDS Ver.5.0 の開示書を整備", body: "標準回答をそのまま提出せず、適用先の実態で再判定する手順を確立しています。" },
 ];
 
 // ボリュームの階段（正本: bht-ops docs/3m2g-volume-framing.md 1章。数字を変えるときは正本から写す）
@@ -116,7 +103,7 @@ const assetOverview = [
     number: "416",
     unit: "項目",
     label: "標準回答データベース",
-    summary: "3省2ガイドラインの対策項目416件すべてに、判定と対応方針を用意済み。「対応中・未対応」は0件です。",
+    summary: "3省2ガイドラインの対策項目416件すべてに、判定と対応方針を整備済み。「対応中・未対応」は0件です。",
     details: [
       "対応済み 196件 — 標準的なAWSの設定・実装でカバーできる項目",
       "設計選択により対象外 167件 — 12の設計パターンに帰着（物理基盤を自社で持たない80件／院内ネットワークに接続しない11件ほか）。「この構成を採ればこれらは検討不要」を索引で示せます",
@@ -142,7 +129,7 @@ const assetOverview = [
     number: "70",
     unit: "点",
     label: "規程・手順・設計書のひな形",
-    summary: "規程・計画・サービス文書・手順35文書と、詳細設計書35ファイル。ゼロから書き起こしません。",
+    summary: "規程・計画・サービス文書・手順35文書と、AWS の設定値まで記述した詳細設計書35ファイル。",
     details: [
       "規程8: 運用管理／アクセス管理／利用者認証方式（二要素認証・代替手段）／ISMS実施・運用／情報資産管理／要配慮個人情報の取り扱い／スマートフォン使用ルール／就業規則",
       "計画2: DR計画／リスクアセスメント　サービス文書4: SLA／サービス仕様書／サービス仕様適合開示書／非機能要件定義書",
@@ -154,8 +141,8 @@ const assetOverview = [
   {
     number: "実装",
     unit: "一式",
-    label: "文書だけで終わらせない実装の型",
-    summary: "管理基盤の画面9枚・API 20経路・AWSのIaC（CDK 81リソース）まで、文書と紐づけた実装の型があります。",
+    label: "文書と紐づく実装",
+    summary: "管理基盤の画面9枚・API 20経路・AWS の IaC（CDK 81リソース）を、文書と紐づけて提供します。",
     details: [
       "管理基盤フロントエンド 9画面: ログイン／初期パスワード変更／MFA登録／MFAコード入力／パスワード再発行（2段階）／パスワード変更／ユーザー管理／監査ログ閲覧／セキュリティ開示（SDS Ver.5.0 の回答を利用者に表示）",
       "バックエンド 20経路: 認証10＋ユーザー管理4＋テナント設定5（二要素認証の方針・クライアント証明書）＋監査ログ1。パスワード履歴照合・類推しやすいパスワードの拒否（画面と API の両方）・アカウント列挙防止・全パスワード操作の監査ログ記録・実行ログに個人情報を出さないテストを実装",
@@ -173,19 +160,19 @@ const assetOverview = [
 const mdsSdsPoints = [
   {
     title: "99項目すべてを項目単位で分類済み",
-    body: "MDS/SDS 99項目すべてを項目単位で分類済みです。94件（95%）は「はい」「対象外」または「文書の整備により はい」で回答できる見込みです。",
+    body: "94件（95%）は「はい」「対象外」または「文書の整備により はい」で回答できる見込みです。",
   },
   {
-    title: "個別検討になるのは5件だけ",
-    body: "個別検討になるのは5件だけです。どの項目が、なぜ個別検討になるのかを項目単位で開示します。",
+    title: "個別検討は5件",
+    body: "該当する項目と、個別検討となる理由を項目単位で開示します。",
   },
   {
-    title: "対応表は検証してから出す",
-    body: "「対象外」の除外理由が要求に当たっていない項目（誤除外）を4件、自分たちで検出して是正しました。対応表は作って終わりにせず、要求の原文と突き合わせて検証しています。",
+    title: "対応表は検証のうえ提供",
+    body: "「対象外」の除外理由が要求に合致しない項目（誤除外）を4件、自社で検出し是正しました。対応表は要求の原文と照合して検証しています。",
   },
   {
     title: "二要素認証は規程ひな形を同梱",
-    body: "二要素認証（令和9年4月1日期限）は、対応ロードマップの規程ひな形をアセットに同梱しています。方式の比較・認証手段が使えない場合の代替手順・医療機関等との合意事項までを1本の規程で扱います。",
+    body: "二要素認証（令和9年4月1日期限）の対応ロードマップを定める規程ひな形を同梱。方式の比較、認証手段を利用できない場合の代替手順、医療機関等との合意事項を1本の規程で扱います。",
   },
 ];
 
@@ -198,7 +185,7 @@ const pricingTiers = [
     price: "40万円",
     lead: "5営業日（特急3営業日）",
     scope: "標準回答DB 416項目 ＋ MDS/SDS対応表",
-    summary: "医療機関から求められたSDS・MDSに、貴社構成での回答草案とギャップ一覧をお返しします。まず「出せる状態」にする入口の商品です。",
+    summary: "医療機関から求められた SDS・MDS に対し、貴社構成での回答草案とギャップ一覧を提供します。提出可能な状態を最短で整えるプランです。",
     includes: [
       "ヒアリング1回（60分）",
       "GL第7.0版 別紙 99項目 または JAHIS SDS Ver.5.0（160問）の回答草案",
@@ -213,7 +200,7 @@ const pricingTiers = [
     price: "80万円",
     lead: "2〜3週間",
     scope: "S1 ＋ 規程・計画・サービス文書・手順 35文書",
-    summary: "回答草案に加え、根拠になる規程・手順一式を貴社向けに仕上げます。SDSの「はい」に条文の裏付けが付きます。",
+    summary: "回答草案に加え、根拠となる規程・手順一式を貴社向けに整備します。SDS の「はい」に条文の裏付けが付きます。",
     includes: [
       "S1のすべて",
       "運用管理規程・アクセス管理規程・利用者認証方式規程・DR計画・SLA など35文書の貴社向け差し込み",
@@ -227,7 +214,7 @@ const pricingTiers = [
     price: "180万円",
     lead: "4〜6週間",
     scope: "S2 ＋ AWS詳細設計書 35ファイル ＋ 構成提案",
-    summary: "「対応しない、を先に設計する」まで含めた全部入り。設計選択で対象外にできる項目を構成提案で確定し、設計書と文書を一本の線で繋ぎます。",
+    summary: "構成提案を含む一式。設計選択により対象外とする項目を確定し、設計書と文書を相互に紐づけます。",
     includes: [
       "S2のすべて",
       "当社標準クラウド構成の設計提案と、個別検討50件前後の差分レビュー",
@@ -241,7 +228,7 @@ const pricingTiers = [
     price: "100万円",
     lead: "契約後すぐ",
     scope: "管理基盤（画面9・API 20・AWS IaC）＋ 文書パック自動生成",
-    summary: "文書だけで終わらせないための実装の型。認証・ユーザー管理・監査ログの管理基盤と、案件別の文書パック生成をソースごとお渡しします。",
+    summary: "文書と紐づく実装一式。認証・ユーザー管理・監査ログの管理基盤と、案件別の文書パック生成をソースで提供します。",
     includes: [
       "ソース一式（改変可・再頒布不可・1運営者1ライセンス）の買い切り",
       "初回デプロイ支援（2時間）",
@@ -252,7 +239,7 @@ const pricingTiers = [
 ];
 
 const pricingNotes = [
-  "上記はアセットとその貴社向け仕上げの価格です。設計・実装まで当社に任せたい場合は、アセット費に貴社固有の開発分を加えた2行でお見積りします。",
+  "上記はアセットと貴社向け調整の価格です。設計・実装を当社に依頼する場合は、アセット費と貴社固有の開発費の2行で見積ります。",
   "年間更新（S2以上が対象）: 20万円／年。ガイドラインは厚労省と経産省・総務省が別周期で改定され、直近の改定では416項目のうち300項目超で参照条文が動きました。改定時の再判定と文書の差し替え版、依存更新を含みます。",
   "厳密対応版（二要素認証の実装、記録確定などの製品機能、閉域網・クライアント証明書・PKI署名への拡張）は差分表をもとに個別にお見積りします。",
   "価格はすべて税別・2026年10月時点の標準価格です。当社標準のクラウド構成（AWS）の採用が前提で、既存構成が異なる場合はヒアリング後に適用範囲と費用をご提示します。",
@@ -272,6 +259,12 @@ export default function ThreeM2GPage() {
       <header className="sticky top-0 z-50 bg-white/90 backdrop-blur border-b border-slate-200">
         <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
           <a href="../" className="text-xl font-bold text-primary-700">HealthLegal</a>
+          <nav aria-label="ページ内" className="hidden md:flex items-center gap-7 text-sm font-semibold text-slate-600">
+            <a href="#feature-map" className="hover:text-primary-700">機能</a>
+            <a href="#proof" className="hover:text-primary-700">実績</a>
+            <a href="#assets" className="hover:text-primary-700">提供内容</a>
+            <a href="#pricing" className="hover:text-primary-700">料金</a>
+          </nav>
           <a
             href="#contact"
             className="px-5 py-2 bg-primary-600 text-white text-sm font-semibold rounded-lg hover:bg-primary-700 transition-colors"
@@ -355,6 +348,9 @@ export default function ThreeM2GPage() {
                   <dd>
                     <p className="text-xl font-bold text-slate-900 mb-1">{q.value}</p>
                     <p className="text-sm text-slate-600 leading-relaxed">{q.desc}</p>
+                    {"href" in q && (
+                      <a href={q.href} className="inline-block mt-2 text-sm font-semibold text-primary-700 underline underline-offset-4 hover:text-primary-800">{q.link}</a>
+                    )}
                   </dd>
                 </div>
               ))}
@@ -369,7 +365,7 @@ export default function ThreeM2GPage() {
 
         {/* 機能構成図（bht-saas-kit compliance/feature_map.py の生成物 docs/feature-map.svg の写し。
             キット側で再生成したら public/img/feature-map.svg も差し替える） */}
-        <section id="feature-map" className="py-20 px-4 sm:px-6 bg-slate-50">
+        <section id="feature-map" className="scroll-mt-20 py-20 px-4 sm:px-6 bg-slate-50">
           <div className="max-w-6xl mx-auto">
             <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 text-center mb-6">
               医療機関の審査で問われる機能は、土台に実装済み
@@ -392,7 +388,7 @@ export default function ThreeM2GPage() {
           </div>
         </section>
 
-        {/* 課題 */}
+        {/* 課題（選定基準と3枚のカードまで。内訳の階段は折りたたみ） */}
         <section className="py-24 px-6 bg-white">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 text-center mb-10">
@@ -400,30 +396,28 @@ export default function ThreeM2GPage() {
             </h2>
             <div className="space-y-4 text-slate-700 leading-relaxed">
               <p>
-                医療情報を取り扱うシステム・サービスの提供事業者には、厚労省・経産省・総務省の
-                3文書（あわせて数百ページ）への対応が求められ、対策項目は416項目にのぼります。
+                医療情報を扱うシステム・サービスの提供事業者には、厚労省・経産省・総務省の3文書（計数百ページ）への対応が求められます。
+                対策項目は416項目です。
               </p>
               <p>
-                自力で対応する場合、ガイドラインの読解と項目整理だけで数週間、全項目の該当性判断と
-                対応方針の検討に数ヶ月、さらに規程・手順・設計書の整備が続きます。医療情報セキュリティに
-                知見のある人材の確保も難しく、<strong className="font-semibold text-slate-900">体制を組成して
-                対応した場合の総コストは数百万〜1,000万円規模・期間4〜6ヶ月</strong>になるのが実情です
-                <span className="text-sm text-slate-500">（自社試算。体制・単価の前提はご相談時にご提示します）</span>。
+                自力で対応する場合、読解と項目整理に数週間、全項目の該当性判断と対応方針の検討に数ヶ月を要し、
+                その後に規程・手順・設計書の整備が続きます。
+                <strong className="font-semibold text-slate-900">体制を組成した場合の総コストは数百万〜1,000万円、期間は4〜6ヶ月です</strong>
+                <span className="text-sm text-slate-500">（自社試算。体制・単価の前提はご相談時に提示します）</span>。
               </p>
               <p>
-                さらに、対象外にできる項目を知らずに全項目対応してしまう過剰投資や、
-                判断根拠が担当者の頭にしか残らない属人化が、後の監査・引き継ぎで効いてきます。
+                対象外にできる項目まで対応する過剰投資と、判断根拠の属人化も、監査・引き継ぎの段階で問題になります。
               </p>
             </div>
 
-            {/* ボリュームの階段（数値の正本: bht-ops docs/3m2g-volume-framing.md 1章。LP では直接編集せず正本を写す） */}
+            {/* 数値の正本: bht-ops docs/3m2g-volume-framing.md 1章。LP では直接編集せず正本を写す */}
             <div id="volume-ladder" className="mt-12 bg-white rounded-2xl border border-slate-200 p-6 sm:p-8">
-              <h3 className="text-lg sm:text-xl font-bold text-slate-900 mb-2">「416項目」は入口にすぎません</h3>
+              <h3 className="text-lg sm:text-xl font-bold text-slate-900 mb-2">対応のゴールは、医療機関の選定基準を満たすこと</h3>
               <p className="text-slate-700 leading-relaxed mb-6">
-                対策項目の1つ1つに、厚労省ガイドラインの条文参照と、医療機関からの確認事項がぶら下がります。
-                医療機関の選定基準は「全項目が『はい』または『対象外』」。見られるのは、99項目のうちいくつがこの基準を満たすかです。
+                医療機関は、厚労省ガイドライン第7.0版の確認事項99項目で事業者を選定します。
+                基準は「全項目が『はい』または『対象外』」です。
               </p>
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 {volumeHeadline.map((h) => (
                   <div key={h.label} className="rounded-xl bg-primary-50 border border-primary-100 p-5 text-center">
                     <p className="text-3xl font-bold text-primary-700 tabular-nums">{h.number}</p>
@@ -432,83 +426,92 @@ export default function ThreeM2GPage() {
                   </div>
                 ))}
               </div>
-              <p className="text-sm font-semibold text-slate-500 mb-3">内訳: 実際に読んで判断する単位（当社アセットの機械集計・再現可能）</p>
-              <ol className="space-y-3">
-                {volumeLadder.map((row, i) => (
-                  <li key={row.label} className="flex items-start gap-4">
-                    <span className="shrink-0 w-24 sm:w-28 text-right text-2xl font-bold text-primary-700 tabular-nums">{row.number}</span>
-                    <div className="min-w-0 pt-1">
-                      <p className="font-semibold text-slate-900">{row.label}</p>
-                      <p className="text-sm text-slate-600 leading-relaxed">{row.desc}</p>
-                    </div>
-                    {i < volumeLadder.length - 1 && <span className="sr-only">、さらに</span>}
-                  </li>
-                ))}
-              </ol>
               <p className="mt-6 text-slate-700 leading-relaxed">
-                <strong className="font-semibold text-slate-900">読んで判断する単位は合計で1,000を超えます（416＋371＋99＋160＋別版参照202）。</strong>
-                たとえば「パスワードの世代管理」という1項目は、厚労省ガイドラインの条文 → 医療機関の確認事項 →
-                利用者認証方式規程の条文 → 認証基盤の設定値、と5段で初めて「対応した」と言えます。
-                416項目それぞれにこの深さがあるのが、対応が重い理由です。
+                SDS を提出できずに停止する医療機関との契約は、年間数百万円規模に及ぶことがあります。
+                同ガイドラインは令和9年度までの二要素認証の採用も求めており、未対応の事業者はシステム更新時の選定から外れます。
               </p>
-              <p className="mt-4 text-slate-700 leading-relaxed">
-                <strong className="font-semibold text-slate-900">対応のゴールは文書を揃えることではなく、医療機関の選定基準「全項目が『はい』または『対象外』」を満たして契約が進む状態にすることです。</strong>
-                SDS を出せないまま止まる医療機関との契約は、年間で数百万円規模になることが珍しくありません。
-                さらに厚労省ガイドライン第7.0版は令和9年度までの二要素認証の採用を求めており、未対応の事業者はシステム更新時の選定から外れる構造になっています。
-              </p>
+              <details className="mt-6 group">
+                <summary className="cursor-pointer text-sm font-semibold text-primary-700 hover:text-primary-800 list-none flex items-center gap-1.5">
+                  <svg className="w-4 h-4 transition-transform group-open:rotate-90" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5} aria-hidden="true">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                  </svg>
+                  判断を要する単位の内訳（合計1,000超）
+                </summary>
+                <div className="mt-4 border-t border-slate-200 pt-5">
+                  <ol className="space-y-3">
+                    {volumeLadder.map((row) => (
+                      <li key={row.label} className="flex items-start gap-4">
+                        <span className="shrink-0 w-20 sm:w-28 text-right text-2xl font-bold text-primary-700 tabular-nums">{row.number}</span>
+                        <div className="min-w-0 pt-1">
+                          <p className="font-semibold text-slate-900">{row.label}</p>
+                          <p className="text-sm text-slate-600 leading-relaxed">{row.desc}</p>
+                        </div>
+                      </li>
+                    ))}
+                  </ol>
+                  <p className="mt-5 text-sm text-slate-700 leading-relaxed">
+                    判断を要する単位は合計で1,000を超えます（416＋371＋99＋160＋別版参照202）。当社アセットの機械集計による件数です。
+                  </p>
+                </div>
+              </details>
               <div className="mt-6 rounded-xl bg-slate-50 border border-slate-200 p-5">
-                <p className="font-semibold text-slate-900 mb-2">どこまで要るかは段階で決められます</p>
+                <p className="font-semibold text-slate-900 mb-2">必要な範囲は段階に応じて選択できます</p>
                 <ul className="text-sm text-slate-700 leading-relaxed space-y-1">
-                  <li><span className="font-semibold text-primary-700">PoC・初期導入:</span> 医療機関に出す回答を先に整える（S1／S2）。99項目への回答と規程類で、選定の入口を通す最低線</li>
-                  <li><span className="font-semibold text-primary-700">本製品化:</span> 全層を揃える（S3／S4）。AWS設定値レベルの設計書まで含め、監査・引き継ぎに耐える形にする</li>
-                  <li><span className="font-semibold text-primary-700">改定への追従:</span> ガイドラインは厚労省と経産省・総務省が別周期で改定し、直近の改定では416項目のうち300項目超で参照条文が動きました。年間更新（20万円／年）で再判定と差し替え版をお渡しします</li>
+                  <li><span className="font-semibold text-primary-700">PoC・初期導入:</span> 医療機関への回答を先に整備（S1／S2）。99項目への回答と規程類で選定の入口を通過</li>
+                  <li><span className="font-semibold text-primary-700">本製品化:</span> 全層を整備（S3／S4）。AWS 設定値レベルの設計書を含め、監査・引き継ぎに耐える構成</li>
+                  <li><span className="font-semibold text-primary-700">改定への追従:</span> 直近の改定では416項目のうち300項目超で参照条文が変更。年間更新（20万円／年）で再判定と差し替え版を提供</li>
                 </ul>
               </div>
             </div>
           </div>
         </section>
 
-        {/* 仕組み */}
+        {/* 追跡可能性（1項目を要件から設定値まで追う例） */}
         <section className="py-24 px-6 bg-slate-50">
-          <div className="max-w-5xl mx-auto">
-            <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 text-center mb-14">
-              なぜ数週間規模にできるのか
+          <div className="max-w-6xl mx-auto">
+            <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 text-center mb-4">
+              要件から AWS の設定まで、1本で追える
             </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {sources.map((s, i) => (
-                <div key={s.title} className="bg-slate-50 rounded-xl p-8 border border-slate-200">
-                  <p className="text-primary-600 font-bold text-sm mb-2">{String(i + 1).padStart(2, "0")}</p>
-                  <h3 className="text-lg font-bold text-slate-900 mb-3">{s.title}</h3>
-                  <p className="text-sm text-slate-600 leading-relaxed">{s.body}</p>
-                </div>
+            <p className="text-slate-600 text-center leading-relaxed max-w-3xl mx-auto mb-10">
+              ガイドラインの要件、医療機関の確認事項、規程の条文、AWS の設定値を相互に紐づけています。
+              医療機関からの照会や監査に根拠を示して回答でき、担当者が交代しても判断根拠が残ります。
+            </p>
+            <p className="text-sm font-semibold text-slate-500 mb-3">例: パスワードの世代管理</p>
+            <ol className="grid grid-cols-1 lg:grid-cols-5 gap-3">
+              {traceSteps.map((t, i) => (
+                <li key={t.layer} className="relative bg-white rounded-xl border border-slate-200 p-5">
+                  <p className="text-xs font-bold tracking-wider text-primary-700 mb-1"><span className="mr-1.5">{i + 1}</span>{t.layer}</p>
+                  <p className="font-bold text-slate-900 leading-snug mb-2">{t.body}</p>
+                  <p className="text-xs text-slate-500 leading-relaxed">{t.ref}</p>
+                  {i < traceSteps.length - 1 && (
+                    <span aria-hidden="true" className="hidden lg:flex absolute top-1/2 -right-3 -translate-y-1/2 z-10 w-6 h-6 items-center justify-center rounded-full bg-primary-600 text-white text-xs">→</span>
+                  )}
+                </li>
               ))}
-            </div>
+            </ol>
+            <p className="mt-6 text-center text-sm text-slate-600">416項目のそれぞれに、この紐づけがあります。</p>
           </div>
         </section>
 
         {/* 実績 */}
-        <section className="py-24 px-6 bg-primary-950">
-          <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-2xl sm:text-3xl font-bold text-white mb-6">机上のテンプレートではなく、実対応で検証済み</h2>
-            <p className="text-primary-100 leading-relaxed mb-6">
-              <strong className="text-white font-semibold">医療情報の扱いが最もシビアな領域のひとつ、医用画像をAIで解析するSaaS（大学病院との共同研究から事業化）に本パッケージを適用し、</strong>
-              416項目すべてを実装と文書の実態で判定、JAHIS SDS Ver.5.0（160問）の開示書と規程類を整備しました。
-              標準回答のまま医療機関に出すのではなく、適用先の実態で判定し直す手順もこの適用で確立しています。
-            </p>
-            <p className="text-primary-200 leading-relaxed max-w-2xl mx-auto">
-              本パッケージの標準回答とフレームワークは実際の3省2ガイドライン対応で運用され、
-              <strong className="text-white font-semibold">416項目すべての該当性判断・対応方針の記入を、
-              担当1名＋レビュー1名の体制・営業日10日で完了</strong>した実績があります。
-              医療機器プログラム（SaMD）から非医療機器のヘルスケアサービスまで、
-              複数プロダクトの開発・法令対応で蓄積した判断とAWS実装の型を反映しています。
-            </p>
+        <section id="proof" className="scroll-mt-20 py-24 px-6 bg-primary-950">
+          <div className="max-w-5xl mx-auto">
+            <h2 className="text-2xl sm:text-3xl font-bold text-white text-center mb-10">実案件への適用で検証済み</h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {proofs.map((x) => (
+                <div key={x.label} className="rounded-xl bg-white/5 border border-primary-800 p-7">
+                  <p className="text-xs font-bold tracking-wider text-primary-300 mb-2">{x.label}</p>
+                  <p className="text-2xl font-bold text-white mb-3">{x.value}</p>
+                  <p className="text-sm text-primary-100 leading-relaxed">{x.body}</p>
+                </div>
+              ))}
+            </div>
             {/* 人的な信頼の担保。運営者個人名は非公開の方針のため、役割・経験ベースで記載 */}
-            <div className="mt-10 pt-8 border-t border-primary-800 max-w-2xl mx-auto">
+            <div className="mt-10 pt-8 border-t border-primary-800 max-w-3xl mx-auto text-center">
               <p className="text-white font-semibold mb-2">監修体制</p>
               <p className="text-primary-200 text-sm leading-relaxed">
-                メドテック企業でのCTO経験を持ち、SaMDの薬事対応からクラウドセキュリティ構築・
-                プロダクト開発までを実務で担ってきたメンバーが、標準回答と文書ひな形の内容を監修しています。
-                法解釈と技術実装のどちらか一方に寄らない、両輪での品質担保が本パッケージの前提です。
+                メドテック企業での CTO 経験を持ち、SaMD の薬事対応、クラウドセキュリティ構築、プロダクト開発を実務で担ってきたメンバーが、
+                標準回答と文書ひな形を監修しています。医療機器プログラムから非医療機器のヘルスケアサービスまで、複数製品の開発・法令対応で得た判断を反映しています。
               </p>
             </div>
           </div>
@@ -517,14 +520,13 @@ export default function ThreeM2GPage() {
         {/* 提供アセットの全体像（数字カード4枚＋折りたたみ詳細）。
             「数字 → 開示 → CTA」の流れにするため、MDS/SDS開示セクションの直前に置く。
             id="assets" は記事からの誘導先アンカー（bht-ops#109） */}
-        <section id="assets" className="py-24 px-6 bg-white">
+        <section id="assets" className="scroll-mt-20 py-24 px-6 bg-white">
           <div className="max-w-5xl mx-auto">
             <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 text-center mb-6">
               提供アセットの全体像
             </h2>
             <p className="text-slate-600 text-center leading-relaxed max-w-3xl mx-auto mb-12">
-              「何がどれだけ揃っているのか」を、件数で示します。
-              以下はすべて実在する成果物の件数で、商談の場で現物をご確認いただけます。
+              提供するアセットの件数です。いずれも実在する成果物で、商談時に現物を確認いただけます。
             </p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {assetOverview.map((a) => (
@@ -592,53 +594,18 @@ export default function ThreeM2GPage() {
                 </div>
               ))}
             </div>
-            {/* L5: AI自動判定の予告枠。プロダクト未リリースのため「開発中の技術検証」であることを明記する */}
-            <div className="mt-8 bg-white rounded-xl p-8 border border-primary-200">
-              <p className="inline-block px-3 py-1 bg-primary-100 text-primary-700 rounded-full text-xs font-bold mb-3">
-                開発中
-              </p>
-              <h3 className="text-lg font-bold text-slate-900 mb-3">対応状況のAI自動判定（技術検証中）</h3>
-              <p className="text-sm text-slate-600 leading-relaxed">
-                対応状況のAI自動判定を自社アセットで実測しています。170件の判定で、根拠引用216件はすべて
-                原文と機械照合済み——実在しない根拠（捏造）は0件でした。判定の限界値
-                （対象外の項目を誤って「要対応」と読む率など）も測定し、開示します。
-                AIの出力を鵜呑みにするのではなく、間違い方まで測って人の確認と組み合わせる——
-                本パッケージと同じ検証姿勢で製品化を進めています。
-              </p>
-            </div>
-          </div>
-        </section>
-
-        {/* 提供物 */}
-        <section className="py-24 px-6 bg-white">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 text-center mb-10">提供物</h2>
-            <ul className="space-y-3">
-              {deliverables.map((d) => (
-                <li key={d} className="flex items-start gap-3 bg-slate-50 rounded-lg px-5 py-4 border border-slate-200">
-                  <svg className="w-5 h-5 text-primary-600 mt-0.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-                  </svg>
-                  <span className="text-slate-700 text-sm leading-relaxed">{d}</span>
-                </li>
-              ))}
-            </ul>
-            <p className="text-sm text-slate-500 text-center mt-8">
-              ※ 当社が提案するクラウド構成（AWS）の採用が前提です。
-              既存構成が異なる場合もヒアリングのうえ適用範囲をご提示します。
-            </p>
           </div>
         </section>
 
         {/* 料金（アセットの使用範囲で階段状） */}
-        <section id="pricing" className="py-24 px-6 bg-slate-50">
+        <section id="pricing" className="scroll-mt-20 py-24 px-6 bg-white">
           <div className="max-w-6xl mx-auto">
             <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 text-center mb-6">料金</h2>
             <p className="text-slate-600 text-center leading-relaxed max-w-3xl mx-auto mb-12">
-              アセットのどこまでを使うかで、4段階に分けています。
-              比較していただきたいのは当社の作業量ではなく、SDS を出せずに止まる医療機関との契約（年間数百万円規模）と、
-              体制を組成して自力対応した場合の数百万〜1,000万円・4〜6ヶ月です。
-              PoC・初期導入ではS1／S2で医療機関への回答を先に整え、本製品化でS3・S4へ進む段階的な使い方ができます。
+              提供範囲に応じた4プランです。
+              比較対象は、SDS を提出できずに停止する医療機関との契約（年間数百万円規模）と、
+              自力対応に要する数百万〜1,000万円・4〜6ヶ月です。
+              PoC・初期導入では S1／S2 で医療機関への回答を整え、本製品化で S3・S4 へ進む段階的な利用が可能です。
             </p>
             <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
               {pricingTiers.map((t) => (
@@ -691,7 +658,7 @@ export default function ThreeM2GPage() {
         </section>
 
         {/* 進め方 */}
-        <section className="py-24 px-6 bg-white">
+        <section className="py-24 px-6 bg-slate-50">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 text-center mb-14">進め方</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
