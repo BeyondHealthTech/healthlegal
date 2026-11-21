@@ -9,8 +9,8 @@ const funnel = [
     count: "167",
     unit: "件",
     share: 40,
-    title: "対応そのものが不要",
-    body: "クラウド構成の選び方で対象外になります。例: 自社でサーバを持たない構成にすると、物理的な対策など80件が対象外。理由の説明は当社が文書にします。",
+    title: "設計の工夫により対象外",
+    body: "クラウド構成の選択により対応が不要になる項目。例: 自社でサーバを保有しない構成では、物理的対策など80件が対象外。除外理由は当社が文書化します。",
     bar: "bg-slate-300 text-slate-700",
     dot: "bg-slate-300",
   },
@@ -18,8 +18,8 @@ const funnel = [
     count: "196",
     unit: "件",
     share: 47,
-    title: "用意済みの回答を当てはめる",
-    body: "対応方針と AWS の設定例がすでにあります。貴社の構成に当てはまるかを確認し、そのまま適用します。",
+    title: "標準回答を適用",
+    body: "対応方針と AWS の設定例を整備済み。貴社構成への適合を確認のうえ適用します。",
     bar: "bg-primary-200 text-primary-900",
     dot: "bg-primary-200",
   },
@@ -27,18 +27,18 @@ const funnel = [
     count: "約50",
     unit: "件",
     share: 13,
-    title: "貴社と一緒に検討する",
-    body: "製品の機能や運用で答えが変わる項目です。ここだけを当社と個別に詰めます。",
+    title: "要件に応じて個別対応",
+    body: "製品の機能・運用により回答が変わる項目。貴社の要件を伺い、当社が対応方針を策定します。",
     bar: "bg-accent-500 text-white",
     dot: "bg-accent-500",
   },
 ];
 
-// 買う側が最初に知りたい3点（何が・いつ・いくら）。数字は同じページの料金表と一致させる。
+// 検討者が最初に確認する3点（期間・費用・納品物）。数字は同じページの料金表と一致させる。
 const quickFacts = [
-  { label: "期間", value: "最短5営業日", desc: "SDS 回答パックの場合。設計書まで含む一式でも4〜6週間" },
-  { label: "費用", value: "40万円から", desc: "使う範囲で4段階。料金表を公開しています" },
-  { label: "受け取るもの", value: "文書と設計書 70点", desc: "規程・手順35文書と AWS 詳細設計書35。貴社向けに仕上げて納品します" },
+  { label: "期間", value: "最短5営業日", desc: "SDS 回答パックの場合。設計書を含む一式は4〜6週間" },
+  { label: "費用", value: "40万円から", desc: "提供範囲に応じた4プラン。料金表を公開" },
+  { label: "納品物", value: "文書・設計書 70点", desc: "規程・手順35文書、AWS 詳細設計書35ファイル。貴社向けに調整して納品" },
 ];
 
 const sources = [
@@ -297,9 +297,8 @@ export default function ThreeM2GPage() {
               数週間規模に。
             </h1>
             <p className="text-slate-600 text-lg leading-relaxed max-w-2xl mx-auto mb-10">
-              医療・ヘルスケアプロダクトの法令対応・セキュリティ構築の実務で磨いた、
-              法的・技術的ベストプラクティスの一式。416項目をゼロから検討する代わりに、
-              検証済みの標準回答からの差分レビューで、最短・高品質に対応します。
+              3省2ガイドラインの対策416項目すべてに、実案件で検証した標準回答を整備。
+              ゼロからの検討を差分の確認に置き換え、対応の期間と費用を圧縮します。
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
               <a
@@ -322,13 +321,13 @@ export default function ThreeM2GPage() {
         <section className="py-16 px-6 bg-white">
           <div className="max-w-5xl mx-auto">
             <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 text-center mb-4">
-              416項目のうち、一から検討するのは約50件
+              416項目のうち、個別検討は約50件
             </h2>
             <p className="text-slate-600 text-center leading-relaxed max-w-3xl mx-auto mb-10">
-              3省2ガイドラインが事業者に求める対策は416項目あります。
-              当社は全項目に答えを用意しており、貴社と個別に詰めるのは1割強だけです。
+              3省2ガイドラインが事業者に求める対策は416項目。
+              全項目に標準回答を整備しており、個別検討は1割強にとどまります。
             </p>
-            <div className="hidden sm:flex w-full h-16 rounded-xl overflow-hidden border border-slate-200" role="img" aria-label="416項目の内訳: 対応そのものが不要167件、用意済みの回答を当てはめる196件、貴社と一緒に検討する約50件">
+            <div className="hidden sm:flex w-full h-16 rounded-xl overflow-hidden border border-slate-200" role="img" aria-label="416項目の内訳: 設計の工夫により対象外167件、標準回答を適用196件、要件に応じて個別対応 約50件">
               {funnel.map((f) => (
                 <div key={f.title} className={`flex items-center justify-center font-bold tabular-nums ${f.bar}`} style={{ width: `${f.share}%` }}>
                   <span className="text-2xl">{f.count}</span>
@@ -362,8 +361,8 @@ export default function ThreeM2GPage() {
             </dl>
             {/* 紙の対応で終わらない、が典型的コンサルとの差別化。範囲の詳細は商談で扱う */}
             <p className="mt-8 text-center text-slate-700 leading-relaxed">
-              <strong className="font-semibold text-slate-900">文書を揃えて終わりにしません。</strong>
-              AWS で構築する製品なら、規程から設計書、AWS の設定値、動く実装までを一続きでお渡しします。
+              <strong className="font-semibold text-slate-900">文書整備にとどまりません。</strong>
+              AWS で構築する製品には、規程・設計書・AWS 設定値・実装までを一貫して提供します。
             </p>
           </div>
         </section>
@@ -377,8 +376,8 @@ export default function ThreeM2GPage() {
             </h2>
             <p className="text-slate-600 text-center leading-relaxed max-w-3xl mx-auto mb-10">
               二要素認証・パスワードの脆弱性チェック・改ざんできない監査ログ・医療機関ごとのデータ分離など、
-              SDS（医療情報セキュリティ開示書）で確認される機能を、画面と AWS 上の仕組みとして備えた土台があります。
-              貴社が開発するのは、左下の枠に当たる業務固有の機能だけです。各機能には JAHIS SDS Ver.5.0 の設問番号を併記しています。
+              SDS（医療情報セキュリティ開示書）で確認される機能を、画面と AWS 上の仕組みとして実装済みです。
+              貴社の開発範囲は、図の左下に示す業務固有の機能に限られます。各機能に JAHIS SDS Ver.5.0 の設問番号を併記しています。
             </p>
             <a href="../img/feature-map.svg" target="_blank" rel="noopener noreferrer" className="block">
               <img
