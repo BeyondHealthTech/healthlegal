@@ -180,6 +180,16 @@
 <text x="1161.0" y="640" font-size="12.5" font-weight="600" fill="#0f172a" text-anchor="start">画面配信の応答ヘッダー</text>
 <rect x="1505.6" y="627" width="22.4" height="16" rx="8" fill="#f1f5f9"/>
 <text x="1516.8" y="639" font-size="10" font-weight="600" fill="#475569" text-anchor="middle">任意</text>
+<rect x="40" y="625" width="485" height="127" rx="14" fill="#f5f3ff" stroke="#6d28d9" stroke-width="2" stroke-dasharray="7 5"/>
+<text x="58" y="653" font-size="16" font-weight="700" fill="#6d28d9" text-anchor="start">貴社の業務機能（この土台の上に開発する部分）</text>
+<text x="58" y="673" font-size="11.5" font-weight="400" fill="#475569" text-anchor="start">開発するのは業務固有の部分だけ。右の機能は土台に実装済み</text>
+<rect x="58" y="685" width="72.0" height="26" rx="13" fill="#ffffff" stroke="#6d28d9"/>
+<text x="94.0" y="703" font-size="12" font-weight="600" fill="#6d28d9" text-anchor="middle">業務画面</text>
+<rect x="138.0" y="685" width="84.5" height="26" rx="13" fill="#ffffff" stroke="#6d28d9"/>
+<text x="180.25" y="703" font-size="12" font-weight="600" fill="#6d28d9" text-anchor="middle">業務API</text>
+<rect x="230.5" y="685" width="84.5" height="26" rx="13" fill="#ffffff" stroke="#6d28d9"/>
+<text x="272.75" y="703" font-size="12" font-weight="600" fill="#6d28d9" text-anchor="middle">業務データ</text>
+<text x="58" y="733" font-size="11" font-weight="400" fill="#475569" text-anchor="start">認証・権限・施設ごとの分離・監査ログは、土台の共通部品を呼び出して使う</text>
 <rect x="40" y="768" width="1520" height="112" rx="14" fill="#ecfdf5" stroke="#6ee7b7" stroke-width="1.5"/>
 <text x="58" y="793" font-size="15" font-weight="700" fill="#047857" text-anchor="start">文書パック（21文書）— 上の機能と同じ設定値から生成。文書と実装が食い違わない</text>
 <rect x="58" y="804" width="49" height="22" rx="11" fill="#ffffff" stroke="#6ee7b7"/>
