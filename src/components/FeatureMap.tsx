@@ -16,7 +16,7 @@ export default function FeatureMap() {
             src="./img/feature-map.svg"
             alt="機能構成図: 利用者、Webアプリの画面、貴社の業務機能が載る位置、AWS上の各機能、文書パック"
             width={1600}
-            height={900}
+            height={954}
             loading="lazy"
             className="w-full h-auto rounded-xl border border-slate-200 bg-white shadow-sm"
           />
