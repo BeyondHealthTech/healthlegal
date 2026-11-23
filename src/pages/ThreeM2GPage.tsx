@@ -11,7 +11,7 @@ const funnel = [
     count: "167",
     unit: "件",
     share: 40,
-    title: "設計の工夫により対象外",
+    title: "独自ノウハウ・戦略的な設計により対象外",
     body: "クラウド構成の選択により対応が不要になる項目。例: 自社でサーバを保有しない構成では、物理的対策など80件が対象外。除外理由は当社が文書化します。",
     bar: "bg-slate-300 text-slate-700",
     dot: "bg-slate-300",
@@ -204,7 +204,7 @@ const faqs = [
   },
   {
     q: "すでに運用中の製品にも適用できますか？",
-    a: "適用できます。現在の構成と運用を伺い、標準回答との差分を整理します。設計の工夫で対象外にできる項目は、構成の見直しを伴う場合があります。",
+    a: "適用できます。現在の構成と運用を伺い、標準回答との差分を整理します。設計により対象外にできる項目は、構成の見直しを伴う場合があります。",
   },
   {
     q: "ガイドラインへの準拠を保証してもらえますか？",
@@ -405,7 +405,7 @@ export default function ThreeM2GPage() {
               3省2ガイドラインが事業者に求める対策は416項目。
               全項目に標準回答を整備しており、個別検討は1割強にとどまります。
             </p>
-            <div className="hidden sm:flex w-full h-16 rounded-xl overflow-hidden border border-slate-200" role="img" aria-label="416項目の内訳: 設計の工夫により対象外167件、標準回答を適用196件、要件に応じて個別対応 約50件">
+            <div className="hidden sm:flex w-full h-16 rounded-xl overflow-hidden border border-slate-200" role="img" aria-label="416項目の内訳: 独自ノウハウ・戦略的な設計により対象外167件、標準回答を適用196件、要件に応じて個別対応 約50件">
               {funnel.map((f) => (
                 <div key={f.title} className={`flex items-center justify-center font-bold tabular-nums ${f.bar}`} style={{ width: `${f.share}%` }}>
                   <span className="text-2xl">{f.count}</span>
