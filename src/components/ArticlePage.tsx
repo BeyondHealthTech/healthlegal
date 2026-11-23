@@ -74,9 +74,9 @@ export default function ArticlePage({ article }: { article: ArticleData }) {
         <article className="py-12 px-6">
           <div className="max-w-3xl mx-auto">
             {/* 3行まとめ */}
-            <div className="bg-slate-50 border border-slate-200 rounded-xl p-6 sm:p-8 mb-10">
-              <h2 className="text-lg font-bold text-slate-900 mb-4">3行まとめ</h2>
-              <ul className="space-y-3 text-slate-700 leading-relaxed text-[15px]">
+            <div className="bg-primary-50/50 border border-primary-100 rounded-xl p-6 sm:p-8 mb-12">
+              <h2 className="text-lg font-bold text-primary-900 mb-4">3行まとめ</h2>
+              <ul className="space-y-4 text-slate-700 leading-[1.85] text-[16px]">
                 {article.summaryHtml.map((item, i) => (
                   <li key={i} className="flex gap-3">
                     <span className="text-primary-600 font-bold shrink-0">{`${i + 1}.`}</span>

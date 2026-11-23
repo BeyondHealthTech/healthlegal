@@ -21,19 +21,26 @@ const SITE_ORIGIN = 'https://healthlegal.beyondht.jp'
 
 // ---- 記事ページ本文のスタイル（旧 src/pages/Article*.tsx のクラス定義を移設） ----
 const CLS = {
-  h2: 'text-2xl sm:text-3xl font-bold text-slate-900 mt-14 mb-5 leading-snug',
+  h2: 'text-2xl sm:text-3xl font-bold text-slate-900 mt-16 mb-6 leading-snug scroll-mt-24',
   h3: 'text-xl font-bold text-slate-900 mt-10 mb-4 leading-snug',
-  p: 'text-slate-700 leading-relaxed mb-5',
+  p: 'text-[17px] text-slate-700 leading-[1.95] mb-6',
   quote:
-    'border-l-4 border-primary-300 bg-primary-50/60 px-5 py-4 rounded-r-lg text-slate-700 leading-relaxed mb-5 text-[15px]',
-  ol: 'list-decimal pl-6 space-y-2 text-slate-700 leading-relaxed mb-5',
-  ul: 'list-disc pl-6 space-y-2 text-slate-700 leading-relaxed mb-5',
+    'border-l-4 border-primary-300 bg-primary-50/60 px-5 py-4 rounded-r-lg text-slate-700 leading-relaxed mb-6',
+  // 「> [!ACTION] 見出し｜本文」: 読者が取る行動をまとめる囲み（見出しは｜の前）
+  action: 'my-8 rounded-xl border border-accent-300 bg-accent-50 px-6 py-5',
+  actionLabel: 'flex items-center gap-2 text-sm font-bold text-accent-700 mb-2',
+  actionBody: 'text-[16px] text-slate-800 leading-[1.85]',
+  ol: 'list-decimal pl-6 space-y-3 text-[17px] text-slate-700 leading-[1.9] mb-6',
+  ul: 'list-disc pl-6 space-y-3 text-[17px] text-slate-700 leading-[1.9] mb-6',
   link: 'text-primary-600 hover:text-primary-700 underline',
-  table: 'w-full text-sm border border-slate-200 rounded-lg overflow-hidden',
+  table: 'w-full text-[15px] leading-relaxed border border-slate-200 rounded-lg overflow-hidden',
   th: 'text-left font-semibold px-4 py-3 border-b border-slate-200',
   td: 'px-4 py-3 border-b border-slate-100 text-slate-700',
   tdHighlight: 'px-4 py-3 border-b border-slate-100 font-bold text-primary-800',
 }
+
+const ACTION_ICON_SVG =
+  '<svg class="w-5 h-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"></path></svg>'
 
 const CHECK_ICON_SVG =
   '<svg class="w-5 h-5 text-primary-600 shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"></path></svg>'
@@ -89,7 +96,12 @@ function decorateHtml(html, slug) {
         `${slug}: 引用ブロックは1段落のみ対応です（改行は <br /> を使ってください）: ${inner.slice(0, 80)}…`,
       )
     }
-    return `<blockquote class="${CLS.quote}">${paras[0][1]}</blockquote>`
+    const body = paras[0][1]
+    const action = body.match(/^\[!ACTION\]\s*([^｜]+)｜\s*([\s\S]*)$/)
+    if (action) {
+      return `<div class="${CLS.action}"><p class="${CLS.actionLabel}">${ACTION_ICON_SVG}${action[1].trim()}</p><div class="${CLS.actionBody}">${action[2]}</div></div>`
+    }
+    return `<blockquote class="${CLS.quote}">${body}</blockquote>`
   })
 
   // チェックリスト: 各項目が「✓ 」で始まる箇条書きをチェックアイコン付きリストに変換
@@ -108,8 +120,9 @@ function decorateHtml(html, slug) {
   // 通常リスト・見出し・段落
   out = out.replace(/<ol>/g, `<ol class="${CLS.ol}">`)
   out = out.replace(/<ul>/g, `<ul class="${CLS.ul}">`)
-  out = out.replace(/<h2>/g, `<h2 class="${CLS.h2}">`)
-  out = out.replace(/<h3>/g, `<h3 class="${CLS.h3}">`)
+  // 見出し: 素の HTML で id を付けた見出し（ページ内リンク先）にも同じクラスを付ける
+  out = out.replace(/<h2((?: id="[^"]+")?)>/g, `<h2$1 class="${CLS.h2}">`)
+  out = out.replace(/<h3((?: id="[^"]+")?)>/g, `<h3$1 class="${CLS.h3}">`)
   out = out.replace(/<p>/g, `<p class="${CLS.p}">`)
 
   // リンク: クラス付与、外部リンクは別タブ
