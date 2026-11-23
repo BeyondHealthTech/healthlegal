@@ -3,7 +3,8 @@ import Hero from "./components/Hero";
 import Problem from "./components/Problem";
 import Services from "./components/Services";
 import SelfCheck from "./components/SelfCheck";
-import ForYou from "./components/ForYou";
+import FeatureMap from "./components/FeatureMap";
+import Articles from "./components/Articles";
 import Strength from "./components/Strength";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
@@ -15,10 +16,11 @@ export default function App() {
       <main>
         <Hero />
         <Problem />
+        <FeatureMap />
         <Services />
-        <SelfCheck />
-        <ForYou />
         <Strength />
+        <SelfCheck />
+        <Articles />
         <Contact />
       </main>
       <Footer />
