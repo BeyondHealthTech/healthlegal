@@ -655,17 +655,17 @@ export default function ThreeM2GPage() {
           </div>
         </section>
 
-        {/* MDS/SDS 99項目への回答状況（開示型の訴求） */}
+        {/* MDS/SDS 99項目への回答方針 */}
         <section className="py-24 px-6 bg-slate-50">
           <div className="max-w-5xl mx-auto">
             <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 text-center mb-6">
-              医療機関の確認事項「MDS/SDS 99項目」への回答状況を開示します
+              医療機関の確認事項99項目、すべてに回答方針を整備済み
             </h2>
             <p className="text-slate-600 text-center leading-relaxed max-w-3xl mx-auto mb-12">
               ガイドライン第7.0版では、医療機関が事業者を選定する際の公式な確認事項として
               MDS（医療情報安全管理適合性開示書）41項目・SDS（サービス仕様適合開示書）58項目の
               計99項目が示され、「全項目が『はい』または『対象外』である事業者を選定すること」と明記されました。
-              本パッケージは、この99項目にどう答えられるかを項目単位で整理・開示します。
+              本パッケージは、この99項目について項目単位で回答方針と根拠を整理しています。
             </p>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {mdsSdsPoints.map((p, i) => (
