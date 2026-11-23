@@ -225,12 +225,12 @@ const faqs = [
 ];
 
 // ページ途中の行動導線（相談とサンプル資料）
-function MidCta({ position }: { position: string }) {
+function MidCta({ position, heading }: { position: string; heading: string }) {
   return (
     <section className="py-12 px-6 bg-primary-50 border-y border-primary-100">
       <div className="max-w-4xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
         <div className="text-center md:text-left">
-          <p className="text-lg font-bold text-slate-900">貴社の場合の対応範囲を、無料相談で提示します</p>
+          <p className="text-lg font-bold text-slate-900">{heading}</p>
           <p className="text-sm text-slate-600 mt-1">成果物の実物は、サンプル資料（PDF・10ページ）でご確認いただけます。</p>
         </div>
         <div className="flex flex-col sm:flex-row gap-3 shrink-0">
@@ -443,7 +443,7 @@ export default function ThreeM2GPage() {
             {/* 紙の対応で終わらない、が典型的コンサルとの差別化。範囲の詳細は商談で扱う */}
             <p className="mt-8 text-center text-slate-700 leading-relaxed">
               <strong className="font-semibold text-slate-900">文書整備にとどまりません。</strong>
-              AWS で構築する製品には、規程・設計書から実装までを一貫して提供します。
+              規程・設計書から実装まで、一貫して提供します。
             </p>
           </div>
         </section>
@@ -458,7 +458,7 @@ export default function ThreeM2GPage() {
             </h2>
             <p className="text-slate-600 text-center leading-relaxed max-w-3xl mx-auto mb-10">
               二要素認証、改ざんできない監査ログ、医療機関ごとのデータ分離など、SDS（医療情報セキュリティ開示書）で確認されるセキュリティ機能を基盤に組み込んでいます。
-              貴社は図の左下に示す業務機能の開発に専念できます。各機能に JAHIS SDS Ver.5.0 の設問番号を併記しています。
+              貴社は図中の「貴社の業務機能」の開発に専念できます。各機能に JAHIS SDS Ver.5.0 の設問番号を併記しています。
             </p>
             <a href="../img/feature-map.svg" target="_blank" rel="noopener noreferrer" className="hidden md:block">
               <img
@@ -526,7 +526,7 @@ export default function ThreeM2GPage() {
             </h2>
             <p className="text-slate-700 leading-relaxed text-center max-w-3xl mx-auto mb-8">
               医療情報を扱うサービスの提供事業者には、厚労省・経産省・総務省の3文書（計数百ページ）、416項目への対応が求められます。
-              体制の小さい新規事業ほど、スピード・費用・品質のいずれかを犠牲にしがちです。
+              体制の小さい新規事業ほど、スピード・費用・品質のいずれかが犠牲になりやすくなります。
             </p>
             <div className="overflow-hidden rounded-2xl border border-slate-200">
               <div className="hidden sm:grid grid-cols-[7rem_1fr_1fr] bg-slate-100 text-sm font-bold text-slate-700">
@@ -565,8 +565,8 @@ export default function ThreeM2GPage() {
                 ))}
               </div>
               <p className="mt-6 text-slate-700 leading-relaxed">
-                SDS を提出できずに停止する医療機関との契約は、年間数百万円規模に及ぶことがあります。
-                同ガイドラインは令和9年度までの二要素認証の採用も求めており、未対応の事業者はシステム更新時の選定から外れます。
+                SDS を提出できず医療機関との契約が止まると、損失は年間数百万円規模に及ぶことがあります。
+                同ガイドラインは令和9年度までの二要素認証の採用も求めており、未対応の事業者はシステム更新時の選定から外れるおそれがあります。
               </p>
               <details className="mt-6 group">
                 <summary className="cursor-pointer text-sm font-semibold text-primary-700 hover:text-primary-800 list-none flex items-center gap-1.5">
@@ -664,7 +664,7 @@ export default function ThreeM2GPage() {
           </div>
         </section>
 
-        <MidCta position="after_proof" />
+        <MidCta position="after_proof" heading="貴社の対応範囲を、無料相談で提示します" />
 
         {/* 提供アセットの全体像（数字カード4枚＋折りたたみ詳細）。
             「数字 → 開示 → CTA」の流れにするため、MDS/SDS開示セクションの直前に置く。
@@ -765,7 +765,7 @@ export default function ThreeM2GPage() {
             <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 text-center mb-6">料金</h2>
             <p className="text-slate-600 text-center leading-relaxed max-w-3xl mx-auto mb-12">
               提供範囲に応じた4プランです。
-              比較対象は、SDS を提出できずに停止する医療機関との契約（年間数百万円規模）と、
+              比較対象は、SDS を提出できず止まる医療機関との契約（年間数百万円規模）と、
               自力対応に要する数百万〜1,000万円・4〜6ヶ月です。
               PoC・初期導入では S1／S2 で医療機関への回答を整え、本製品化で S3・S4 へ進む段階的な利用が可能です。
             </p>
@@ -819,7 +819,7 @@ export default function ThreeM2GPage() {
           </div>
         </section>
 
-        <MidCta position="after_pricing" />
+        <MidCta position="after_pricing" heading="最適なプランを、無料相談で提案します" />
 
         {/* 進め方 */}
         <section className="py-24 px-6 bg-slate-50">
