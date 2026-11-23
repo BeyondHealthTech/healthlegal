@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 
 const FORM_URL = "https://docs.google.com/forms/d/1qQRrWDUPCOeXklfna912YEs1b2DqPHap3zZ0lpoyjZI/viewform";
+// サンプル資料（架空の事業者で生成した成果物の抜粋）。作り方は scripts/sample/build-3m2g-sample.mjs
+const SAMPLE_PDF = "../docs/3m2g-sample.pdf";
 
 // 416項目の行き先（正本: bht-ops assets/3m2g/standard-answers.json の標準ステータス集計。対象外167・対応済み196・製品化段階52＋要判断1）。
 // 幅は件数の比（167/416・196/416・53/416）。数字を変えるときは正本を数え直す。
@@ -194,6 +196,68 @@ const mdsSdsPoints = [
   },
 ];
 
+// よくある質問（回答の根拠: bht-ops docs/pricing-2026-10.md の前提条件・年間更新、本ページの注記）
+const faqs = [
+  {
+    q: "AWS 以外のクラウドや、既存の構成でも使えますか？",
+    a: "標準回答と設計書は、当社標準のクラウド構成（AWS のサーバレス構成）を前提にしています。構成が異なる場合も、ヒアリングのうえ適用できる範囲と費用を提示します。",
+  },
+  {
+    q: "すでに運用中の製品にも適用できますか？",
+    a: "適用できます。現在の構成と運用を伺い、標準回答との差分を整理します。設計の工夫で対象外にできる項目は、構成の見直しを伴う場合があります。",
+  },
+  {
+    q: "ガイドラインへの準拠を保証してもらえますか？",
+    a: "保証はしていません。対応の可否は、医療機関との契約内容や貴社の運用にも左右されるためです。本パッケージは、医療機関の確認事項に根拠を示して回答できる状態を整えるものです。",
+  },
+  {
+    q: "補助金・助成金の外注費として支払えますか？",
+    a: "補助金を財源とする外注として契約した実績があります。外注費の上限に合わせ、年度ごとに分けて契約することもできます（例: 1年目に S2 で規程と SDS 回答を整え、2年目に開発へ進む）。対象経費になるかは各制度の要件をご確認ください。",
+  },
+  {
+    q: "ガイドラインが改定されたらどうなりますか？",
+    a: "年間更新（S2 以上が対象・20万円／年）で、改定時の再判定と文書の差し替え版を提供します。改定の公表から30日以内を目安にお届けします。",
+  },
+  {
+    q: "医療機器プログラム（SaMD）にも使えますか？",
+    a: "使えます。3省2ガイドラインへの対応は、医療機器に該当するかどうかに関わらず求められます。医療機器該当性の整理や薬事対応は本パッケージの範囲外ですが、別途ご相談いただけます。",
+  },
+];
+
+// ページ途中の行動導線（相談とサンプル資料）
+function MidCta({ position }: { position: string }) {
+  return (
+    <section className="py-12 px-6 bg-primary-50 border-y border-primary-100">
+      <div className="max-w-4xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+        <div className="text-center md:text-left">
+          <p className="text-lg font-bold text-slate-900">貴社の場合の対応範囲を、無料相談で提示します</p>
+          <p className="text-sm text-slate-600 mt-1">成果物の実物は、サンプル資料（PDF・10ページ）でご確認いただけます。</p>
+        </div>
+        <div className="flex flex-col sm:flex-row gap-3 shrink-0">
+          <a
+            href={FORM_URL}
+            onClick={() => sendEvent("consult_form_open", { position })}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex justify-center px-6 py-3 bg-accent-500 text-white font-semibold rounded-lg hover:bg-accent-600 transition-colors"
+          >
+            無料相談を予約する
+          </a>
+          <a
+            href={SAMPLE_PDF}
+            onClick={() => sendEvent("sample_download", { position })}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex justify-center px-6 py-3 border border-primary-300 bg-white text-primary-700 font-semibold rounded-lg hover:bg-primary-50 transition-colors"
+          >
+            サンプル資料を見る
+          </a>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 // 料金（税別）。正本は bht-ops docs/pricing-2026-10.md（v2.1・2026-11-23 S4 改定・2027-03末まで据え置き）。
 // ここに載せるのはアセット費（Sライン）だけ。設計・開発費は提案書側で「アセット費＋開発費」の2行見積り。数値を変えるときは正本を先に更新する。
 const pricingTiers = [
@@ -284,6 +348,7 @@ export default function ThreeM2GPage() {
             <a href="#proof" className="hover:text-primary-700">実績</a>
             <a href="#assets" className="hover:text-primary-700">提供内容</a>
             <a href="#pricing" className="hover:text-primary-700">料金</a>
+            <a href="#faq" className="hover:text-primary-700">よくある質問</a>
           </nav>
           <a
             href="#contact"
@@ -599,6 +664,8 @@ export default function ThreeM2GPage() {
           </div>
         </section>
 
+        <MidCta position="after_proof" />
+
         {/* 提供アセットの全体像（数字カード4枚＋折りたたみ詳細）。
             「数字 → 開示 → CTA」の流れにするため、MDS/SDS開示セクションの直前に置く。
             id="assets" は記事からの誘導先アンカー（bht-ops#109） */}
@@ -646,6 +713,24 @@ export default function ThreeM2GPage() {
                   </details>
                 </div>
               ))}
+            </div>
+            <div className="mt-12 flex flex-col md:flex-row items-center gap-6 rounded-2xl border border-primary-200 bg-primary-50/50 p-6 sm:p-8">
+              <div className="flex-1">
+                <p className="text-xs font-bold tracking-wider text-primary-700 mb-1">サンプル資料（PDF・10ページ）</p>
+                <p className="text-lg font-bold text-slate-900 mb-2">成果物の実物を、抜粋でご確認いただけます</p>
+                <p className="text-sm text-slate-600 leading-relaxed">
+                  機能構成図、医療情報セキュリティ開示書（SDS Ver.5.0）、対応状況表、運用管理規程の抜粋。架空の事業者を例に、当社の生成ツールで作成しています。
+                </p>
+              </div>
+              <a
+                href={SAMPLE_PDF}
+                onClick={() => sendEvent("sample_download", { position: "assets" })}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="shrink-0 inline-flex px-6 py-3 bg-primary-600 text-white font-semibold rounded-lg hover:bg-primary-700 transition-colors"
+              >
+                サンプル資料を見る
+              </a>
             </div>
           </div>
         </section>
@@ -734,6 +819,8 @@ export default function ThreeM2GPage() {
           </div>
         </section>
 
+        <MidCta position="after_pricing" />
+
         {/* 進め方 */}
         <section className="py-24 px-6 bg-slate-50">
           <div className="max-w-4xl mx-auto">
@@ -753,6 +840,24 @@ export default function ThreeM2GPage() {
             <p className="text-sm text-slate-500 text-center mt-8">
               どの段階から始めるかは、無料相談で貴社プロダクトの状況を伺ったうえでご提案します。
             </p>
+          </div>
+        </section>
+
+        {/* よくある質問 */}
+        <section id="faq" className="scroll-mt-20 py-24 px-6 bg-slate-50">
+          <div className="max-w-3xl mx-auto">
+            <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 text-center mb-10">よくある質問</h2>
+            <div className="space-y-3">
+              {faqs.map((f) => (
+                <details key={f.q} className="group bg-white rounded-xl border border-slate-200 px-6 py-5">
+                  <summary className="cursor-pointer list-none flex items-start justify-between gap-4 font-bold text-slate-900">
+                    <span>{f.q}</span>
+                    <span aria-hidden="true" className="text-primary-600 transition-transform group-open:rotate-45 text-xl leading-none">＋</span>
+                  </summary>
+                  <p className="mt-4 text-slate-700 leading-relaxed">{f.a}</p>
+                </details>
+              ))}
+            </div>
           </div>
         </section>
 
