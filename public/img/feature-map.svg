@@ -191,7 +191,7 @@
 <text x="272.75" y="703" font-size="12" font-weight="600" fill="#6d28d9" text-anchor="middle">業務データ</text>
 <text x="58" y="733" font-size="11" font-weight="400" fill="#475569" text-anchor="start">認証・権限・施設ごとの分離・監査ログは、基盤の共通部品を呼び出して使う</text>
 <rect x="40" y="768" width="1520" height="112" rx="14" fill="#ecfdf5" stroke="#6ee7b7" stroke-width="1.5"/>
-<text x="58" y="793" font-size="15" font-weight="700" fill="#047857" text-anchor="start">文書パック（21文書）— 上の機能と同じ設定値から生成。文書と実装が食い違わない</text>
+<text x="58" y="793" font-size="15" font-weight="700" fill="#047857" text-anchor="start">医療情報GL対応文書パック（21文書）— 上の機能と同じ設定値から生成。文書と実装が食い違わない</text>
 <rect x="58" y="804" width="49" height="22" rx="11" fill="#ffffff" stroke="#6ee7b7"/>
 <text x="82.5" y="819.5" font-size="10.5" font-weight="600" fill="#047857" text-anchor="middle">SLA</text>
 <rect x="115" y="804" width="82" height="22" rx="11" fill="#ffffff" stroke="#6ee7b7"/>
