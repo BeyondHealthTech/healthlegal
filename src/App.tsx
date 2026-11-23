@@ -5,7 +5,7 @@ import Services from "./components/Services";
 import SelfCheck from "./components/SelfCheck";
 import FeatureMap from "./components/FeatureMap";
 import Articles from "./components/Articles";
-import Strength from "./components/Strength";
+import Cases from "./components/Cases";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 
@@ -18,7 +18,7 @@ export default function App() {
         <Problem />
         <FeatureMap />
         <Services />
-        <Strength />
+        <Cases />
         <SelfCheck />
         <Articles />
         <Contact />
