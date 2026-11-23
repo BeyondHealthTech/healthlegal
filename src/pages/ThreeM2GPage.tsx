@@ -378,12 +378,11 @@ export default function ThreeM2GPage() {
         <section id="feature-map" className="scroll-mt-20 py-20 px-4 sm:px-6 bg-slate-50">
           <div className="max-w-6xl mx-auto">
             <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 text-center mb-6">
-              医療機関の審査で問われる機能は、土台に実装済み
+              医療機関の審査で問われる機能を、あらかじめ搭載
             </h2>
             <p className="text-slate-600 text-center leading-relaxed max-w-3xl mx-auto mb-10">
-              二要素認証・パスワードの脆弱性チェック・改ざんできない監査ログ・医療機関ごとのデータ分離など、
-              SDS（医療情報セキュリティ開示書）で確認される機能を、画面と AWS 上の仕組みとして実装済みです。
-              貴社の開発範囲は、図の左下に示す業務固有の機能に限られます。各機能に JAHIS SDS Ver.5.0 の設問番号を併記しています。
+              二要素認証、改ざんできない監査ログ、医療機関ごとのデータ分離など、SDS（医療情報セキュリティ開示書）で確認されるセキュリティ機能を基盤に組み込んでいます。
+              貴社は図の左下に示す業務機能の開発に専念できます。各機能に JAHIS SDS Ver.5.0 の設問番号を併記しています。
             </p>
             <a href="../img/feature-map.svg" target="_blank" rel="noopener noreferrer" className="hidden md:block">
               <img
@@ -419,7 +418,7 @@ export default function ThreeM2GPage() {
 
             {/* 画面例（bht-saas-kit のデモ表示を撮影。デモ用データで、製品名・色は差し替え可能） */}
             <h3 className="mt-16 text-xl font-bold text-slate-900 text-center mb-2">画面例</h3>
-            <p className="text-sm text-slate-600 text-center mb-8">土台に含まれる管理画面です（デモ用データ）。製品名・配色・ロゴは貴社のブランドに差し替えます。</p>
+            <p className="text-sm text-slate-600 text-center mb-8">基盤に含まれる管理画面です（デモ用データ）。製品名・配色・ロゴは貴社のブランドに差し替えます。</p>
             <div className="flex md:grid md:grid-cols-2 gap-4 md:gap-6 overflow-x-auto md:overflow-visible snap-x snap-mandatory -mx-4 px-4 md:mx-0 md:px-0 pb-2 md:pb-0">
               {kitScreens.map((k) => (
                 <figure key={k.file} className="m-0 shrink-0 w-[85%] md:w-auto snap-center">

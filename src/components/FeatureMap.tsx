@@ -4,11 +4,11 @@ export default function FeatureMap() {
     <section className="py-20 px-4 sm:px-6 bg-slate-50">
       <div className="max-w-6xl mx-auto">
         <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 text-center mb-4">
-          医療機関の審査で問われる機能は、土台に実装済み
+          医療機関の審査で問われる機能を、あらかじめ搭載
         </h2>
         <p className="text-slate-600 text-center leading-relaxed max-w-3xl mx-auto mb-10">
-          二要素認証、改ざんできない監査ログ、医療機関ごとのデータ分離などを、画面と AWS 上の仕組みとして実装済みです。
-          貴社の開発範囲は、業務固有の機能に限られます。
+          二要素認証、改ざんできない監査ログ、医療機関ごとのデータ分離など、SDS で確認されるセキュリティ機能を基盤に組み込んでいます。
+          貴社は業務機能の開発に専念できます。
         </p>
         <a href="./3m2g/#feature-map" className="hidden md:block">
           <img
