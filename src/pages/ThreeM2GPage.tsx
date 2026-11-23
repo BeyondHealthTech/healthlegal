@@ -41,13 +41,27 @@ const quickFacts = [
   { label: "納品物", value: "文書・設計書 70点", desc: "規程・手順35文書、AWS 詳細設計書35ファイル。貴社向けに調整して納品" },
 ];
 
+// 新規事業で両立しにくい3点と当社の対応。数字は同じページの料金表・自社試算と一致させる。
+const tradeoffs = [
+  { axis: "期間", pain: "読解・該当性判断・規程整備で4〜6ヶ月", answer: "標準回答からの差分確認で数週間。SDS 回答草案は最短5営業日" },
+  { axis: "費用", pain: "専門体制の組成で数百万〜1,000万円", answer: "整備済みアセットの適用で40万円から" },
+  { axis: "品質", pain: "専門人材が少なく判断が属人化。対象外にできる項目まで対応する過剰投資も", answer: "416項目を全件判定した標準回答と、実案件で検証した規程・設計書・実装" },
+];
+
+// 品質を担保する仕組み（事実の出所: bht-ops docs/3m2g-lp-claims-evidence.md・bht-saas-kit compliance/feature_map.py）
+const qualityChecks = [
+  { title: "ガイドラインと項目単位で照合", body: "416項目を経済産業省・総務省ガイドライン 別紙2と項目単位で照合済み。改定時も同じ手順で再照合します。" },
+  { title: "判断の誤りを自社で検出", body: "「対象外」の判断根拠を要求の原文と照合し、誤除外4件を検出・是正しました。" },
+  { title: "文書と実装を同じ設定値から生成", body: "実装キットの文書パックは、規程・設計書・開示書を実装と同じ設定値から生成。記載と実装の食い違いを防ぎます。" },
+];
+
 // 1項目を要件から設定値まで追う例。番号の出所は bht-saas-kit docs/FEATURES.md（パスワードの使い回し禁止: 3省2GL 3.1-④・SDS 17.1.1.4〜17.1.1.6・履歴5世代）。
 const traceSteps = [
   { layer: "対策項目", ref: "経産省・総務省ガイドライン 別紙2 3.1-④", body: "パスワードの世代管理" },
   { layer: "厚労省ガイドライン", ref: "第7.0版 システム運用編", body: "対応する条文を特定" },
   { layer: "医療機関の確認事項", ref: "JAHIS SDS Ver.5.0 設問17.1.1.4〜17.1.1.6", body: "開示書の回答と備考" },
   { layer: "規程の条文", ref: "利用者認証方式規程", body: "再利用の禁止を明文化" },
-  { layer: "AWS の設定・実装", ref: "認証基盤", body: "直近5世代との照合で再利用を拒否" },
+  { layer: "システムの実装", ref: "認証基盤（AWS）", body: "直近5世代との照合で再利用を拒否" },
 ];
 
 // 画面例（public/img/kit/。bht-saas-kit frontend のデモ表示を 1280×800 で撮影。キットの画面を変えたら撮り直す）
@@ -175,10 +189,6 @@ const mdsSdsPoints = [
     body: "該当する項目と、個別検討となる理由を項目単位で開示します。",
   },
   {
-    title: "対応表は検証のうえ提供",
-    body: "「対象外」の除外理由が要求に合致しない項目（誤除外）を4件、自社で検出し是正しました。対応表は要求の原文と照合して検証しています。",
-  },
-  {
     title: "二要素認証は規程ひな形を同梱",
     body: "二要素認証（令和9年4月1日期限）の対応ロードマップを定める規程ひな形を同梱。方式の比較、認証手段を利用できない場合の代替手順、医療機関等との合意事項を1本の規程で扱います。",
   },
@@ -300,8 +310,8 @@ export default function ThreeM2GPage() {
               数週間規模に。
             </h1>
             <p className="text-slate-600 text-lg leading-relaxed max-w-2xl mx-auto mb-10">
-              3省2ガイドラインの対策416項目すべてに、実案件で検証した標準回答を整備。
-              ゼロからの検討を差分の確認に置き換え、対応の期間と費用を圧縮します。
+              3省2ガイドラインの対策416項目すべてに、実案件で検証した標準回答・規程・設計書・実装を整備。
+              期間と費用を抑えながら、医療機関の審査で求められる水準まで詳細に対応します。
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
               <a
@@ -445,24 +455,32 @@ export default function ThreeM2GPage() {
         {/* 課題（選定基準と3枚のカードまで。内訳の階段は折りたたみ） */}
         <section className="py-24 px-6 bg-white">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 text-center mb-10">
-              3省2ガイドライン対応が重い理由
+            <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 text-center mb-6">
+              新規事業では、期間・費用・品質の両立が難しい
             </h2>
-            <div className="space-y-4 text-slate-700 leading-relaxed">
-              <p>
-                医療情報を扱うシステム・サービスの提供事業者には、厚労省・経産省・総務省の3文書（計数百ページ）への対応が求められます。
-                対策項目は416項目です。
-              </p>
-              <p>
-                自力で対応する場合、読解と項目整理に数週間、全項目の該当性判断と対応方針の検討に数ヶ月を要し、
-                その後に規程・手順・設計書の整備が続きます。
-                <strong className="font-semibold text-slate-900">体制を組成した場合の総コストは数百万〜1,000万円、期間は4〜6ヶ月です</strong>
-                <span className="text-sm text-slate-500">（自社試算。体制・単価の前提はご相談時に提示します）</span>。
-              </p>
-              <p>
-                対象外にできる項目まで対応する過剰投資と、判断根拠の属人化も、監査・引き継ぎの段階で問題になります。
-              </p>
+            <p className="text-slate-700 leading-relaxed text-center max-w-3xl mx-auto mb-8">
+              医療情報を扱うサービスの提供事業者には、厚労省・経産省・総務省の3文書（計数百ページ）、416項目への対応が求められます。
+              体制の小さい新規事業ほど、期間・費用・品質のいずれかを犠牲にしがちです。
+            </p>
+            <div className="overflow-hidden rounded-2xl border border-slate-200">
+              <div className="hidden sm:grid grid-cols-[6rem_1fr_1fr] bg-slate-100 text-sm font-bold text-slate-700">
+                <p className="px-5 py-3" />
+                <p className="px-5 py-3">自力で対応する場合</p>
+                <p className="px-5 py-3 text-primary-800">本パッケージを使う場合</p>
+              </div>
+              {tradeoffs.map((t) => (
+                <div key={t.axis} className="grid grid-cols-1 sm:grid-cols-[6rem_1fr_1fr] border-t border-slate-200 first:border-t-0 sm:first:border-t">
+                  <p className="px-5 pt-4 sm:py-5 font-bold text-slate-900">{t.axis}</p>
+                  <p className="px-5 py-2 sm:py-5 text-slate-600 leading-relaxed"><span className="sm:hidden text-xs font-bold text-slate-500 block">自力で対応する場合</span>{t.pain}</p>
+                  <p className="px-5 pb-4 pt-2 sm:py-5 bg-primary-50/60 text-slate-900 font-semibold leading-relaxed"><span className="sm:hidden text-xs font-bold text-primary-700 block">本パッケージを使う場合</span>{t.answer}</p>
+                </div>
+              ))}
             </div>
+            <p className="mt-3 text-xs text-slate-500">期間・費用は自社試算です。体制・単価の前提はご相談時に提示します。</p>
+            <p className="mt-6 text-slate-700 leading-relaxed text-center">
+              <strong className="font-semibold text-slate-900">速さのために品質を落とすのではありません。</strong>
+              検証済みのアセットを使うことで、短期間でも詳細まで設計された対応を実現します。
+            </p>
 
             {/* 数値の正本: bht-ops docs/3m2g-volume-framing.md 1章。LP では直接編集せず正本を写す */}
             <div id="volume-ladder" className="mt-12 bg-white rounded-2xl border border-slate-200 p-6 sm:p-8">
@@ -520,15 +538,15 @@ export default function ThreeM2GPage() {
           </div>
         </section>
 
-        {/* 追跡可能性（1項目を要件から設定値まで追う例） */}
+        {/* 要件から実装までの紐づけ（1項目の例）と、品質を担保する仕組み */}
         <section className="py-24 px-6 bg-slate-50">
           <div className="max-w-6xl mx-auto">
             <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 text-center mb-4">
-              要件から AWS の設定まで、1本で追える
+              ガイドラインの要件から実装まで、戦略的に対応
             </h2>
             <p className="text-slate-600 text-center leading-relaxed max-w-3xl mx-auto mb-10">
-              ガイドラインの要件、医療機関の確認事項、規程の条文、AWS の設定値を相互に紐づけています。
-              医療機関からの照会や監査に根拠を示して回答でき、担当者が交代しても判断根拠が残ります。
+              ガイドラインの要件、医療機関の確認事項、規程の条文、システムの実装を相互に紐づけています。
+              照会や監査には根拠を示して回答でき、担当者が交代しても判断の経緯が残ります。
             </p>
             <p className="text-sm font-semibold text-slate-500 mb-3">例: パスワードの世代管理</p>
             <ol className="grid grid-cols-1 lg:grid-cols-5 gap-3">
@@ -544,6 +562,15 @@ export default function ThreeM2GPage() {
               ))}
             </ol>
             <p className="mt-6 text-center text-sm text-slate-600">416項目のそれぞれに、この紐づけがあります。</p>
+            <h3 className="mt-16 text-xl font-bold text-slate-900 text-center mb-8">品質を担保する仕組み</h3>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {qualityChecks.map((q) => (
+                <div key={q.title} className="bg-white rounded-xl border border-slate-200 p-6">
+                  <p className="font-bold text-slate-900 mb-2">{q.title}</p>
+                  <p className="text-sm text-slate-600 leading-relaxed">{q.body}</p>
+                </div>
+              ))}
+            </div>
           </div>
         </section>
 
@@ -639,7 +666,7 @@ export default function ThreeM2GPage() {
               計99項目が示され、「全項目が『はい』または『対象外』である事業者を選定すること」と明記されました。
               本パッケージは、この99項目にどう答えられるかを項目単位で整理・開示します。
             </p>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {mdsSdsPoints.map((p, i) => (
                 <div key={p.title} className="bg-white rounded-xl p-8 border border-slate-200 shadow-sm">
                   <p className="text-primary-600 font-bold text-sm mb-2">{String(i + 1).padStart(2, "0")}</p>
