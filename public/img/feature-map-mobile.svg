@@ -164,7 +164,7 @@
 <rect x="602" y="3215" width="50" height="28" rx="14" fill="#f1f5f9"/>
 <text x="627.0" y="3235" font-size="16" font-weight="600" fill="#475569" text-anchor="middle">任意</text>
 <rect x="28" y="3308" width="664" height="558" rx="16" fill="#ecfdf5" stroke="#6ee7b7" stroke-width="1.5"/>
-<text x="50" y="3352" font-size="27" font-weight="700" fill="#047857" text-anchor="start">文書パック（21文書）</text>
+<text x="50" y="3352" font-size="27" font-weight="700" fill="#047857" text-anchor="start">医療情報GL対応文書パック（21文書）</text>
 <text x="50" y="3386" font-size="20" font-weight="400" fill="#475569" text-anchor="start">上の機能と同じ設定値から生成。文書と実装が食い違わない</text>
 <rect x="50" y="3408" width="90" height="38" rx="19" fill="#ffffff" stroke="#6ee7b7"/>
 <text x="95.0" y="3434" font-size="19" font-weight="600" fill="#047857" text-anchor="middle">SLA</text>
