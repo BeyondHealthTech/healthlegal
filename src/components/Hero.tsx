@@ -18,7 +18,7 @@ export default function Hero() {
           技術で解決する
         </h1>
         <p className="text-lg text-slate-600 leading-relaxed mb-10 max-w-2xl mx-auto">
-          3省2ガイドラインの標準回答、規程・設計書のひな形、認証と監査ログを実装した土台。
+          3省2ガイドラインの標準回答、規程・設計書のひな形、認証と監査ログを実装した基盤。
           医療機関のセキュリティ審査への対応を、文書から実装まで一貫して支援します。
         </p>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
