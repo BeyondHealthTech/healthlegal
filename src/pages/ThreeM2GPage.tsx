@@ -34,16 +34,16 @@ const funnel = [
   },
 ];
 
-// 検討者が最初に確認する3点（期間・費用・納品物）。数字は同じページの料金表と一致させる。
+// 検討者が最初に確認する3点（納期・費用・納品物）。数字は同じページの料金表と一致させる。
 const quickFacts = [
-  { label: "期間", value: "最短5営業日", desc: "SDS 回答パックの場合。設計書を含む一式は4〜6週間" },
+  { label: "納期", value: "最短5営業日", desc: "SDS 回答パックの場合。設計書を含む一式は4〜6週間" },
   { label: "費用", value: "40万円から", desc: "提供範囲に応じた4プラン。料金表を公開", href: "#pricing", link: "料金表を見る" },
   { label: "納品物", value: "文書・設計書 70点", desc: "規程・手順35文書、AWS 詳細設計書35ファイル。貴社向けに調整して納品" },
 ];
 
 // 新規事業で両立しにくい3点と当社の対応。数字は同じページの料金表・自社試算と一致させる。
 const tradeoffs = [
-  { axis: "期間", pain: "読解・該当性判断・規程整備で4〜6ヶ月", answer: "標準回答からの差分確認で数週間。SDS 回答草案は最短5営業日" },
+  { axis: "スピード", pain: "読解・該当性判断・規程整備で4〜6ヶ月", answer: "標準回答からの差分確認で数週間。SDS 回答草案は最短5営業日" },
   { axis: "費用", pain: "専門体制の組成で数百万〜1,000万円", answer: "整備済みアセットの適用で40万円から" },
   { axis: "品質", pain: "専門人材が少なく判断が属人化。対象外にできる項目まで対応する過剰投資も", answer: "416項目を全件判定した標準回答と、実案件で検証した規程・設計書・実装" },
 ];
@@ -387,6 +387,7 @@ export default function ThreeM2GPage() {
             キット側で再生成したら public/img/feature-map.svg も差し替える） */}
         <section id="feature-map" className="scroll-mt-20 py-20 px-4 sm:px-6 bg-slate-50">
           <div className="max-w-6xl mx-auto">
+            <p className="text-center text-sm font-bold tracking-wider text-primary-700 mb-3">高水準のセキュリティ</p>
             <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 text-center mb-6">
               医療機関の審査で問われる機能を、あらかじめ搭載
             </h2>
@@ -456,20 +457,20 @@ export default function ThreeM2GPage() {
         <section className="py-24 px-6 bg-white">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 text-center mb-6">
-              新規事業では、期間・費用・品質の両立が難しい
+              医療領域の新規事業では、スピード・費用・品質の両立が難しい
             </h2>
             <p className="text-slate-700 leading-relaxed text-center max-w-3xl mx-auto mb-8">
               医療情報を扱うサービスの提供事業者には、厚労省・経産省・総務省の3文書（計数百ページ）、416項目への対応が求められます。
-              体制の小さい新規事業ほど、期間・費用・品質のいずれかを犠牲にしがちです。
+              体制の小さい新規事業ほど、スピード・費用・品質のいずれかを犠牲にしがちです。
             </p>
             <div className="overflow-hidden rounded-2xl border border-slate-200">
-              <div className="hidden sm:grid grid-cols-[6rem_1fr_1fr] bg-slate-100 text-sm font-bold text-slate-700">
+              <div className="hidden sm:grid grid-cols-[7rem_1fr_1fr] bg-slate-100 text-sm font-bold text-slate-700">
                 <p className="px-5 py-3" />
                 <p className="px-5 py-3">自力で対応する場合</p>
                 <p className="px-5 py-3 text-primary-800">本パッケージを使う場合</p>
               </div>
               {tradeoffs.map((t) => (
-                <div key={t.axis} className="grid grid-cols-1 sm:grid-cols-[6rem_1fr_1fr] border-t border-slate-200 first:border-t-0 sm:first:border-t">
+                <div key={t.axis} className="grid grid-cols-1 sm:grid-cols-[7rem_1fr_1fr] border-t border-slate-200 first:border-t-0 sm:first:border-t">
                   <p className="px-5 pt-4 sm:py-5 font-bold text-slate-900">{t.axis}</p>
                   <p className="px-5 py-2 sm:py-5 text-slate-600 leading-relaxed"><span className="sm:hidden text-xs font-bold text-slate-500 block">自力で対応する場合</span>{t.pain}</p>
                   <p className="px-5 pb-4 pt-2 sm:py-5 bg-primary-50/60 text-slate-900 font-semibold leading-relaxed"><span className="sm:hidden text-xs font-bold text-primary-700 block">本パッケージを使う場合</span>{t.answer}</p>
@@ -478,8 +479,8 @@ export default function ThreeM2GPage() {
             </div>
             <p className="mt-3 text-xs text-slate-500">期間・費用は自社試算です。体制・単価の前提はご相談時に提示します。</p>
             <p className="mt-6 text-slate-700 leading-relaxed text-center">
-              <strong className="font-semibold text-slate-900">速さのために品質を落とすのではありません。</strong>
-              検証済みのアセットを使うことで、短期間でも詳細まで設計された対応を実現します。
+              <strong className="font-semibold text-slate-900">スピードと高い品質を両立します。</strong>
+              検証済みのアセットにより、短期間でも詳細まで設計された対応を実現します。
             </p>
 
             {/* 数値の正本: bht-ops docs/3m2g-volume-framing.md 1章。LP では直接編集せず正本を写す */}
@@ -562,7 +563,7 @@ export default function ThreeM2GPage() {
               ))}
             </ol>
             <p className="mt-6 text-center text-sm text-slate-600">416項目のそれぞれに、この紐づけがあります。</p>
-            <h3 className="mt-16 text-xl font-bold text-slate-900 text-center mb-8">品質を担保する仕組み</h3>
+            <h3 className="mt-16 text-xl font-bold text-slate-900 text-center mb-8">高い品質を支える3つの検証</h3>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {qualityChecks.map((q) => (
                 <div key={q.title} className="bg-white rounded-xl border border-slate-200 p-6">
