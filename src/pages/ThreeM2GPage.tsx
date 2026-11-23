@@ -508,7 +508,7 @@ export default function ThreeM2GPage() {
                   <svg className="w-4 h-4 transition-transform group-open:rotate-90" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5} aria-hidden="true">
                     <path strokeLinecap="round" strokeLinejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
                   </svg>
-                  判断を要する単位の内訳（合計1,000超）
+                  判断が必要な箇所の内訳（合計1,000超）
                 </summary>
                 <div className="mt-4 border-t border-slate-200 pt-5">
                   <ol className="space-y-3">
@@ -523,7 +523,7 @@ export default function ThreeM2GPage() {
                     ))}
                   </ol>
                   <p className="mt-5 text-sm text-slate-700 leading-relaxed">
-                    判断を要する単位は合計で1,000を超えます（416＋371＋99＋160＋別版参照202）。当社アセットの機械集計による件数です。
+                    判断が必要な箇所は合計で1,000を超えます（416＋371＋99＋160＋別版参照202）。当社アセットの機械集計による件数です。
                   </p>
                 </div>
               </details>
