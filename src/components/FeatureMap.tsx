@@ -3,6 +3,7 @@ export default function FeatureMap() {
   return (
     <section className="py-20 px-4 sm:px-6 bg-slate-50">
       <div className="max-w-6xl mx-auto">
+        <p className="text-center text-sm font-bold tracking-wider text-primary-700 mb-3">高水準のセキュリティ</p>
         <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 text-center mb-4">
           医療機関の審査で問われる機能を、あらかじめ搭載
         </h2>
