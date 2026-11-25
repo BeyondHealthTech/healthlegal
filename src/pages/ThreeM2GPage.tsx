@@ -592,7 +592,7 @@ export default function ThreeM2GPage() {
                     ))}
                   </ol>
                   <p className="mt-5 text-sm text-slate-700 leading-relaxed">
-                    判断が必要な箇所は合計で1,000を超えます（416＋371＋99＋160＋別版参照202）。当社アセットの機械集計による件数です。
+                    判断が必要な箇所は合計で1,000を超えます（416＋371＋99＋197＋別版参照202）。当社アセットの機械集計による件数です。
                   </p>
                 </div>
               </details>
