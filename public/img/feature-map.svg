@@ -3,7 +3,7 @@
 <defs><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#475569"/></marker></defs>
 <rect width="1600" height="954" fill="#ffffff"/>
 <text x="40" y="46" font-size="25" font-weight="700" fill="#0f172a" text-anchor="start">医療情報SaaS 基盤の機能構成</text>
-<text x="40" y="72" font-size="14" font-weight="400" fill="#475569" text-anchor="start">3省2ガイドライン・医療機関のセキュリティ審査（SDS）で問われる機能を、画面とAWS上の仕組みで実装済み。各機能に SDS（JAHIS Ver.5.0）の設問番号を併記</text>
+<text x="40" y="72" font-size="14" font-weight="400" fill="#475569" text-anchor="start">3省2ガイドライン・医療機関のセキュリティ審査（SDS）で問われる機能を、画面とクラウド上の仕組みで実装済み。各機能に SDS（JAHIS Ver.5.0）の設問番号を併記</text>
 <text x="40" y="110" font-size="15" font-weight="700" fill="#475569" text-anchor="start">利用者</text>
 <rect x="40" y="130" width="150" height="70" rx="10" fill="#f8fafc" stroke="#94a3b8"/>
 <circle cx="66" cy="154" r="9" fill="#64748b"/><path d="M51 182 a15 13 0 0 1 30 0z" fill="#64748b"/>
@@ -61,11 +61,11 @@
 <text x="277" y="594" font-size="13" font-weight="600" fill="#0f172a" text-anchor="start">テナント設定（二要素認証の方針）</text>
 <line x1="194" y1="276" x2="219" y2="276" stroke="#475569" stroke-width="2" marker-end="url(#ar)"/>
 <rect x="570" y="96" width="990" height="722" rx="14" fill="#fff7ed" stroke="#fdba74" stroke-width="1.5"/>
-<text x="588" y="126" font-size="16" font-weight="700" fill="#c2410c" text-anchor="start">AWS（東京リージョン）</text>
-<text x="780" y="126" font-size="11.5" font-weight="400" fill="#475569" text-anchor="start">サーバレス構成・CDK で一括構築・自社で物理サーバを持たない</text>
+<text x="588" y="126" font-size="16" font-weight="700" fill="#c2410c" text-anchor="start">クラウド基盤（国内）</text>
+<text x="780" y="126" font-size="11.5" font-weight="400" fill="#475569" text-anchor="start">モダンなクラウドアーキテクチャ・コードで一括構築・物理サーバを持たない</text>
 <rect x="586" y="148" width="116" height="656" rx="10" fill="#ffffff" stroke="#fdba74"/>
 <text x="644.0" y="416.0" font-size="13" font-weight="700" fill="#c2410c" text-anchor="middle">API</text>
-<text x="644.0" y="436.0" font-size="13" font-weight="700" fill="#c2410c" text-anchor="middle">Gateway</text>
+<text x="644.0" y="436.0" font-size="13" font-weight="700" fill="#c2410c" text-anchor="middle">ゲートウェイ</text>
 <text x="644.0" y="456.0" font-size="11.5" font-weight="400" fill="#475569" text-anchor="middle"></text>
 <text x="644.0" y="476.0" font-size="11.5" font-weight="400" fill="#475569" text-anchor="middle">JWT 検証</text>
 <text x="644.0" y="496.0" font-size="11.5" font-weight="400" fill="#475569" text-anchor="middle">TLS 1.2+</text>
@@ -75,7 +75,7 @@
 <text x="555.5" y="266" font-size="11" font-weight="700" fill="#475569" text-anchor="middle">HTTPS</text>
 <rect x="720" y="148" width="405.0" height="349" rx="10" fill="#ffffff" fill-opacity="0.55" stroke="#fdba74" stroke-dasharray="4 3"/>
 <text x="732" y="170" font-size="14" font-weight="700" fill="#c2410c" text-anchor="start">認証・アカウント</text>
-<text x="732" y="185" font-size="10.5" font-weight="400" fill="#64748b" text-anchor="start">Cognito ＋ 認証API（Lambda）</text>
+<text x="732" y="185" font-size="10.5" font-weight="400" fill="#64748b" text-anchor="start">認証基盤 ＋ 認証API</text>
 <rect x="730" y="194" width="385.0" height="28" rx="6" fill="#ffffff" stroke="#e2e8f0"/>
 <text x="742" y="213" font-size="12.5" font-weight="600" fill="#0f172a" text-anchor="start">二要素認証（認証アプリ）</text>
 <rect x="1057.8" y="200" width="51.2" height="16" rx="8" fill="#f1f5f9"/>
@@ -114,7 +114,7 @@
 <text x="1083.4" y="476" font-size="10" font-weight="600" fill="#475569" text-anchor="middle">SDS 17</text>
 <rect x="720" y="509" width="405.0" height="118" rx="10" fill="#ffffff" fill-opacity="0.55" stroke="#fdba74" stroke-dasharray="4 3"/>
 <text x="732" y="531" font-size="14" font-weight="700" fill="#c2410c" text-anchor="start">権限・テナント分離</text>
-<text x="732" y="546" font-size="10.5" font-weight="400" fill="#64748b" text-anchor="start">JWT 検証 ＋ DynamoDB キー設計</text>
+<text x="732" y="546" font-size="10.5" font-weight="400" fill="#64748b" text-anchor="start">JWT 検証 ＋ テナント単位のデータ分離</text>
 <rect x="730" y="555" width="385.0" height="28" rx="6" fill="#ffffff" stroke="#e2e8f0"/>
 <text x="742" y="574" font-size="12.5" font-weight="600" fill="#0f172a" text-anchor="start">医療機関ごとのデータ分離</text>
 <rect x="1057.8" y="561" width="51.2" height="16" rx="8" fill="#f1f5f9"/>
@@ -125,7 +125,7 @@
 <text x="1083.4" y="606" font-size="10" font-weight="600" fill="#475569" text-anchor="middle">SDS 17</text>
 <rect x="720" y="639" width="405.0" height="151" rx="10" fill="#ffffff" fill-opacity="0.55" stroke="#fdba74" stroke-dasharray="4 3"/>
 <text x="732" y="661" font-size="14" font-weight="700" fill="#c2410c" text-anchor="start">開発・運用</text>
-<text x="732" y="676" font-size="10.5" font-weight="400" fill="#64748b" text-anchor="start">GitHub Actions ＋ CDK</text>
+<text x="732" y="676" font-size="10.5" font-weight="400" fill="#64748b" text-anchor="start">CI/CD ＋ コードによる構築</text>
 <rect x="730" y="685" width="385.0" height="28" rx="6" fill="#ffffff" stroke="#e2e8f0"/>
 <text x="742" y="704" font-size="12.5" font-weight="600" fill="#0f172a" text-anchor="start">悪性パッケージ・脆弱性の継続検査</text>
 <rect x="1057.8" y="691" width="51.2" height="16" rx="8" fill="#f1f5f9"/>
@@ -140,7 +140,7 @@
 <text x="1083.4" y="769" font-size="10" font-weight="600" fill="#475569" text-anchor="middle">SDS 全問</text>
 <rect x="1139.0" y="148" width="405.0" height="250" rx="10" fill="#ffffff" fill-opacity="0.55" stroke="#fdba74" stroke-dasharray="4 3"/>
 <text x="1151.0" y="170" font-size="14" font-weight="700" fill="#c2410c" text-anchor="start">記録・監査</text>
-<text x="1151.0" y="185" font-size="10.5" font-weight="400" fill="#64748b" text-anchor="start">DynamoDB ＋ S3 Object Lock ＋ CloudTrail</text>
+<text x="1151.0" y="185" font-size="10.5" font-weight="400" fill="#64748b" text-anchor="start">書き込み専用ログ ＋ 改ざん防止ストレージ ＋ 操作証跡</text>
 <rect x="1149.0" y="194" width="385.0" height="28" rx="6" fill="#ffffff" stroke="#e2e8f0"/>
 <text x="1161.0" y="213" font-size="12.5" font-weight="600" fill="#0f172a" text-anchor="start">全操作の監査ログ</text>
 <rect x="1462.4" y="200" width="65.6" height="16" rx="8" fill="#f1f5f9"/>
@@ -165,7 +165,7 @@
 <text x="1491.6" y="377" font-size="10" font-weight="600" fill="#475569" text-anchor="middle">SDS 40・任意</text>
 <rect x="1139.0" y="410" width="405.0" height="316" rx="10" fill="#ffffff" fill-opacity="0.55" stroke="#fdba74" stroke-dasharray="4 3"/>
 <text x="1151.0" y="432" font-size="14" font-weight="700" fill="#c2410c" text-anchor="start">データ保護・可用性</text>
-<text x="1151.0" y="447" font-size="10.5" font-weight="400" fill="#64748b" text-anchor="start">KMS ＋ DynamoDB PITR ＋ CloudWatch ＋ CloudFront ＋ WAF</text>
+<text x="1151.0" y="447" font-size="10.5" font-weight="400" fill="#64748b" text-anchor="start">鍵管理 ＋ 時点復元 ＋ 監視 ＋ CDN ＋ WAF</text>
 <rect x="1149.0" y="456" width="385.0" height="28" rx="6" fill="#ffffff" stroke="#e2e8f0"/>
 <text x="1161.0" y="475" font-size="12.5" font-weight="600" fill="#0f172a" text-anchor="start">通信・保存データの暗号化</text>
 <rect x="1476.8" y="462" width="51.2" height="16" rx="8" fill="#f1f5f9"/>

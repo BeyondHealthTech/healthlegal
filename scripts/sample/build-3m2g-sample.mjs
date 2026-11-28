@@ -50,7 +50,7 @@ blockquote { border-left:3px solid #a5b4fc; margin:2mm 0; padding:1mm 4mm; color
   <p class="brand">HealthLegal</p>
 </div>
 <section class="doc landsec"><div class="band"><span>サンプル 1/4</span>機能構成図</div>
-<p class="lead">医療機関の審査で問われる機能を、画面と AWS 上の仕組みとして実装済み。各機能に JAHIS SDS Ver.5.0 の設問番号を併記しています。</p>
+<p class="lead">医療機関の審査で問われる機能を、画面とクラウド上の仕組みとして実装済み。各機能に JAHIS SDS Ver.5.0 の設問番号を併記しています。</p>
 <div class="map">${svg.replace(/<\?xml[^>]*>/, '')}</div></section>
 ${section(2, '医療情報セキュリティ開示書（SDS Ver.5.0）', '全160問のうち冒頭の3分類と、備考5件を掲載。各回答の根拠を備考で示しています。', r('sds.md'))}
 ${section(3, '3省2ガイドライン 対応状況表', '416項目すべてについて、担保の種類（文書・実装・設計選択による対象外など）と担保先を示す表です。冒頭の14項目を掲載。', r('table.md'))}
